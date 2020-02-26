@@ -1,0 +1,15 @@
+{
+  "name": "bluspark-games",
+  "version": "1.0.0",
+  "description": "A bunch of fun and entertaining commands/ games for your Discord server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Master Bluspark",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "11.4.2"
+  }
+}
