@@ -1,6 +1,6 @@
-﻿const Discord = require("discord.js");
+const Discord = require("discord.js");
 const fs = require("fs");
-const mongoose = require(`mongoose`);
+const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true
 }, function(error) {
