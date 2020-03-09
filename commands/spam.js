@@ -8,7 +8,10 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
 
   if (message.member.user.tag === author) {
     let sicon = message.author.displayAvatarURL;
-    let num1 = args[0];
+    let num1 = parseInt(args[0]);
+    if (num1 > 4) {
+      return message.channel.send(`${num1} is too many!`);
+    }
     let num1a = num1;
     while (num1 != 0) {
       num1a = num1;
