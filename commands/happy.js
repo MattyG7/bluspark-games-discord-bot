@@ -1,4 +1,6 @@
 const Discord = require("discord.js");
+const mongoose = require(`mongoose`);
+const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if (args[0] === "valentines day") {
@@ -145,239 +147,256 @@ module.exports.run = async (bot, message, args) => {
   if (args[0] === "birthday") {
     return message.channel.send(`It's not my birthday today ${message.author.username}. Is it yours?`);
   }
-  if (!args[0]) {
-    let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-    let result = Math.floor((Math.random() * replies.length));
 
-    if(result === 0) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_1.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 1) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_2.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 2) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_3.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 3) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_4.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 4) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_5.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 5) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_6.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 6) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_7.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 7) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_8.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 8) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_9.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 9) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_10.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 10) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_11.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 11) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_12.gif`);
-      return message.channel.send(sdembed);
-    }
-    if(result === 12) {
-      let sdicon = message.author.displayAvatarURL;
-      let sdembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is very happy.`, sdicon)
-      .setImage (`https://blusparkstudio.com/discord/happy_13.gif`);
-      return message.channel.send(sdembed);
-    }
-  }
-  let rUser = message.mentions.members.first();
-  if(!rUser) return message.channel.send(`User not found! 😕`);
-  if(rUser.id === message.author.id) return message.channel.send(`***${message.author.username} is very happy right now!***`);
+  //GET USER COLOUR
+  mongoose.model("DiscordUserData").findOne ({
+    userID: `${message.author.id}`
+  }, function(error, data) {
+    if (error) {
+      console.log("Failed to get data :(");
+      console.log(error);
+    } else {
+      let userColour = data.col;
+      if (userColour === "not-set") {
+        userColour = "1fd1c8";
+      }
+      console.log("Got user's colour Successfully!");
 
-  let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
-  let result = Math.floor((Math.random() * replies.length));
+      if (!args[0]) {
+        let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+        let result = Math.floor((Math.random() * replies.length));
 
-  if(result === 0) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_1.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 1) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_2.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 2) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_3.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 3) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_4.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 4) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_5.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 5) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_6.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 6) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_7.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 7) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_8.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 8) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_9.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 9) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_10.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 10) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_11.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 11) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_12.gif`);
-    return message.channel.send(sdembed);
-  }
-  if(result === 12) {
-    let sdicon = message.author.displayAvatarURL;
-    let sdembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Happy 😊", sdicon)
-    .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
-    .setImage (`https://blusparkstudio.com/discord/happy_13.gif`);
-    return message.channel.send(sdembed);
-  }
+        if(result === 0) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_1.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 1) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_2.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 2) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_3.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 3) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_4.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 4) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_5.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 5) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_6.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 6) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_7.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 7) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_8.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 8) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_9.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 9) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_10.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 10) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_11.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 11) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_12.gif`);
+          return message.channel.send(sdembed);
+        }
+        if(result === 12) {
+          let sdicon = message.author.displayAvatarURL;
+          let sdembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is very happy.`, sdicon)
+          .setImage (`https://blusparkstudio.com/discord/happy_13.gif`);
+          return message.channel.send(sdembed);
+        }
+      }
+      let rUser = message.mentions.members.first();
+      if(!rUser) return message.channel.send(`User not found! 😕`);
+      if(rUser.id === message.author.id) return message.channel.send(`***${message.author.username} is very happy right now!***`);
+
+      let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+      let result = Math.floor((Math.random() * replies.length));
+
+      if(result === 0) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_1.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 1) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_2.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 2) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_3.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 3) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_4.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 4) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_5.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 5) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_6.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 6) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_7.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 7) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_8.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 8) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_9.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 9) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_10.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 10) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_11.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 11) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_12.gif`);
+        return message.channel.send(sdembed);
+      }
+      if(result === 12) {
+        let sdicon = message.author.displayAvatarURL;
+        let sdembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Happy 😊", sdicon)
+        .setDescription(`***${message.author.username} is happy because of ${rUser.user.username}.***\n😄`)
+        .setImage (`https://blusparkstudio.com/discord/happy_13.gif`);
+        return message.channel.send(sdembed);
+      }
+    }
+  });
 }
 
 module.exports.help = {

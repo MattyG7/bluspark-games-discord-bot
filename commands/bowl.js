@@ -1,150 +1,229 @@
 const Discord = require("discord.js");
+const mongoose = require(`mongoose`);
+const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  let coins = 100;
-  let mnyamnt = `**moneyamount**`;
-  let allpns = "*Strike*";
   if (!args[0]) {
-    let replies = ["**0 pins**", "**1 pin**", "**2 pins**", "**3 pins**", "**4 pins**", "**5 pins**", "**6 pins**", "**7 pins**", "**8 pins**", "**9 pins**", "**10 pins**"];
-    let result = Math.floor((Math.random() * replies.length));
+    mongoose.model("DiscordUserData").findOne ({
+      userID: `${message.author.id}`
+    }, function(error, data) {
+      if (error) {
+        console.log("Failed to get data :(");
+        console.log(error);
+      } else {
+        let userColour = data.col;
+        if (userColour === "not-set") {
+          userColour = "1fd1c8";
+        }
+        console.log("Got user's colour Successfully!");
 
-    if (result === 0) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling (no prize) 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. Ouch...`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 1 || result === 2 || result === 3) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling (no prize) 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. Unlucky, better luck next time.`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 4 || result === 5 || result === 6) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling (no prize) 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. Eh, not bad.`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 7 || result === 8 || result === 9) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling (no prize) 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. Nice.`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 10) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling (no prize) 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. You got a ${allpns}!`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
+        let replies = ["**0 pins**", "**1 pin**", "**2 pins**", "**3 pins**", "**4 pins**", "**5 pins**", "**6 pins**", "**7 pins**", "**8 pins**", "**9 pins**", "**10 pins**"];
+        let result = Math.floor((Math.random() * replies.length));
+
+        if (result === 0) {
+          let fbwlembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setTitle(`Bowling (no prize) 🎳`)
+          .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+          message.channel.send(fbwlembed);
+          setTimeout(() => {
+            let fbwllembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`Knocked down ${replies[result]}. Ouch...`);
+            return message.channel.send(fbwllembed);
+          }, 4000);
+        }
+        if (result === 1 || result === 2 || result === 3) {
+          let fbwlembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setTitle(`Bowling (no prize) 🎳`)
+          .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+           message.channel.send(fbwlembed);
+          setTimeout(() => {
+            let fbwllembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`Knocked down ${replies[result]}. Unlucky, better luck next time.`);
+            return message.channel.send(fbwllembed);
+          }, 4000);
+        }
+        if (result === 4 || result === 5 || result === 6) {
+          let fbwlembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setTitle(`Bowling (no prize) 🎳`)
+          .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+           message.channel.send(fbwlembed);
+          setTimeout(() => {
+            let fbwllembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`Knocked down ${replies[result]}. Eh, not bad.`);
+            return message.channel.send(fbwllembed);
+          }, 4000);
+        }
+        if (result === 7 || result === 8 || result === 9) {
+          let fbwlembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setTitle(`Bowling (no prize) 🎳`)
+          .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+           message.channel.send(fbwlembed);
+          setTimeout(() => {
+            let fbwllembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`Knocked down ${replies[result]}. Nice!`);
+            return message.channel.send(fbwllembed);
+          }, 4000);
+        }
+        if (result === 10) {
+          let fbwlembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setTitle(`Bowling (no prize) 🎳`)
+          .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+           message.channel.send(fbwlembed);
+          setTimeout(() => {
+            let fbwllembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`Knocked down ${replies[result]}. You got a **Strike**!`);
+            return message.channel.send(fbwllembed);
+          }, 4000);
+        }
+      }
+    });
   }
-  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~bowl ${mnyamnt}.`);
+  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~bowl 10.`);
   if(args[0]) {
     if(isNaN(args[0])) return message.channel.send(`${message.author.username}, please use a money amount.`);
-    if (args[0] > coins) {
-      let ntenghembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setDescription(`Not enough money!`)
-      .setFooter(`You have ${coins} SparkCoins`);
-      return message.channel.send(ntenghembed);
-    }
-    let replies = ["**0 pins**", "**1 pin**", "**2 pins**", "**3 pins**", "**4 pins**", "**5 pins**", "**6 pins**", "**7 pins**", "**8 pins**", "**9 pins**", "**10 pins**"];
-    let result = Math.floor((Math.random() * replies.length));
+    if(args[0] === "0") return message.channel.send(`You can't bet zero SparkCoins, ${message.author.username}.`);
+    let bowlUser = `${message.author.id}`;
+    mongoose.model("DiscordUserData").findOne ({
+      userID: `${message.author.id}`
+    }, function(error, data) {
+      if (error) {
+        console.log("Failed to get data :(");
+        console.log(error);
+      } else {
+        var datetime = new Date();
+        var datetimeToday = datetime.toISOString().slice(0,10);
+        let datelastbowled = data.lastbowled;
+        if (datetimeToday === data.lastbowled) {
+          return message.channel.send("You have already played this game today.");
+        } else {
+          let userColour = data.col;
+          let userSparkCoins = data.sparkcoins;
+          let SparkCoinsBET = parseInt(args[0]);
+          console.log("Successfully got the user's SparkCoin amount: " + userSparkCoins);
+          if (userSparkCoins > SparkCoinsBET || userSparkCoins === SparkCoinsBET) {
+            console.log("User CAN afford bet.");
+            console.log("User is betting: " + SparkCoinsBET + " SparkCoins.");
 
-    let wnngs = args[0] * result;
-    let bns = `*You win ${wnngs} SparkCoins + a bonus ${result} SparkCoins!*`;
-    let win = `*You win ${wnngs} SparkCoins!*`;
-    let nthng = `*You didn't win any SparkCoins. Try again later.*`;
-    let lose = `*You lose ${wnngs} SparkCoins. Try again later.*`;
-    let losez = `*You lose ${args[0]} SparkCoins. Try again later.*`;
-    if (result === 0) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. ${losez}`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 1) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. ${nthng}`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result > 1 && result < 10) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. ${win}`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
-    if (result === 10) {
-      let fbwlembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Bowling 🎳`)
-      .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
-       message.channel.send(fbwlembed);
-      setTimeout(() => {
-        let fbwllembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`Knocked down ${replies[result]}. You got a ${allpns}! ${bns}`);
-        return message.channel.send(fbwllembed);
-      }, 4000);
-    }
+            let replies = ["0 pins", "1 pin", "2 pins", "3 pins", "4 pins", "5 pins", "6 pins", "7 pins", "8 pins", "9 pins", "10 pins", "0 pins"];
+            let result = Math.floor((Math.random() * replies.length));
+
+            if (result === 11) {
+              result = 0;
+            }
+            let betWinnings = SparkCoinsBET * result;
+            console.log(`Pins knocked down: ${result}`);
+            console.log(`Winnings: ${betWinnings} SparkCoins`);
+            //0 PINS
+            if (result === 0) {
+              let userSparkCoinsNEW = userSparkCoins - SparkCoinsBET;
+              console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
+              console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
+
+              let fbwlembed = new Discord.RichEmbed()
+              .setColor(`#${userColour}`)
+              .setTitle(`Bowling 🎳`)
+              .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+              message.channel.send(fbwlembed);
+              setTimeout(() => {
+                let sparkcoinlogmembed = new Discord.RichEmbed()
+                .setColor("#1c9472")
+                .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins.`)
+                .setFooter("Bowling");
+                bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+                let fbwllembed = new Discord.RichEmbed()
+                .setColor(`#${userColour}`)
+                .setDescription(`Knocked down **0 pins**. You lose ${SparkCoinsBET} SparkCoins.`);
+                return message.channel.send(fbwllembed);
+              }, 4000);
+              mongoose.model("DiscordUserData").updateMany ({userID: bowlUser}, {
+                sparkcoins: `${userSparkCoinsNEW}`,
+                lastbowled: `${datetimeToday}`
+              }, function(error, data) {
+                if (error) {
+                  console.log("Failed to save the data :(");
+                  console.log(error);
+                } else {
+                  console.log(`Successfully updated user's SparkCoins amount and last bowled date!`);
+                  console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+                  console.log(`- BEFORE: ${datelastbowled}. AFTER: ${datetimeToday}`);
+                }
+              });
+            }
+            //1 PIN
+            if (result === 1) {
+              console.log(`User didn't win or lose any SparkCoins.`);
+
+              let fbwlembed = new Discord.RichEmbed()
+              .setColor(`#${userColour}`)
+              .setTitle(`Bowling 🎳`)
+              .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+              message.channel.send(fbwlembed);
+              setTimeout(() => {
+                let fbwllembed = new Discord.RichEmbed()
+                .setColor(`#${userColour}`)
+                .setDescription(`Knocked down **1 pin**. You didn't win or lose any SparkCoins.`);
+                return message.channel.send(fbwllembed);
+              }, 4000);
+            }
+            //2-10 PINS
+            if (result > 1) {
+              let userSparkCoinsNEW = userSparkCoins + betWinnings;
+              userSparkCoinsNEW = userSparkCoinsNEW - SparkCoinsBET;
+              let betWinningsNEW = betWinnings - SparkCoinsBET;
+              console.log(`User won ${betWinningsNEW} SparkCoins.`);
+              console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
+
+              let fbwlembed = new Discord.RichEmbed()
+              .setColor(`#${userColour}`)
+              .setTitle(`Bowling 🎳`)
+              .setDescription(`You picked up a bowling ball, threw it down the lane and...`);
+              message.channel.send(fbwlembed);
+              setTimeout(() => {
+                let sparkcoinlogmembed = new Discord.RichEmbed()
+                .setColor("#1c9472")
+                .setDescription(`**${message.author.username}** won ${betWinningsNEW} SparkCoins!`)
+                .setFooter("Bowling");
+                bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+                let fbwllembed = new Discord.RichEmbed()
+                .setColor(`#${userColour}`)
+                .setDescription(`Knocked down **${result} pins**. You won **${betWinningsNEW} SparkCoins**!`);
+                return message.channel.send(fbwllembed);
+              }, 4000);
+              mongoose.model("DiscordUserData").updateMany ({userID: bowlUser}, {
+                sparkcoins: `${userSparkCoinsNEW}`,
+                lastbowled: `${datetimeToday}`
+              }, function(error, data) {
+                if (error) {
+                  console.log("Failed to save the data :(");
+                  console.log(error);
+                } else {
+                  console.log(`Successfully updated user's SparkCoins amount and last bowled date!`);
+                  console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+                  console.log(`- BEFORE: ${datelastbowled}. AFTER: ${datetimeToday}`);
+                }
+              });
+            }
+          } else {
+            console.log("User CAN'T afford bet.");
+            let ntenghembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setDescription(`❗ Not enough SparkCoins!`)
+            .setFooter(`You have ${userSparkCoins}.`);
+            return message.channel.send(ntenghembed);
+          }
+        }
+      }
+    });
   }
 }
 

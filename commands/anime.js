@@ -92,14 +92,7 @@ module.exports.run = async (bot, message, args) => {
     let animembed = new Discord.RichEmbed()
     .setTitle(`📺 ${replies[result]}`)
     .setColor("#1fd1c8")
-    .setImage("https://blusparkstudio.com/discord/anime_thepetgirlofsakurasou.jpg");
-    return message.channel.send(animembed);
-  }
-  if (result === 13) {
-    let animembed = new Discord.RichEmbed()
-    .setTitle(`📺 ${replies[result]}`)
-    .setColor("#1fd1c8")
-    .setImage("https://blusparkstudio.com/discord/anime_teasingmastertakagisan.png");
+    .setImage("https://blusparkstudio.com/discord/anime_teasingmastertakagisan.jpg");
     return message.channel.send(animembed);
   }
 }

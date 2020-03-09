@@ -1,69 +1,123 @@
 const Discord = require("discord.js");
+const mongoose = require(`mongoose`);
+const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  let coins = 100;
-  let gl = `**GOAL!**`;
-  let mnyamnt = `**moneyamount**`;
   if (!args[0]) {
-    let replies = [`${gl} You scored!`, "Missed! Better luck next time.", "The keeper saved it! Unlucky.", "Skied it! 😐"];
-    let result = Math.floor((Math.random() * replies.length));
+    mongoose.model("DiscordUserData").findOne ({
+      userID: `${message.author.id}`
+    }, function(error, data) {
+      if (error) {
+        console.log("Failed to get data :(");
+        console.log(error);
+      } else {
+        let userColour = data.col;
+        if (userColour === "not-set") {
+          userColour = "1fd1c8";
+        }
+        console.log("Got user's colour Successfully!");
 
-    let fpnltyembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setTitle(`Penalty (no prize) ⚽`)
-    .setDescription(`You run up, kick the ball and...`);
-     message.channel.send(fpnltyembed);
-    setTimeout(() => {
-      let fpnltyyembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setDescription(`${replies[result]}`);
-      return message.channel.send(fpnltyyembed);
-    }, 3000);
+        let replies = [`**GOAL!** You scored!`, `Missed! Better luck next time.`, `The keeper saved it! Unlucky.`, `Skied it! 😐`];
+        let result = Math.floor((Math.random() * replies.length));
+
+        let fbwlembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setTitle(`Penalty (no prize) ⚽`)
+        .setDescription(`You run up, kick the ball and...`);
+        message.channel.send(fbwlembed);
+        setTimeout(() => {
+          let fbwllembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setDescription(replies[result]);
+          return message.channel.send(fbwllembed);
+        }, 3000);
+      }
+    });
   }
-  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~penalty ${mnyamnt}.`);
+  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~penalty prize.`);
   if(args[0]) {
-    if(isNaN(args[0])) return message.channel.send(`${message.author.username}, please use numbers! The correct format is: ~penalty ${mnyamnt}.`);
-    if (args[0] > coins) {
-      let ntenghembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setDescription(`Not enough money!`)
-      .setFooter(`You have ${coins} SparkCoins`);
-      return message.channel.send(ntenghembed);
-    }
-    let replies = [`${gl} You scored!`, "Missed! Better luck next time.", "The keeper saved it! Unlucky.", "Skied it! 😐"];
-    let result = Math.floor((Math.random() * replies.length));
+    if(args[0] != "prize") return message.channel.send(`${message.author.username}, please use the correct format: ~penalty prize.`);
+    let penaltyUser = `${message.author.id}`;
+    mongoose.model("DiscordUserData").findOne ({
+      userID: `${message.author.id}`
+    }, function(error, data) {
+      if (error) {
+        console.log("Failed to get data :(");
+        console.log(error);
+      } else {
+        var datetime = new Date();
+        var datetimeToday = datetime.toISOString().slice(0,10);
+        let datelastkicked = data.lastkicked;
+        if (datetimeToday === data.lastkicked) {
+          return message.channel.send("You have already played this game today.");
+        } else {
+          let userColour = data.col;
+          let userSparkCoins = data.sparkcoins;
+          console.log("Successfully got the user's SparkCoin amount: " + userSparkCoins);
 
-    let win = `*You win ${args[0]} SparkCoins!*`;
-    let lose = `*You lose ${args[0]} SparkCoins.*`;
-    //let frmtresult = "None";
-    if (result === 0) {
-      coins = coins + args[0];
-      let fpnltyembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Penalty ⚽`)
-      .setDescription(`You run up, kick the ball and...`);
-       message.channel.send(fpnltyembed);
-      setTimeout(() => {
-        let fpnltyyembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`${replies[result]} ${win}`);
-        return message.channel.send(fpnltyyembed);
-      }, 3000);
-    }
-    if (result === 1 || result === 2 || result === 3) {
-      coins = coins - args[0];
-      let pnltyembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setTitle(`Penalty ⚽`)
-      .setDescription(`You run up, kick the ball and...`);
-       message.channel.send(pnltyembed);
-      setTimeout(() => {
-        let pnltyyembed = new Discord.RichEmbed()
-        .setColor("#1fd1c8")
-        .setDescription(`${replies[result]} ${lose}`);
-        return message.channel.send(pnltyyembed);
-      }, 3000);
-    }
+          console.log("Prize is 100 SparkCoins.");
+
+          let replies = [`**GOAL!** You scored!`, `Missed! Better luck next time.`, `The keeper saved it! Unlucky.`, `Skied it! 😐`];
+          let result = Math.floor((Math.random() * replies.length));
+
+          if (result === 0) {
+            let fbwlembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setTitle(`Penalty ⚽`)
+            .setDescription(`You run up, kick the ball and...`);
+            message.channel.send(fbwlembed);
+            setTimeout(() => {
+              let sparkcoinlogmembed = new Discord.RichEmbed()
+              .setColor("#1c9472")
+              .setDescription(`**${message.author.username}** won 100 SparkCoins.`)
+              .setFooter("Penalty");
+              bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+              let fbwllembed = new Discord.RichEmbed()
+              .setColor(`#${userColour}`)
+              .setDescription(`${replies[result]} You won **100 SparkCoins**!`);
+              message.channel.send(fbwllembed);
+            }, 3000);
+            let userSparkCoinsNEW = userSparkCoins + 100;
+            mongoose.model("DiscordUserData").updateMany ({userID: penaltyUser}, {
+              sparkcoins: `${userSparkCoinsNEW}`,
+              lastkicked: `${datetimeToday}`
+            }, function(error, data) {
+              if (error) {
+                console.log("Failed to save the data :(");
+                console.log(error);
+              } else {
+                console.log(`Successfully updated user's SparkCoins amount and last kicked date!`);
+                console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+                console.log(`- BEFORE: ${datelastkicked}. AFTER: ${datetimeToday}`);
+              }
+            });
+          } else {
+            let fbwlembed = new Discord.RichEmbed()
+            .setColor(`#${userColour}`)
+            .setTitle(`Penalty ⚽`)
+            .setDescription(`You run up, kick the ball and...`);
+            message.channel.send(fbwlembed);
+            setTimeout(() => {
+              let fbwllembed = new Discord.RichEmbed()
+              .setColor(`#${userColour}`)
+              .setDescription(`${replies[result]} You didn't win any SparkCoins today.`);
+              return message.channel.send(fbwllembed);
+            }, 3000);
+            mongoose.model("DiscordUserData").updateOne ({userID: penaltyUser}, {
+              lastkicked: `${datetimeToday}`
+            }, function(error, data) {
+              if (error) {
+                console.log("Failed to save the data :(");
+                console.log(error);
+              } else {
+                console.log(`Successfully updated user's last kicked date!`);
+                console.log(`- BEFORE: ${datelastkicked}. AFTER: ${datetimeToday}`);
+              }
+            });
+          }
+        }
+      }
+    });
   }
 }
 

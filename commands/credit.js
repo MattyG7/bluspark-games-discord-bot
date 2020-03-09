@@ -1,12 +1,13 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  let coins = 100;
+  let coins = 0;
   let wlltembed = new Discord.RichEmbed()
   .setTitle(`💳 ${message.author.username}'s Wallet`)
   .setColor("#1fd1c8")
   //.setThumbnail(wicon)
-  .setDescription(`You have ${coins} SparkCoins.`);
+  .setDescription(`You have ${coins} SparkCoins.`)
+  .setFooter("Lol, jk.");
   return message.channel.send(wlltembed);
 }
 

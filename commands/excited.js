@@ -1,188 +1,206 @@
 const Discord = require("discord.js");
+const mongoose = require(`mongoose`);
+const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  if (!args[0]) {
-    let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    let result = Math.floor((Math.random() * replies.length));
+  //GET USER COLOUR
+  mongoose.model("DiscordUserData").findOne ({
+    userID: `${message.author.id}`
+  }, function(error, data) {
+    if (error) {
+      console.log("Failed to get data :(");
+      console.log(error);
+    } else {
+      let userColour = data.col;
+      if (userColour === "not-set") {
+        userColour = "1fd1c8";
+      }
+      console.log("Got user's colour Successfully!");
 
-    if(result === 0) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_1.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 1) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_2.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 2) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_3.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 3) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_4.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 4) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_5.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 5) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_6.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 6) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_7.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 7) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_8.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 8) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_9.gif`);
-      return message.channel.send(excembed);
-    }
-    if(result === 9) {
-      let excicon = message.author.displayAvatarURL;
-      let excembed = new Discord.RichEmbed()
-      .setColor("#1fd1c8")
-      .setAuthor(`${message.author.username} is excited!`, excicon)
-      .setImage (`https://blusparkstudio.com/discord/excited_10.gif`);
-      return message.channel.send(excembed);
-    }
-  }
-  let rUser = message.mentions.members.first();
-  if(args[0] && !rUser) return message.channel.send(`User not found! 😕`);
-  if(rUser.id === message.author.id) return message.channel.send(`***${message.author.username} is excited!***`);
+      if (!args[0]) {
+        let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        let result = Math.floor((Math.random() * replies.length));
 
-  let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-  let result = Math.floor((Math.random() * replies.length));
+        if(result === 0) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_1.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 1) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_2.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 2) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_3.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 3) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_4.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 4) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_5.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 5) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_6.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 6) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_7.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 7) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_8.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 8) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_9.gif`);
+          return message.channel.send(excembed);
+        }
+        if(result === 9) {
+          let excicon = message.author.displayAvatarURL;
+          let excembed = new Discord.RichEmbed()
+          .setColor(`#${userColour}`)
+          .setAuthor(`${message.author.username} is excited!`, excicon)
+          .setImage (`https://blusparkstudio.com/discord/excited_10.gif`);
+          return message.channel.send(excembed);
+        }
+      }
+      let rUser = message.mentions.members.first();
+      if(args[0] && !rUser) return message.channel.send(`User not found! 😕`);
+      if(rUser.id === message.author.id) return message.channel.send(`***${message.author.username} is excited!***`);
 
-  if(result === 0) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_1.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 1) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_2.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 2) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_3.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 3) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_4.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 4) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_5.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 5) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_6.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 6) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_7.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 7) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_8.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 8) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_9.gif`);
-    return message.channel.send(excembed);
-  }
-  if(result === 9) {
-    let excicon = message.author.displayAvatarURL;
-    let excembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
-    .setAuthor("Excited 😄", excicon)
-    .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
-    .setImage (`https://blusparkstudio.com/discord/excited_10.gif`);
-    return message.channel.send(excembed);
-  }
+      let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      let result = Math.floor((Math.random() * replies.length));
+
+      if(result === 0) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_1.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 1) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_2.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 2) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_3.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 3) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_4.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 4) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_5.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 5) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_6.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 6) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_7.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 7) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_8.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 8) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_9.gif`);
+        return message.channel.send(excembed);
+      }
+      if(result === 9) {
+        let excicon = message.author.displayAvatarURL;
+        let excembed = new Discord.RichEmbed()
+        .setColor(`#${userColour}`)
+        .setAuthor("Excited 😄", excicon)
+        .setDescription(`***${message.author.username} is excited about what ${rUser.user.username} just said!***\nYay! 😁`)
+        .setImage (`https://blusparkstudio.com/discord/excited_10.gif`);
+        return message.channel.send(excembed);
+      }
+    }
+  });
 }
 
 module.exports.help = {

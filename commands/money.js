@@ -1,13 +1,26 @@
 const Discord = require("discord.js");
+const mongoose = require(`mongoose`);
+const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  let coins = 100;
-  let wlltembed = new Discord.RichEmbed()
-  .setTitle(`💳 ${message.author.username}'s Wallet`)
-  .setColor("#1fd1c8")
-  //.setThumbnail(wicon)
-  .setDescription(`You have ${coins} SparkCoins.`);
-  return message.channel.send(wlltembed);
+  mongoose.model("DiscordUserData").findOne ({
+    userID: `${message.author.id}`
+  }, function(error, data) {
+    if (error) {
+      console.log("Failed to get data :(");
+      console.log(error);
+    } else {
+      console.log("Successfully got the user's SparkCoin amount: " + data.sparkcoins);
+      let wcolour = data.col;
+      let coins = data.sparkcoins;
+      let wicon = message.author.displayAvatarURL;
+      let wlltembed = new Discord.RichEmbed()
+      .setColor(`#${wcolour}`)
+      .setAuthor(`💳 ${message.author.username}'s Wallet`, wicon)
+      .setDescription(`You have ${coins} SparkCoins.`);
+      return message.channel.send(wlltembed);
+    }
+  });
 }
 
 module.exports.help = {
