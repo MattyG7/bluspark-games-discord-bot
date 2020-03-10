@@ -99,7 +99,7 @@ module.exports.run = async (bot, message, args) => {
               let fbwlembed = new Discord.RichEmbed()
               .setColor(`#${userColour}`)
               .setTitle(`Dice Roll 🎲`)
-              .setDescription(`You rolled a **${replies[result]}**. You lost &&${SparkCoinsBET} SparkCoins**.`);
+              .setDescription(`You rolled a **${replies[result]}**. You lost **${SparkCoinsBET} SparkCoins**.`);
               message.channel.send(fbwlembed);
               mongoose.model("DiscordUserData").updateMany ({userID: rollUser}, {
                 sparkcoins: `${userSparkCoinsNEW}`,

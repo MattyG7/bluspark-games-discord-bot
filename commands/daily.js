@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
               console.log(`- ${datetimeToday}`);
               let sparkcoinlogmembed = new Discord.RichEmbed()
               .setColor("#1c9472")
-              .setDescription(`**${message.author.username}** just received their daily SparkCoins!`)
+              .setDescription(`**${message.author.username}** received their daily SparkCoins!`)
               .setFooter(streakNow + " day streak.");
               bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
               let dicon = message.author.displayAvatarURL;
@@ -64,12 +64,11 @@ module.exports.run = async (bot, message, args) => {
               message.channel.send(dlyembed);
 
               //If streak is divisible by 5
-              let lastDigitOfNumber = streakNow.slice(-1);
-              let lastDigitOfNumberNUMBER = parseInt(lastDigitOfNumber);
+              let lastDigitOfNumberNUMBER = streakNow % 10;
               if (lastDigitOfNumberNUMBER === 0 || lastDigitOfNumberNUMBER === 5) {
-                console.log.send(`Streak is divisible by 5!`);
+                console.log(`Streak is divisible by 5!`);
                 let coinsNowNow = coinsNow + streakNow;
-                console.log.send(`User got a bonus ${streakNow} SparkCoins!`);
+                console.log(`User got a bonus ${streakNow} SparkCoins!`);
                 mongoose.model("DiscordUserData").updateOne ({userID: message.author.id}, {
                   sparkcoins: `${coinsNowNow}`
                 }, function(error, data) {
@@ -79,6 +78,11 @@ module.exports.run = async (bot, message, args) => {
                   } else {
                     console.log("Successfully saved the data!");
                     console.log(`- BEFORE: ${coinsNow}. AFTER: ${coinsNowNow}`);
+                    let sparkcoinlogmembedBNS = new Discord.RichEmbed()
+                    .setColor("#1c9472")
+                    .setDescription(`**${message.author.username}** received a bonus ${streakNow} SparkCoins!`)
+                    .setFooter(streakNow + " day streak bonus!");
+                    bot.channels.get(`681249230232223767`).send(sparkcoinlogmembedBNS);
                     let dlyembedBNS = new Discord.RichEmbed()
                     .setColor(`#${userColour}`)
                     .setAuthor(`💷 Here are a bonus ${streakNow} SparkCoins!`, dicon)

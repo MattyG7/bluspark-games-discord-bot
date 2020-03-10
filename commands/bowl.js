@@ -114,17 +114,17 @@ module.exports.run = async (bot, message, args) => {
             console.log("User CAN afford bet.");
             console.log("User is betting: " + SparkCoinsBET + " SparkCoins.");
 
-            let replies = ["0 pins", "1 pin", "2 pins", "3 pins", "4 pins", "5 pins", "6 pins", "7 pins", "8 pins", "9 pins", "10 pins", "0 pins"];
+            let replies = ["1 pin", "0 pins", "2 pins", "0 pins", "3 pins", "0 pins", "4 pins", "0 pins", "5 pins", "0 pins", "6 pins", "0 pins", "7 pins", "0 pins", "8 pins", "0 pins", "9 pins", "0 pins", "10 pins"];
             let result = Math.floor((Math.random() * replies.length));
 
-            if (result === 11) {
-              result = 0;
+            if (result === 1 || result === 3 || result === 5 || result === 7 || result === 9 || result === 11 || result === 13 || result === 15 || result === 17) {
+              result = 1;
             }
             let betWinnings = SparkCoinsBET * result;
             console.log(`Pins knocked down: ${result}`);
             console.log(`Winnings: ${betWinnings} SparkCoins`);
             //0 PINS
-            if (result === 0) {
+            if (result === 1) {
               let userSparkCoinsNEW = userSparkCoins - SparkCoinsBET;
               console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
               console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
@@ -160,7 +160,7 @@ module.exports.run = async (bot, message, args) => {
               });
             }
             //1 PIN
-            if (result === 1) {
+            if (result === 0) {
               console.log(`User didn't win or lose any SparkCoins.`);
 
               let fbwlembed = new Discord.RichEmbed()
@@ -176,7 +176,7 @@ module.exports.run = async (bot, message, args) => {
               }, 4000);
             }
             //2-10 PINS
-            if (result > 1) {
+            if (result === 2 || result === 4 || result === 6 || result === 8 || result === 10 || result === 12 || result === 14 || result === 16 || result === 18) {
               let userSparkCoinsNEW = userSparkCoins + betWinnings;
               userSparkCoinsNEW = userSparkCoinsNEW - SparkCoinsBET;
               let betWinningsNEW = betWinnings - SparkCoinsBET;

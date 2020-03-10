@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
           console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
           let sparkcoinlogmembed = new Discord.RichEmbed()
           .setColor("#1c9472")
-          .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins...`)
+          .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins.`)
           .setFooter("Flip");
           bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
           let flpembed = new Discord.RichEmbed()
