@@ -10,9 +10,11 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = data.col;
-      if (userColour === "not-set") {
-        userColour = "1fd1c8";
+      let userColour = "";
+      if (data.col === "not-set") {
+        userColour = "202225";
+      } else {
+        userColour = data.col;
       }
       console.log("Got user's colour Successfully!");
       console.log("Successfully got the user's SparkCoin amount, last daily command date and daily command streak: " + data.sparkcoins + " , " + data.dailydate + " , " + data.dailystreak);
@@ -91,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
                   }
                 });
               } else {
-                console.log.send(`Streak is NOT divisible by 5.`);
+                console.log(`Streak is NOT divisible by 5.`);
               }
             }
           });
