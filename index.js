@@ -114,7 +114,8 @@ bot.on("message", async message => {
         message.channel.send(lvlupembed);
         console.log(`Level Up! User grew from level ${userLevel} to ${userLevelNEW}.`);
         console.log(`Overflow XP is ${OverflowXP} and was added to user's current level XP count.`);
-        let userGoalXPNEW = userGoalXP * 1.2;
+        let userGoalXPNEW_UNROUNDED = userGoalXP * 1.2;
+        let userGoalXPNEW = Math.round(userGoalXPNEW_UNROUNDED);
         console.log(`XP needed to next level has gone up from ${userGoalXP} to ${userGoalXPNEW}.`);
         mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
           currentxp: `${OverflowXP}`,
