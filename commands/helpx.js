@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Emotions & Solo Actions", "`~laugh`")
   .addField("Games (no prize)", "`~flip`")
   .addField("Games", "`~dontgetbit SPARKCOINAMOUNT`** | **`~flip COINSIDE SPARKCOINAMOUNT`** | **`~memory SPARKCOINAMOUNT`** | **`~rps SPARKCOINAMOUNT`")
-  .addField("Daily Games", "`~bowl SPARKCOINAMOUNT`** | **`~deal easy`, `~deal hard`** | **`~penalty prize`** | **`~roll DICENUMBER SPARKCOINAMOUNT`")
+  .addField("Daily Games", "`~bowl SPARKCOINAMOUNT`** | **`~deal easy`, `~deal hard`** | **`~penalty 100`** | **`~roll DICENUMBER`")
   .addField("Fun", "`~8ball should i go to bed`** | **`~blumoji`** | **`~say i am a bot`")
   .addField("Randomising", "`~anime`** | **`~colour`** | **`~emoji`** | **`~fortune`** | **`~loli`** | **`~sing`")
   .addField("Education", "`~calc`")

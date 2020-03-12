@@ -11,9 +11,11 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      col = data.col;
-      if (col === "not-set") {
-        col = "1fd1c8";
+      let col = "";
+      if (data.col === "not-set") {
+        col = "202225";
+      } else {
+        col = data.col;
       }
       web = data.web;
       yt = data.yt;

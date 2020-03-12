@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
 
   if(!args[0]) {
     let mthembed = new Discord.RichEmbed()
-    .setColor("#1fd1c8")
+    .setColor("#667ed6")
     .setTitle(`**Blumojis**`)
     //.setDescription("*Type one of the mathematical symbols below and press 'Enter'.*")
     .addField("~blumoji happy", `<:bluhappy:502494527425347605>`)

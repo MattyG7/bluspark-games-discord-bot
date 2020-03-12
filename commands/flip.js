@@ -11,7 +11,12 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = data.col;
+      let userColour = "";
+      if (data.col === "not-set") {
+        userColour = "202225";
+      } else {
+        userColour = data.col;
+      }
       console.log("Got user's colour Successfully!");
 
       if (!args[0]) {
@@ -24,9 +29,9 @@ module.exports.run = async (bot, message, args) => {
         .setDescription(`The coin landed on **${replies[result]}**!`);
         return message.channel.send(fflpembed);
       }
-      if(args[2]) return message.channel.send(`Please use the correct format: ~flip or ~flip heads 10.`);
-      if(args[0] && !args[1]) return message.channel.send(`Please use the correct format: ~flip or ~flip heads 10.`);
-      if(args[0] != "heads" && args[0] != "tails") return message.channel.send(`Please use the correct format: ~flip or ~flip heads 10.`);
+      if(args[2]) return message.channel.send(`Please use the correct format: ~flip or ~flip COINSIDE SPARKCOINAMOUNT.`);
+      if(args[0] && !args[1]) return message.channel.send(`Please use the correct format: ~flip or ~flip COINSIDE SPARKCOINAMOUNT.`);
+      if(args[0] != "heads" && args[0] != "tails") return message.channel.send(`Please use the correct format: ~flip or ~flip COINSIDE SPARKCOINAMOUNT.`);
       if(isNaN(args[1])) return message.channel.send(`Please use a money amount.`);
 
       let userSparkCoins = data.sparkcoins;

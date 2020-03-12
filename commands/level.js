@@ -18,7 +18,12 @@ module.exports.run = async (bot, message, args) => {
       let xphave = data.currentxp;
       let xptogo = data.targetxp - data.currentxp;
       let xpforlvl = data.targetxp;
-      let lcolour = data.col;
+      let lcolour = "";
+      if (data.col === "not-set") {
+        lcolour = "202225";
+      } else {
+        lcolour = data.col;
+      }
       let licon = message.author.displayAvatarURL;
       let wlltembed = new Discord.RichEmbed()
       .setColor(`#${lcolour}`)

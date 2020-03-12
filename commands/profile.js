@@ -29,7 +29,12 @@ module.exports.run = async (bot, message, args) => {
         let _targetxp = data.targetxp;
         let _level = data.level;
         let _dailystreak = data.dailystreak;
-        let _col = data.col;
+        let _col = "";
+        if (data.col === "not-set") {
+          _col = "202225";
+        } else {
+          _col = data.col;
+        }
         let _web = data.web;
         let _yt = data.yt;
         let _tw = data.tw;

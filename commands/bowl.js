@@ -90,7 +90,7 @@ module.exports.run = async (bot, message, args) => {
       }
     });
   }
-  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~bowl 10.`);
+  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~bowl SPARKCOINAMOUNT.`);
   if(args[0]) {
     if(isNaN(args[0])) return message.channel.send(`${message.author.username}, please use a money amount.`);
     if(args[0] === "0") return message.channel.send(`You can't bet zero SparkCoins, ${message.author.username}.`);
