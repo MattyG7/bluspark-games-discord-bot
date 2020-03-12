@@ -11,7 +11,12 @@ module.exports.run = async (bot, message, args) => {
       console.log(error);
     } else {
       console.log("Successfully got the user's SparkCoin amount: " + data.sparkcoins);
-      let wcolour = data.col;
+      let wcolour = "";
+      if (data.col === "not-set") {
+        wcolour = "202225";
+      } else {
+        wcolour = data.col;
+      }
       let coins = data.sparkcoins;
       let wicon = message.author.displayAvatarURL;
       let wlltembed = new Discord.RichEmbed()

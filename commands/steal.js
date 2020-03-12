@@ -18,9 +18,11 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
-        let userColour = data.col;
-        if (userColour === "not-set") {
-          userColour = "1fd1c8";
+        let userColour = "";
+        if (data.col === "not-set") {
+          userColour = "202225";
+        } else {
+          userColour = data.col;
         }
         console.log("Got user's colour Successfully!");
 
