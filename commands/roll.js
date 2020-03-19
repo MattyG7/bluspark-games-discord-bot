@@ -55,9 +55,10 @@ module.exports.run = async (bot, message, args) => {
           let replies = ["1", "2", "3", "4", "5", "6"];
           let result = Math.floor((Math.random() * replies.length));
           console.log(`User rolled a ${replies[result]}.`);
+          let parsedResult = parseInt(replies[result]);
 
-          if (diceNumber === replies[result]) {
-            let winnings = parseInt(replies[result]) * userStreak;
+          if (diceNumber === parsedResult) {
+            let winnings = parsedResult * userStreak;
             let userSparkCoinsNEW = userSparkCoins + winnings;
             console.log(`${replies[result]} x ${userStreak} (dailystreak count) = ${winnings}`);
             console.log(`User wins ${winnings} SparkCoins!`);
@@ -87,7 +88,7 @@ module.exports.run = async (bot, message, args) => {
               }
             });
           } else {
-            let userSparkCoinsNEW = userSparkCoins + replies[result];
+            let userSparkCoinsNEW = userSparkCoins + parsedResult;
             console.log(`User only wins ${replies[result]} SparkCoins!`);
             console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
