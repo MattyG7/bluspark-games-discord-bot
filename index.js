@@ -284,6 +284,11 @@ bot.on("message", async message => {
     //} else {
       //return message.channel.send(`No`);
     //}
+    //if (args[0] === "abc") {
+      //let num = parseInt(args[1]);
+      //let lastDigitOfNumberNUMBER = num % 10;
+      //return message.channel.send(lastDigitOfNumberNUMBER);
+    //}
     return;
   }
 
