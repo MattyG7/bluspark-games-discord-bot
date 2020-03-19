@@ -9,12 +9,17 @@ module.exports.run = async (bot, message, args, author) => {
   if (message.member.user.tag === author) {
     if (args[0] === "1") {
       message.channel.bulkDelete(args[0]).then(() => {
-        return message.channel.send(`${args[0]} message cleared.`)
+        message.channel.send(`1 message cleared.`)
+        setTimeout(() => {
+          message.channel.bulkDelete(1);
+        }, 1500);
       });
-    }
-    else {
+    } else {
       message.channel.bulkDelete(args[0]).then(() => {
-        return message.channel.send(`${args[0]} messages cleared.`)
+        message.channel.send(`${args[0]} messages cleared.`)
+        setTimeout(() => {
+          message.channel.bulkDelete(1);
+        }, 1500);
       });
     }
   }
