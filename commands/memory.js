@@ -543,7 +543,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -558,7 +558,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -573,7 +573,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -588,7 +588,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -603,7 +603,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -618,7 +618,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -633,7 +633,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -648,7 +648,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -663,7 +663,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -678,7 +678,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -693,7 +693,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -708,7 +708,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -724,7 +724,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -735,7 +735,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -746,7 +746,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -757,7 +757,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -786,37 +786,36 @@ module.exports.run = async (bot, message, args) => {
         memoryGameLives.clear();
         memoryGameLives.add(ARRAYmemoryGameLives);
         console.log(`Lives ammended.`);
-				//GAME OVER
-				if (ARRAYmemoryGameLives === 0) {
-					memoryGameMESSAGEID.clear();
-					memoryGameROW1.clear();
-					memoryGameROW2.clear();
-					memoryGameROW3.clear();
-					memoryGameROW1C.clear();
-					memoryGameROW2C.clear();
-					memoryGameROW3C.clear();
-					memoryGameUser.clear();
-					memoryGameLives.clear();
-					memoryGamePairs.clear();
-					memoryGameChoices.clear();
-					memoryGameChoice1.clear();
-					memoryGameChoice2.clear();
-					console.log("Game Over. Sets have been reset.");
-					setTimeout(() => {
+				setTimeout(() => {
+					if (ARRAYmemoryGameLives === 0) {
+						//GAME OVER
+						memoryGameMESSAGEID.clear();
+						memoryGameROW1.clear();
+						memoryGameROW2.clear();
+						memoryGameROW3.clear();
+						memoryGameROW1C.clear();
+						memoryGameROW2C.clear();
+						memoryGameROW3C.clear();
+						memoryGameUser.clear();
+						memoryGameLives.clear();
+						memoryGamePairs.clear();
+						memoryGameChoices.clear();
+						memoryGameChoice1.clear();
+						memoryGameChoice2.clear();
+						console.log("Game Over. Sets have been reset.");
 						let fbwlembed = new Discord.RichEmbed()
       			.setColor(`#${usersData.col}`)
       			.setTitle(`Memory! 🧠`)
 						.setDescription(`Game Over!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* 0\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
 						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
-					}, 3000);
-				}
-				//---------
-				setTimeout(() => {
-					let fbwlembed = new Discord.RichEmbed()
-					.setColor(`#${usersData.col}`)
-					.setTitle(`Memory! 🧠`)
-					.setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick two.*`);
-					return aRRmemoryGameMESSAGEID.edit(fbwlembed);
+						//---------
+					} else {
+						let fbwlembed = new Discord.RichEmbed()
+						.setColor(`#${usersData.col}`)
+						.setTitle(`Memory! 🧠`)
+						.setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick two.*`);
+						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
+					}
 				}, 3000);
 			}
       //...
