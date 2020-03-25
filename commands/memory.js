@@ -492,8 +492,9 @@ module.exports.run = async (bot, message, args) => {
       });
 		}
 		let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
-    ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0];
-		if (ARRmemoryGameLastCommand.toLowerCase() === choice.toLowerCase()) {
+    ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase());
+		let choiceLC = choice.toLowerCase();
+		if (ARRmemoryGameLastCommand === choiceLC {
 			return message.channel.send("You have already chosen this square.").then(msg => {
         msg.delete(2000)
       });
