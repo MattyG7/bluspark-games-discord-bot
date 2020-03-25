@@ -491,13 +491,16 @@ module.exports.run = async (bot, message, args) => {
 				msg.delete(4000)
       });
 		}
-		let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
-    ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase();
-		let choiceLC = choice.toLowerCase();
-		if (ARRmemoryGameLastCommand === choiceLC) {
-			return message.channel.send("You have already chosen this square.").then(msg => {
-        msg.delete(2000)
-      });
+    let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
+		if (ARRAYmemoryGameChoices[0] === 1) {
+			let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
+    	ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase();
+			let choiceLC = choice.toLowerCase();
+			if (ARRmemoryGameLastCommand === choiceLC) {
+				return message.channel.send("You have already chosen this square.").then(msg => {
+        	msg.delete(2000)
+      	});
+			}
 		}
 		
     let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
@@ -527,7 +530,7 @@ module.exports.run = async (bot, message, args) => {
     let r3S = [`${ARRr3C[0]}`, `${ARRr3C[1]}`, `${ARRr3C[2]}`, `${ARRr3C[3]}`];
 
     //1 CHOICE LEFT
-    let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
+    //let ARRAYmemoryGameChoices = Array.from(memoryGameChoices); DECLARED FURTHER UP
     if (ARRAYmemoryGameChoices[0] === 2) {
 			memoryGameLastCommand.clear();
 			memoryGameLastCommand.add(choice);
