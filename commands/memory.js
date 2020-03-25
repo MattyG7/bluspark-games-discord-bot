@@ -42,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
   console.log(`> Still ${usersData.col}`);
 
   if (args[0] === "?") {
-    message.channel.send(`Type "~memory" and then any letter combination from A1 to C6 to choose which square you'd like to reveal. You can choose two per turn. If the two revealed emojis match, they will stay and not change back to a square.\n\n*Example command: ~memory B2*`);
+    return message.channel.send(`Type "~memory" and then any letter combination from A1 to C6 to choose which square you'd like to reveal. You can choose two per turn. If the two revealed emojis match, they will stay and not change back to a square.\n\n*Example command: ~memory B2*`);
   }
 	
 	if (args[0] === "end") {
@@ -60,13 +60,17 @@ module.exports.run = async (bot, message, args) => {
 		memoryGameChoice1.clear();
 		memoryGameChoice2.clear();
 		console.log("Game ended. Sets have been reset.");
-    message.channel.send(`Your game of Memory has ended.`);
+    return message.channel.send(`Your game of Memory has ended.`);
   }
-
+	
+	let ARRmemoryGameUser = Array.from(memoryGameUser);
+	ARRmemoryGameUser = ARRmemoryGameUser[0];
   if (!args[0]) {
-		if (memoryGameUser != memUser) {
+		if (ARRmemoryGameUser != memUser) {
       console.log("Game already exists!");
-			return message.channel.send(`A game has already started. Please wait until it finishes.`);
+			return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
+				msg.delete(4000)
+      });
 		}
     if (memoryGameUser.size === 0) {
       console.log(`New game started!`);
@@ -477,17 +481,17 @@ module.exports.run = async (bot, message, args) => {
   } else {
 		let choice = args[0];
     message.channel.bulkDelete(1);
-		if (memoryGameUser != memUser) {
+		if (ARRmemoryGameUser != memUser) {
       console.log("Game already exists!");
-			message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
-        return msg.delete(4000)
+			return message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
+				msg.delete(4000)
       });
 		}
 		let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
     ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0];
 		if (toLowerCase(ARRmemoryGameLastCommand) === toLowerCase(choice)) {
-			message.channel.send("You have already chosen this square.").then(msg => {
-        return msg.delete(2000)
+			return message.channel.send("You have already chosen this square.").then(msg => {
+        msg.delete(2000)
       });
 		}
 		
