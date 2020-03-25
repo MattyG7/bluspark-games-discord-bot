@@ -469,6 +469,7 @@ module.exports.run = async (bot, message, args) => {
         }, 1000);
       }, 1000);
     } else {
+			message.channel.bulkDelete(1);
 			if (ARRmemoryGameUser != memUser) {
       	console.log("Game already exists!");
 				return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
