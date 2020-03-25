@@ -471,7 +471,7 @@ module.exports.run = async (bot, message, args) => {
     } else {
 			message.channel.bulkDelete(1);
 			if (ARRmemoryGameUser != memUser) {
-      	console.log("Game already exists!");
+      	console.log("Another user's game already exists!");
 				return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
 					msg.delete(4000)
       	});
@@ -486,14 +486,14 @@ module.exports.run = async (bot, message, args) => {
 		let choice = args[0];
     message.channel.bulkDelete(1);
 		if (ARRmemoryGameUser != memUser) {
-      console.log("Game already exists!");
+      console.log("Another user's game already exists!");
 			return message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
 				msg.delete(4000)
       });
 		}
 		let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
     ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0];
-		if (toLowerCase(ARRmemoryGameLastCommand) === toLowerCase(choice)) {
+		if (ARRmemoryGameLastCommand.toLowerCase() === choice.toLowerCase()) {
 			return message.channel.send("You have already chosen this square.").then(msg => {
         msg.delete(2000)
       });
