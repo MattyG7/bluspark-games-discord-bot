@@ -64,7 +64,7 @@ module.exports.run = async (bot, message, args) => {
   }
 	
 	let ARRmemoryGameUser = Array.from(memoryGameUser);
-	ARRmemoryGameUser = ARRmemoryGameUser[0];
+	ARRmemoryGameUser = parseInt(ARRmemoryGameUser[0]);
   if (!args[0]) {
 		if (ARRmemoryGameUser != memUser) {
       console.log("Game already exists!");
