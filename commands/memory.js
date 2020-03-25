@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
 const memoryGameMESSAGEID = new Set();
+const memoryGameLastCommand = new Set();
 const memoryGameROW1 = new Set();
 const memoryGameROW2 = new Set();
 const memoryGameROW3 = new Set();
@@ -43,8 +44,30 @@ module.exports.run = async (bot, message, args) => {
   if (args[0] === "?") {
     message.channel.send(`Type "~memory" and then any letter combination from A1 to C6 to choose which square you'd like to reveal. You can choose two per turn. If the two revealed emojis match, they will stay and not change back to a square.\n\n*Example command: ~memory B2*`);
   }
+	
+	if (args[0] === "end") {
+		memoryGameMESSAGEID.clear();
+		memoryGameROW1.clear();
+		memoryGameROW2.clear();
+		memoryGameROW3.clear();
+		memoryGameROW1C.clear();
+		memoryGameROW2C.clear();
+		memoryGameROW3C.clear();
+		memoryGameUser.clear();
+		memoryGameLives.clear();
+		memoryGamePairs.clear();
+		memoryGameChoices.clear();
+		memoryGameChoice1.clear();
+		memoryGameChoice2.clear();
+		console.log("Game ended. Sets have been reset.");
+    message.channel.send(`Your game of Memory has ended.`);
+  }
 
   if (!args[0]) {
+		if (memoryGameUser != memUser) {
+      console.log("Game already exists!");
+			return message.channel.send(`A game has already started. Please wait until it finishes.`);
+		}
     if (memoryGameUser.size === 0) {
       console.log(`New game started!`);
       memoryGameUser.add(memUser);
@@ -448,12 +471,26 @@ module.exports.run = async (bot, message, args) => {
         }, 1000);
       }, 1000);
     } else {
-      message.channel.send(`A game has already started. Please wait until it finishes`);
+      message.channel.send(`You have already started a game. *Type "~memory end" to end your game.*`);
       console.log("Game already exists!");
     }
   } else {
+		let choice = args[0];
     message.channel.bulkDelete(1);
-
+		if (memoryGameUser != memUser) {
+      console.log("Game already exists!");
+			message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
+        return msg.delete(4000)
+      });
+		}
+		let ARRmemoryGameLastCommand = Array.from(memoryGameLastCommand);
+    ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0];
+		if (toLowerCase(ARRmemoryGameLastCommand) === toLowerCase(choice)) {
+			message.channel.send("You have already chosen this square.").then(msg => {
+        return msg.delete(2000)
+      });
+		}
+		
     let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
     aRRmemoryGameMESSAGEID = aRRmemoryGameMESSAGEID[0];
     let ARRr1 = Array.from(memoryGameROW1);
@@ -483,8 +520,9 @@ module.exports.run = async (bot, message, args) => {
     //1 CHOICE LEFT
     let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
     if (ARRAYmemoryGameChoices[0] === 2) {
+			memoryGameLastCommand.clear();
+			memoryGameLastCommand.add(choice);
       console.log(`Choices left: 1`);
-      let choice = args[0];
       if (choice === "A1" || choice === "a1") {
         r1S = [`${r1[0]}`, `${r1S[1]}`, `${r1S[2]}`, `${r1S[3]}`];
         memoryGameROW1C.clear();
@@ -669,12 +707,6 @@ module.exports.run = async (bot, message, args) => {
     //--------------
     //0 CHOICES LEFT
     if (ARRAYmemoryGameChoices[0] === 1) {
-      let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
-      ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
-      let choice = args[0];
-      if (ARRmemoryGameChoice1 === choice) {
-        message.channel.send("You have already chosen this square.");
-      }
       console.log(`Choices left: 0`);
       if (choice === "A1" || choice === "a1") {
         let fbwlembed = new Discord.RichEmbed()
@@ -720,6 +752,8 @@ module.exports.run = async (bot, message, args) => {
         memoryGameChoice2.add(`${r1[3]}`);
         console.log(`Choice: A4`);
       }
+			let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
+      ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
 			let ARRmemoryGameChoice2 = Array.from(memoryGameChoice2);
 			ARRmemoryGameChoice2 = ARRmemoryGameChoice2[0];
 			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
