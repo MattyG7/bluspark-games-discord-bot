@@ -598,6 +598,14 @@ module.exports.run = async (bot, message, args) => {
         memoryGameChoices.add(2);
         console.log(`Choice: A1`);
       }
+			if (choice === "A2" || choice === "a2") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        console.log(`Choice: A2`);
+      }
       //...
     }
 
