@@ -64,14 +64,8 @@ module.exports.run = async (bot, message, args) => {
   }
 	
 	let ARRmemoryGameUser = Array.from(memoryGameUser);
-	ARRmemoryGameUser = parseInt(ARRmemoryGameUser[0]);
+	ARRmemoryGameUser = ARRmemoryGameUser[0];
   if (!args[0]) {
-		if (ARRmemoryGameUser != memUser) {
-      console.log("Game already exists!");
-			return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
-				msg.delete(4000)
-      });
-		}
     if (memoryGameUser.size === 0) {
       console.log(`New game started!`);
       memoryGameUser.add(memUser);
@@ -475,8 +469,17 @@ module.exports.run = async (bot, message, args) => {
         }, 1000);
       }, 1000);
     } else {
-      message.channel.send(`You have already started a game. *Type "~memory end" to end your game.*`);
-      console.log("Game already exists!");
+			if (ARRmemoryGameUser != memUser) {
+      	console.log("Game already exists!");
+				return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
+					msg.delete(4000)
+      	});
+			} else {
+				console.log("Game already exists!");
+				return message.channel.send(`You have already started a game. *Type "~memory end" to end your game early.*`).then(msg => {
+					msg.delete(4000)
+      	});
+			}
     }
   } else {
 		let choice = args[0];
