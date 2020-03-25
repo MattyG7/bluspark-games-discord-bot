@@ -686,8 +686,6 @@ module.exports.run = async (bot, message, args) => {
         memoryGameChoice2.add(`${r1[3]}`);
         console.log(`Choice: A4`);
       }
-			let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
-			ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
 			let ARRmemoryGameChoice2 = Array.from(memoryGameChoice2);
 			ARRmemoryGameChoice2 = ARRmemoryGameChoice2[0];
 			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
