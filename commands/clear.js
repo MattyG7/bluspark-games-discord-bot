@@ -7,19 +7,16 @@ module.exports.run = async (bot, message, args, author) => {
   let numParsedArgs = parseInt(args[0]);
   if (numParsedArgs > 25) return message.channel.send("That is too many! Try 25.");
   if (message.member.user.tag === author) {
-    if (args[0] === "1") {
-      message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`1 message cleared.`)
-        setTimeout(() => {
-          message.channel.bulkDelete(1);
-        }, 1500);
+    if (numParsedArgs === 1) {
+      message.channel.bulkDelete(2);
+      message.channel.send(`1 message cleared.`).then(msg => {
+        msg.delete(5000)
       });
     } else {
-      message.channel.bulkDelete(args[0]).then(() => {
-        message.channel.send(`${args[0]} messages cleared.`)
-        setTimeout(() => {
-          message.channel.bulkDelete(1);
-        }, 1500);
+      let numParsedArgsPLUSONE = numParsedArgs + 1;
+      message.channel.bulkDelete(numParsedArgsPLUSONE);
+      message.channel.send(`${numParsedArgs} messages cleared.`).then(msg => {
+        msg.delete(5000)
       });
     }
   }
