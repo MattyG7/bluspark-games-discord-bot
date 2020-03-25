@@ -1,6 +1,18 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
+const memoryGameMESSAGEID = new Set();
+const memoryGameROW1 = new Set();
+const memoryGameROW2 = new Set();
+const memoryGameROW3 = new Set();
+const memoryGameUser = new Set();
+const memoryGameLives = new Set();
+const memoryGamePairs = new Set();
+const memoryGameChoices = new Set();
+const memoryGameChoice1 = new Set();
+//const memoryGameChoice2 = new Set();
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+//https://www.youtube.com/watch?v=mWaG9Ugi2bg
 
 module.exports.run = async (bot, message, args) => {
   if(args[2]) return message.channel.send(`${message.author.username}, please use the correct format: ~memory or ~memory SPARKCOINAMOUNT.`);
@@ -25,189 +37,397 @@ module.exports.run = async (bot, message, args) => {
   });
   console.log(`> Still ${usersData.col}`);
 
-  if (!args[0]) {
-    //EMOJIS
-    let result1 = 0;
-    let result2 = 0;
-    let result3 = 0;
-    let result4 = 0;
-    let result5 = 0;
-    let result6 = 0;
-    let result7 = 0;
-    let result8 = 0;
-    let replies = "";
-    let repliesCHOICE = ["0", "1", "2", "3", "4", "5"];
-    let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
-    if(resultCHOICE === 0) {
-      replies = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
-    if(resultCHOICE === 1) {
-      replies = ["🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "🥱", "😴"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
-    if(resultCHOICE === 2) {
-      replies = ["😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹", "🙁", "😖", "😞", "😟", "😤", "😢"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
-    if(resultCHOICE === 3) {
-      replies = ["😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "🥴", "😠", "😡", "🤬", "😷"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
-    if(resultCHOICE === 4) {
-      replies = ["🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "💀", "👾"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
-    if(resultCHOICE === 5) {
-      replies = ["🤖", "💩", "🐢", "🐬", "🐥", "🐤", "🐣", "🐌", "🐛", "🐝", "🕷"];
-      result1 = Math.floor((Math.random() * replies.length));
-      result2 = Math.floor((Math.random() * replies.length));
-      result3 = Math.floor((Math.random() * replies.length));
-      result4 = Math.floor((Math.random() * replies.length));
-      result5 = Math.floor((Math.random() * replies.length));
-      result6 = Math.floor((Math.random() * replies.length));
-      result7 = Math.floor((Math.random() * replies.length));
-      result8 = Math.floor((Math.random() * replies.length));
-    }
+  if (args[0] === "?") {
+    message.channel.send(`Type "~memory" and then any letter combination from A1 to C6 to choose which square you'd like to reveal. You can choose two per turn. If the two revealed emojis match, they will stay and not change back to a square.\n\n*Example command: ~memory B2*`);
+  }
 
-    let row1 = "";
-    let row2 = "";
-    let row3 = "";
-    let row4 = "";
-    let r1 = [];
-    let r2 = [];
-    let r3 = [];
-    let r4 = [];
-    let repliesCHOICEE = ["0", "1", "2", "3"];
-    let resultCHOICEE = Math.floor((Math.random() * repliesCHOICEE.length));
-    if(resultCHOICEE === 0) {
-      row1 = `${replies[result1]} ${replies[result2]} ${replies[result3]} ${replies[result4]}`;
-      row2 = `${replies[result5]} ${replies[result6]} ${replies[result7]} ${replies[result8]}`;
-      row3 = `${replies[result1]} ${replies[result2]} ${replies[result3]} ${replies[result4]}`;
-      row4 = `${replies[result5]} ${replies[result6]} ${replies[result7]} ${replies[result8]}`;
-      r1 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r2 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-      r3 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r4 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-    }
-    if(resultCHOICEE === 1) {
-      row1 = `${replies[result4]} ${replies[result1]} ${replies[result2]} ${replies[result3]}`;
-      row2 = `${replies[result8]} ${replies[result5]} ${replies[result6]} ${replies[result7]}`;
-      row3 = `${replies[result2]} ${replies[result3]} ${replies[result4]} ${replies[result1]}`;
-      row4 = `${replies[result6]} ${replies[result7]} ${replies[result8]} ${replies[result5]}`;
-      r1 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r2 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-      r3 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r4 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-    }
-    if(resultCHOICEE === 2) {
-      row1 = `${replies[result3]} ${replies[result4]} ${replies[result1]} ${replies[result2]}`;
-      row2 = `${replies[result8]} ${replies[result5]} ${replies[result6]} ${replies[result7]}`;
-      row3 = `${replies[result2]} ${replies[result3]} ${replies[result4]} ${replies[result1]}`;
-      row4 = `${replies[result7]} ${replies[result8]} ${replies[result5]} ${replies[result6]}`;
-      r1 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r2 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-      r3 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r4 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-    }
-    if(resultCHOICEE === 3) {
-      row1 = `${replies[result2]} ${replies[result4]} ${replies[result3]} ${replies[result1]}`;
-      row2 = `${replies[result6]} ${replies[result5]} ${replies[result8]} ${replies[result7]}`;
-      row3 = `${replies[result3]} ${replies[result2]} ${replies[result4]} ${replies[result1]}`;
-      row4 = `${replies[result6]} ${replies[result8]} ${replies[result7]} ${replies[result5]}`;
-      r1 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r2 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-      r3 = [`${replies[result1]}`, `${replies[result2]}`, `${replies[result3]}`, `${replies[result4]}`];
-      r4 = [`${replies[result5]}`, `${replies[result6]}`, `${replies[result7]}`, `${replies[result8]}`];
-    }
-    let help = "❓";
-    //let badChoice = Math.floor((Math.random() * choices.length));
-    //let setBadChoice = choices[badChoice];
-    //console.log(badChoice);
-    let lives = 3;
-    let pairs = 0;
-    let gameFinished = "No";
-    let fbwlembed = new Discord.RichEmbed()
-    .setColor(`#${usersData.col}`) //2b573e
-    .setTitle(`Memory! (no prize) 🧠`)
-    .setDescription(`Game started!\nMemorise the locations. Hiding all in **10** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-    const m = await message.channel.send(fbwlembed);
-    setTimeout(() => {
-      fbwlembed
-        .setDescription(`Game started!\nMemorise the locations. Hiding all in **9** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-      m.edit(fbwlembed);
+  if (!args[0]) {
+    if (memoryGameUser.size === 0) {
+      console.log(`New game started!`);
+      memoryGameUser.add(memUser);
+      memoryGameLives.add(3);
+      memoryGamePairs.add(0);
+      memoryGameChoices.add(2);
+      console.log(`User, Lives, Pairs and Choices set!`);
+      console.log(memoryGameUser);
+      console.log(memoryGameLives);
+      console.log(memoryGamePairs);
+      console.log(memoryGameChoices);
+
+      let result1 = 0;
+      let result2 = 0;
+      let result3 = 0;
+      let result4 = 0;
+      let result5 = 0;
+      let result6 = 0;
+      let replies = "";
+      let repliesCHOICE = ["0", "1", "2", "3", "4", "5"];
+      let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
+      if(resultCHOICE === 0) {
+        replies = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
+        repliesTMP = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+      if(resultCHOICE === 1) {
+        replies = ["🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "🥱", "😴"];
+        repliesTMP = ["🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "🥱", "😴"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+      if(resultCHOICE === 2) {
+        replies = ["😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹", "🙁", "😖", "😞", "😟", "😤", "😢"];
+        repliesTMP = ["😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹", "🙁", "😖", "😞", "😟", "😤", "😢"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+      if(resultCHOICE === 3) {
+        replies = ["😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "🥴", "😠", "😡", "🤬", "😷"];
+        repliesTMP = ["😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "🥴", "😠", "😡", "🤬", "😷"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+      if(resultCHOICE === 4) {
+        replies = ["🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "💀", "👾"];
+        repliesTMP = ["🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "💀", "👾"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+      if(resultCHOICE === 5) {
+        replies = ["🤖", "💩", "🐢", "🐬", "🐥", "🐤", "🐣", "🐌", "🐛", "🐝", "🕷"];
+        repliesTMP = ["🤖", "💩", "🐢", "🐬", "🐥", "🐤", "🐣", "🐌", "🐛", "🐝", "🕷"];
+        result1 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result1]) {
+            result1 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result2 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result2]) {
+            result2 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result3 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result3]) {
+            result3 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result4 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result4]) {
+            result4 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result5 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result5]) {
+            result5 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+        result6 = Math.floor((Math.random() * repliesTMP.length));
+        for (var i = 0; i < repliesTMP.length; i++) {
+          if (repliesTMP[i] === repliesTMP[result6]) {
+            result6 = repliesTMP.splice(i, 1);
+            i = repliesTMP.length;
+          }
+        }
+      }
+
+      let r1 = [];
+      let r2 = [];
+      let r3 = [];
+      let r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
+      let r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
+      let r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+      let repliesCHOICEE = ["0", "1", "2", "3"];
+      let resultCHOICEE = Math.floor((Math.random() * repliesCHOICEE.length));
+      if(resultCHOICEE === 0) {
+        r1 = [`${result6}`, `${result1}`, `${result3}`, `${result4}`];
+        r2 = [`${result5}`, `${result2}`, `${result2}`, `${result5}`];
+        r3 = [`${result1}`, `${result6}`, `${result3}`, `${result4}`];
+      }
+      if(resultCHOICEE === 1) {
+        r1 = [`${result4}`, `${result5}`, `${result2}`, `${result3}`];
+        r2 = [`${result1}`, `${result4}`, `${result6}`, `${result5}`];
+        r3 = [`${result2}`, `${result3}`, `${result1}`, `${result6}`];
+      }
+      if(resultCHOICEE === 2) {
+        r1 = [`${result4}`, `${result6}`, `${result1}`, `${result5}`];
+        r2 = [`${result2}`, `${result3}`, `${result4}`, `${result2}`];
+        r3 = [`${result6}`, `${result3}`, `${result5}`, `${result1}`];
+      }
+      if(resultCHOICEE === 3) {
+        r1 = [`${result6}`, `${result4}`, `${result3}`, `${result1}`];
+        r2 = [`${result2}`, `${result4}`, `${result6}`, `${result5}`];
+        r3 = [`${result3}`, `${result2}`, `${result5}`, `${result1}`];
+      }
+      memoryGameROW1.add(r1);
+      memoryGameROW2.add(r2);
+      memoryGameROW3.add(r3);
+      console.log(`Rows of emojis set!`);
+      console.log(memoryGameROW1);
+      console.log(memoryGameROW2);
+      console.log(memoryGameROW3);
+
+      let lives = 3;
+      let pairs = 0;
+      let fbwlembed = new Discord.RichEmbed()
+      .setColor(`#${usersData.col}`) //2b573e
+      .setTitle(`Memory! 🧠`)
+      .setDescription(`Game started!\nMemorise the locations. Hiding all in **10** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+      let botMessage = await message.channel.send(fbwlembed);
+      console.log("Countdown begun...");
       setTimeout(() => {
         fbwlembed
-          .setDescription(`Game started!\nMemorise the locations. Hiding all in **8** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-        m.edit(fbwlembed);
+          .setDescription(`Game started!\nMemorise the locations. Hiding all in **9** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+        botMessage.edit(fbwlembed);
         setTimeout(() => {
           fbwlembed
-            .setDescription(`Game started!\nMemorise the locations. Hiding all in **7** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-          m.edit(fbwlembed);
+            .setDescription(`Game started!\nMemorise the locations. Hiding all in **8** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+          botMessage.edit(fbwlembed);
           setTimeout(() => {
             fbwlembed
-              .setDescription(`Game started!\nMemorise the locations. Hiding all in **6** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-            m.edit(fbwlembed);
+              .setDescription(`Game started!\nMemorise the locations. Hiding all in **7** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+            botMessage.edit(fbwlembed);
             setTimeout(() => {
               fbwlembed
-                .setDescription(`Game started!\nMemorise the locations. Hiding all in **5** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-              m.edit(fbwlembed);
+                .setDescription(`Game started!\nMemorise the locations. Hiding all in **6** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+              botMessage.edit(fbwlembed);
               setTimeout(() => {
                 fbwlembed
-                  .setDescription(`Game started!\nMemorise the locations. Hiding all in **4** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-                m.edit(fbwlembed);
+                  .setDescription(`Game started!\nMemorise the locations. Hiding all in **5** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                botMessage.edit(fbwlembed);
                 setTimeout(() => {
                   fbwlembed
-                    .setDescription(`Game started!\nMemorise the locations. Hiding all in **3** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-                  m.edit(fbwlembed);
+                    .setDescription(`Game started!\nMemorise the locations. Hiding all in **4** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                  botMessage.edit(fbwlembed);
                   setTimeout(() => {
                     fbwlembed
-                      .setDescription(`Game started!\nMemorise the locations. Hiding all in **2** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-                    m.edit(fbwlembed);
+                      .setDescription(`Game started!\nMemorise the locations. Hiding all in **3** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                    botMessage.edit(fbwlembed);
                     setTimeout(() => {
                       fbwlembed
-                        .setDescription(`Game started!\nMemorise the locations. Hiding all in **1** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n${r4[0]}${r4[1]}${r4[2]}${r4[3]}\n\n*Press the "?" reaction if you don't know what to type.*`);
-                      m.edit(fbwlembed);
+                        .setDescription(`Game started!\nMemorise the locations. Hiding all in **2** seconds.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                      botMessage.edit(fbwlembed);
                       setTimeout(() => {
                         fbwlembed
-                          .setDescription(`Game started!\n*Pairs:* ${pairs} **|** *Lives:* ${lives}\n\n◼ ◼ ◼ ◼\n◼ ◼ ◼ ◼\n◼ ◼ ◼ ◼\n◼ ◼ ◼ ◼\n\n*Press the "?" reaction if you don't know what to type.*`);
-                          //🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦
-                        m.edit(fbwlembed);
+                          .setDescription(`Game started!\nMemorise the locations. Hiding all in **1** second.\n\n${r1[0]}${r1[1]}${r1[2]}${r1[3]}\n${r2[0]}${r2[1]}${r2[2]}${r2[3]}\n${r3[0]}${r3[1]}${r3[2]}${r3[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                        botMessage.edit(fbwlembed);
+                        setTimeout(() => {
+                          fbwlembed
+                            .setDescription(`Game started!\n*Pairs:* ${pairs} **|** *Lives:* ${lives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Type "~memory ?" if you don't know how to play.*`);
+                          botMessage.edit(fbwlembed);
+                          //console.log(`Message ID: ${botMessage.id}`);
+                          memoryGameMESSAGEID.add(botMessage);
+                          return console.log("Now waiting for user's guesses...");
+                        }, 1000);
                       }, 1000);
                     }, 1000);
                   }, 1000);
@@ -217,67 +437,173 @@ module.exports.run = async (bot, message, args) => {
           }, 1000);
         }, 1000);
       }, 1000);
-    }, 1000);
-
-    console.log("Running");
-    while (gameFinished === "No") {
-      console.log("Still running");
-      //Reactions being added
-      const reacts = await promptMessage(m, message.author, 60, help);
-
-      //Check the reacion
-      const showHelp = await getResult(reacts); //, teeth
-
-      //Clear reactions
-      await m.clearReactions();
-
-      fbwlembed
-        .setDescription(`${teethLeft} teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
-      m.edit(fbwlembed);
-    }
-    console.log("Ended");
-    if (gameFinished === "Yess") {
-      fbwlembed
-        .setDescription(`Well done! Only the dangerous tooth is left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
-      m.edit(fbwlembed);
-    }
-    if (gameFinished === "Yes") {
-      let safeTeeth = teethLeft - 1;
-      fbwlembed
-        .setDescription(`Game Over! You had ${safeTeeth} safe teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
-      m.edit(fbwlembed);
-    }
-
-    async function promptMessage(message, author, time, validReactions) {
-      // We put in the time as seconds, with this it's being transfered to MS
-      time *= 1000;
-      // For every emoji in the function parameters, react in the good order.
-      for (const reaction of validReactions) await message.react(reaction);
-      // Only allow reactions from the author,
-      // and the emoji must be in the array we provided.
-      const filter = (reaction, user) => validReactions.includes(reaction.emoji.name) && user.id === memUser;
-      // And of course, await the reactions
-      return message
-        .awaitReactions(filter, { max: 1, time: time})
-        .then(collected => collected.first() && collected.first().emoji.name);
-    }
-
-    function getResult(me) {
-      m.clearReactions();
-      fbwlembed
-        .setDescription(`***Game Help***\nType any letter combination from A1 to D6 to choose. You can choose two per turn. If the two you choose match, they will stay and not change back to a square.\n\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n\n*The game will resume in 10 seconds.*`);
-      m.edit(fbwlembed);
-      m.react(help);
-      setTimeout(() => {
-        fbwlembed
-          .setDescription(`Game started!\n*Pairs:* ${pairs} **|** *Lives:* ${lives}\n\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n🟦 🟦 🟦 🟦 🟦 🟦\n\n*Press the "?" reaction if you don't know what to type.*`);
-        m.edit(fbwlembed);
-      }, 10000);
-      //if (teethLeft === 1) {gameFinished = "Yess";}
-      return;
+    } else {
+      message.channel.send(`A game has already started. Please wait until it finishes`);
+      console.log("Game already exists!");
     }
   } else {
-    let SparkCoinsBET = parseInt(args[0]);
+    message.channel.bulkDelete(1);
+
+    let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
+    aRRmemoryGameMESSAGEID = aRRmemoryGameMESSAGEID[0];
+    let ARRr1 = Array.from(memoryGameROW1);
+    ARRr1 = ARRr1[0];
+    let ARRr2 = Array.from(memoryGameROW2);
+    ARRr2 = ARRr2[0];
+    let ARRr3 = Array.from(memoryGameROW3);
+    ARRr3 = ARRr3[0];
+    let ARRAYmemoryGameLives = Array.from(memoryGameLives);
+    let ARRAYmemoryGamePairs = Array.from(memoryGamePairs);
+
+    let r1 = [`${ARRr1[0]}`, `${ARRr1[1]}`, `${ARRr1[2]}`, `${ARRr1[3]}`];
+    let r2 = [`${ARRr2[0]}`, `${ARRr2[1]}`, `${ARRr2[2]}`, `${ARRr2[3]}`];
+    let r3 = [`${ARRr3[0]}`, `${ARRr3[1]}`, `${ARRr3[2]}`, `${ARRr3[3]}`];
+    let r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
+    let r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
+    let r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+
+    //1 CHOICE LEFT
+    let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
+    if (ARRAYmemoryGameChoices[0] === 2) {
+      console.log(`Choices left: 1`);
+      let choice = args[0];
+      if (choice === "A1" || choice === "a1") {
+        r1S = [`${r1[0]}`, `◻️`, `◻️`, `◻️`];
+        memoryGameROW1.delete(r1);
+        memoryGameROW1.add(r1S);
+        console.log(`Row 1 ammended.`);
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r1[0]}`);
+        console.log(`Choice: A1`);
+      }
+      if (choice === "A2" || choice === "a2") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r1[1]}`);
+        console.log(`Choice: A2`);
+      }
+      if (choice === "A3" || choice === "a3") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r1[2]}`);
+        console.log(`Choice: A3`);
+      }
+      if (choice === "A4" || choice === "a4") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r1[3]}`);
+        console.log(`Choice: A4`);
+      }
+      if (choice === "B1" || choice === "b1") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r2[0]}`);
+        console.log(`Choice: B1`);
+      }
+      if (choice === "B2" || choice === "b2") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r2[1]}`);
+        console.log(`Choice: B2`);
+      }
+      if (choice === "B3" || choice === "b3") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r2[2]}`);
+        console.log(`Choice: B3`);
+      }
+      if (choice === "B4" || choice === "b4") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r2[3]}`);
+        console.log(`Choice: B4`);
+      }
+      if (choice === "C1" || choice === "c1") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r3[0]}`);
+        console.log(`Choice: C1`);
+      }
+      if (choice === "C2" || choice === "c2") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r3[1]}`);
+        console.log(`Choice: C2`);
+      }
+      if (choice === "C3" || choice === "c3") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r3[2]}`);
+        console.log(`Choice: C3`);
+      }
+      if (choice === "C4" || choice === "c4") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3[3]}\n\n*Pick one more.*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(2);
+        memoryGameChoices.add(1);
+        memoryGameChoice1.add(`${r3[3]}`);
+        console.log(`Choice: C4`);
+      }
+    }
+    //--------------
+    //0 CHOICES LEFT
+    if (ARRAYmemoryGameChoices[0] === 1) {
+      let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
+      ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
+      let choice = args[0];
+      if (ARRmemoryGameChoice1 === choice) {
+        message.channel.send("You have already chosen this square.");
+      }
+      console.log(`Choices left: 0`);
+      if (choice === "A1" || choice === "a1") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        console.log(`Choice: A1`);
+      }
+      //...
+    }
+
+    //if (memoryGameChoice1 === 0) {
+      //memoryGameChoice1.add();
+    //}
   }
 }
 
