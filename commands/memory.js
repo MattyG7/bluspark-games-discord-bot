@@ -5,12 +5,15 @@ const memoryGameMESSAGEID = new Set();
 const memoryGameROW1 = new Set();
 const memoryGameROW2 = new Set();
 const memoryGameROW3 = new Set();
+const memoryGameROW1C = new Set();
+const memoryGameROW2C = new Set();
+const memoryGameROW3C = new Set();
 const memoryGameUser = new Set();
 const memoryGameLives = new Set();
 const memoryGamePairs = new Set();
 const memoryGameChoices = new Set();
 const memoryGameChoice1 = new Set();
-//const memoryGameChoice2 = new Set();
+const memoryGameChoice2 = new Set();
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
 //https://www.youtube.com/watch?v=mWaG9Ugi2bg
 
@@ -375,6 +378,13 @@ module.exports.run = async (bot, message, args) => {
       console.log(memoryGameROW1);
       console.log(memoryGameROW2);
       console.log(memoryGameROW3);
+			memoryGameROW1C.add(r1S);
+      memoryGameROW2C.add(r2S);
+      memoryGameROW3C.add(r3S);
+      console.log(`Rows of squares set!`);
+      console.log(memoryGameROW1);
+      console.log(memoryGameROW2);
+      console.log(memoryGameROW3);
 
       let lives = 3;
       let pairs = 0;
@@ -452,15 +462,21 @@ module.exports.run = async (bot, message, args) => {
     ARRr2 = ARRr2[0];
     let ARRr3 = Array.from(memoryGameROW3);
     ARRr3 = ARRr3[0];
+		let ARRr1C = Array.from(memoryGameROW1C);
+    ARRr1C = ARRr1C[0];
+    let ARRr2C = Array.from(memoryGameROW2C);
+    ARRr2C = ARRr2C[0];
+    let ARRr3C = Array.from(memoryGameROW3C);
+    ARRr3C = ARRr3C[0];
     let ARRAYmemoryGameLives = Array.from(memoryGameLives);
     let ARRAYmemoryGamePairs = Array.from(memoryGamePairs);
 
     let r1 = [`${ARRr1[0]}`, `${ARRr1[1]}`, `${ARRr1[2]}`, `${ARRr1[3]}`];
     let r2 = [`${ARRr2[0]}`, `${ARRr2[1]}`, `${ARRr2[2]}`, `${ARRr2[3]}`];
     let r3 = [`${ARRr3[0]}`, `${ARRr3[1]}`, `${ARRr3[2]}`, `${ARRr3[3]}`];
-    let r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
-    let r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
-    let r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+    let r1S = [`${ARRr1C[0]}`, `${ARRr1C[1]}`, `${ARRr1C[2]}`, `${ARRr1C[3]}`];
+    let r2S = [`${ARRr2C[0]}`, `${ARRr2C[1]}`, `${ARRr2C[2]}`, `${ARRr2C[3]}`];
+    let r3S = [`${ARRr3C[0]}`, `${ARRr3C[1]}`, `${ARRr3C[2]}`, `${ARRr3C[3]}`];
 
     //1 CHOICE LEFT
     let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
@@ -468,12 +484,12 @@ module.exports.run = async (bot, message, args) => {
       console.log(`Choices left: 1`);
       let choice = args[0];
       if (choice === "A1" || choice === "a1") {
-        r1S = [`${r1[0]}`, `◻️`, `◻️`, `◻️`];
-        memoryGameROW1.delete(r1);
-        memoryGameROW1.add(r1S);
-        console.log(`Row 1 ammended.`);
+        r1S = [`${r1[0]}`, `${r1S[1]}`, `${r1S[2]}`, `${r1S[3]}`];
+        memoryGameROW1C.clear();
+        memoryGameROW1C.add(r1S);
+        console.log(`Covered row 1 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
-        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(2);
         memoryGameChoices.add(1);
@@ -481,6 +497,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: A1`);
       }
       if (choice === "A2" || choice === "a2") {
+        r1S = [`${r1S[0]}`, `${r1[1]}`, `${r1S[2]}`, `${r1S[3]}`];
+        memoryGameROW1C.clear();
+        memoryGameROW1C.add(r1S);
+        console.log(`Covered row 1 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -490,6 +510,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: A2`);
       }
       if (choice === "A3" || choice === "a3") {
+        r1S = [`${r1S[0]}`, `${r1S[1]}`, `${r1[2]}`, `${r1S[3]}`];
+        memoryGameROW1C.clear();
+        memoryGameROW1C.add(r1S);
+        console.log(`Covered row 1 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -499,6 +523,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: A3`);
       }
       if (choice === "A4" || choice === "a4") {
+        r1S = [`${r1S[0]}`, `${r1S[1]}`, `${r1S[2]}`, `${r1[3]}`];
+        memoryGameROW1C.clear();
+        memoryGameROW1C.add(r1S);
+        console.log(`Covered row 1 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -508,6 +536,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: A4`);
       }
       if (choice === "B1" || choice === "b1") {
+        r2S = [`${r2[0]}`, `${r2S[1]}`, `${r2S[2]}`, `${r2S[3]}`];
+        memoryGameROW2C.clear();
+        memoryGameROW2C.add(r2S);
+        console.log(`Covered row 2 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -517,6 +549,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: B1`);
       }
       if (choice === "B2" || choice === "b2") {
+        r2S = [`${r2S[0]}`, `${r2[1]}`, `${r2S[2]}`, `${r2S[3]}`];
+        memoryGameROW2C.clear();
+        memoryGameROW2C.add(r2S);
+        console.log(`Covered row 2 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -526,6 +562,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: B2`);
       }
       if (choice === "B3" || choice === "b3") {
+        r2S = [`${r2S[0]}`, `${r2S[1]}`, `${r2[2]}`, `${r2S[3]}`];
+        memoryGameROW2C.clear();
+        memoryGameROW2C.add(r2S);
+        console.log(`Covered row 2 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -535,6 +575,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: B3`);
       }
       if (choice === "B4" || choice === "b4") {
+        r2S = [`${r2S[0]}`, `${r2S[1]}`, `${r2S[2]}`, `${r2[3]}`];
+        memoryGameROW2C.clear();
+        memoryGameROW2C.add(r2S);
+        console.log(`Covered row 2 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -544,6 +588,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: B4`);
       }
       if (choice === "C1" || choice === "c1") {
+        r3S = [`${r3[0]}`, `${r3S[1]}`, `${r3S[2]}`, `${r3S[3]}`];
+        memoryGameROW3C.clear();
+        memoryGameROW3C.add(r3S);
+        console.log(`Covered row 3 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -553,6 +601,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: C1`);
       }
       if (choice === "C2" || choice === "c2") {
+        r3S = [`${r3S[0]}`, `${r3[1]}`, `${r3S[2]}`, `${r3S[3]}`];
+        memoryGameROW3C.clear();
+        memoryGameROW3C.add(r3S);
+        console.log(`Covered row 3 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -562,6 +614,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: C2`);
       }
       if (choice === "C3" || choice === "c3") {
+        r3S = [`${r3S[0]}`, `${r3S[1]}`, `${r3[2]}`, `${r3S[3]}`];
+        memoryGameROW3C.clear();
+        memoryGameROW3C.add(r3S);
+        console.log(`Covered row 3 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3[2]} ${r3S[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -571,6 +627,10 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: C3`);
       }
       if (choice === "C4" || choice === "c4") {
+        r3S = [`${r3S[0]}`, `${r3S[1]}`, `${r3S[2]}`, `${r3[3]}`];
+        memoryGameROW3C.clear();
+        memoryGameROW3C.add(r3S);
+        console.log(`Covered row 3 ammended.`);
         let fbwlembed = new Discord.RichEmbed()
         .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3[3]}\n\n*Pick one more.*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
@@ -596,6 +656,7 @@ module.exports.run = async (bot, message, args) => {
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r1[0]}`);
         console.log(`Choice: A1`);
       }
 			if (choice === "A2" || choice === "a2") {
@@ -604,8 +665,34 @@ module.exports.run = async (bot, message, args) => {
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r1[1]}`);
         console.log(`Choice: A2`);
       }
+			if (choice === "A3" || choice === "a3") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r1[2]}`);
+        console.log(`Choice: A3`);
+      }
+			if (choice === "A4" || choice === "a4") {
+        let fbwlembed = new Discord.RichEmbed()
+        .setDescription(`Game started!\n*Pairs:* ${ARRAYmemoryGamePairs[0]} **|** *Lives:* ${ARRAYmemoryGameLives[0]}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r1[3]}`);
+        console.log(`Choice: A4`);
+      }
+			let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
+			ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
+			let ARRmemoryGameChoice2 = Array.from(memoryGameChoice2);
+			ARRmemoryGameChoice2 = ARRmemoryGameChoice2[0];
+			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
+				console.log(`A match!`);
+			}
       //...
     }
 
