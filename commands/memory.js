@@ -50,11 +50,13 @@ module.exports.run = async (bot, message, args) => {
 		let ARRmemoryGameUser = Array.from(memoryGameUser);
 		ARRmemoryGameUser = ARRmemoryGameUser[0];
 		if (ARRmemoryGameUser != memUser) {
-      	console.log("Can't end another user's game!");
-				return message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
-					msg.delete(4000)
-      	});
-			}
+      console.log("Can't end another user's game!");
+			return message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
+				msg.delete(4000)
+      });
+		}
+		let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
+    aRRmemoryGameMESSAGEID = aRRmemoryGameMESSAGEID[0];
     let ARRr1 = Array.from(memoryGameROW1);
     ARRr1 = ARRr1[0];
     let ARRr2 = Array.from(memoryGameROW2);
