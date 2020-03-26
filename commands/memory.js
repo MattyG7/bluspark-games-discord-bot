@@ -47,9 +47,35 @@ module.exports.run = async (bot, message, args) => {
 	
 	if (args[0] === "end") {
 		message.channel.bulkDelete(1);
-		let r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
-		let r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
-		let r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+		let ARRmemoryGameUser = Array.from(memoryGameUser);
+		ARRmemoryGameUser = ARRmemoryGameUser[0];
+		if (ARRmemoryGameUser != memUser) {
+      	console.log("Can't end another user's game!");
+				return message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
+					msg.delete(4000)
+      	});
+			}
+    let ARRr1 = Array.from(memoryGameROW1);
+    ARRr1 = ARRr1[0];
+    let ARRr2 = Array.from(memoryGameROW2);
+    ARRr2 = ARRr2[0];
+    let ARRr3 = Array.from(memoryGameROW3);
+    ARRr3 = ARRr3[0];
+		let ARRr1C = Array.from(memoryGameROW1C);
+    ARRr1C = ARRr1C[0];
+    let ARRr2C = Array.from(memoryGameROW2C);
+    ARRr2C = ARRr2C[0];
+    let ARRr3C = Array.from(memoryGameROW3C);
+    ARRr3C = ARRr3C[0];
+    let ARRAYmemoryGameLives = Array.from(memoryGameLives);
+    ARRAYmemoryGameLives = ARRAYmemoryGameLives[0];
+    let ARRAYmemoryGamePairs = Array.from(memoryGamePairs);
+    ARRAYmemoryGamePairs = ARRAYmemoryGamePairs[0];
+		let fbwlembed = new Discord.RichEmbed()
+		.setColor(`#${usersData.col}`)
+		.setTitle(`Memory! 🧠`)
+		.setDescription(`Game ended.\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${ARRr1[0]} ${ARRr1[1]} ${ARRr1[2]} ${ARRr1[3]}\n${ARRr2[0]} ${ARRr2[1]} ${ARRr2[2]} ${ARRr2[3]}\n${ARRr3[0]} ${ARRr3[1]} ${ARRr3[2]} ${ARRr3[3]}\n\n**Your game of Memory has ended.**`);
+		aRRmemoryGameMESSAGEID.edit(fbwlembed);
 		memoryGameMESSAGEID.clear();
 		memoryGameROW1.clear();
 		memoryGameROW2.clear();
@@ -64,12 +90,7 @@ module.exports.run = async (bot, message, args) => {
 		memoryGameChoice1.clear();
 		memoryGameChoice2.clear();
 		console.log("Game ended. Sets have been reset.");
-		let fbwlembed = new Discord.RichEmbed()
-		.setColor(`#${usersData.col}`)
-		.setTitle(`Memory! 🧠`)
-		.setDescription(`Game ended.\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n**Your game of Memory has ended.**`);
-		aRRmemoryGameMESSAGEID.edit(fbwlembed);
-    return message.channel.send(`Your game of Memory has ended.`);
+    //return message.channel.send(`Your game of Memory has ended.`);
   }
 	
 	let ARRmemoryGameUser = Array.from(memoryGameUser);
