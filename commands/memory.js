@@ -46,6 +46,10 @@ module.exports.run = async (bot, message, args) => {
   }
 	
 	if (args[0] === "end") {
+		message.channel.bulkDelete(1);
+		let r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
+		let r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
+		let r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
 		memoryGameMESSAGEID.clear();
 		memoryGameROW1.clear();
 		memoryGameROW2.clear();
@@ -60,6 +64,11 @@ module.exports.run = async (bot, message, args) => {
 		memoryGameChoice1.clear();
 		memoryGameChoice2.clear();
 		console.log("Game ended. Sets have been reset.");
+		let fbwlembed = new Discord.RichEmbed()
+		.setColor(`#${usersData.col}`)
+		.setTitle(`Memory! 🧠`)
+		.setDescription(`Game ended.\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n**Your game of Memory has ended.**`);
+		aRRmemoryGameMESSAGEID.edit(fbwlembed);
     return message.channel.send(`Your game of Memory has ended.`);
   }
 	
@@ -724,7 +733,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -735,7 +744,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -746,7 +755,7 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
@@ -757,12 +766,100 @@ module.exports.run = async (bot, message, args) => {
         let fbwlembed = new Discord.RichEmbed()
 				.setColor(`#${usersData.col}`)
 				.setTitle(`Memory! 🧠`)
-        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
         memoryGameChoice2.add(`${r1[3]}`);
         console.log(`Choice: A4`);
+      }
+			if (choice === "B1" || choice === "b1") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r2[0]}`);
+        console.log(`Choice: B1`);
+      }
+			if (choice === "B2" || choice === "b2") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r2[1]}`);
+        console.log(`Choice: B2`);
+      }
+			if (choice === "B3" || choice === "b3") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r1[2]}`);
+        console.log(`Choice: B3`);
+      }
+			if (choice === "B4" || choice === "b4") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r2[3]}`);
+        console.log(`Choice: B4`);
+      }
+			if (choice === "C1" || choice === "c1") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r3[0]}`);
+        console.log(`Choice: C1`);
+      }
+			if (choice === "C2" || choice === "c2") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3[1]} ${r3S[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r3[1]}`);
+        console.log(`Choice: C2`);
+      }
+			if (choice === "C3" || choice === "c3") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3[2]} ${r3S[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r3[2]}`);
+        console.log(`Choice: C3`);
+      }
+			if (choice === "C4" || choice === "c4") {
+        let fbwlembed = new Discord.RichEmbed()
+				.setColor(`#${usersData.col}`)
+				.setTitle(`Memory! 🧠`)
+        .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3[3]}\n\n*Not a match...*`);
+        aRRmemoryGameMESSAGEID.edit(fbwlembed);
+        memoryGameChoices.delete(1);
+        memoryGameChoices.add(2);
+        memoryGameChoice2.add(`${r3[3]}`);
+        console.log(`Choice: C4`);
       }
 			let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
       ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
@@ -806,7 +903,7 @@ module.exports.run = async (bot, message, args) => {
 						let fbwlembed = new Discord.RichEmbed()
       			.setColor(`#${usersData.col}`)
       			.setTitle(`Memory! 🧠`)
-						.setDescription(`Game Over!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* 0\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}`);
+						.setDescription(`Game Over!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* 0\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n**Too many incorrect guesses.**`);
 						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
 						//---------
 					} else {
