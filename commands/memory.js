@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
+const memoryGameBUSY = new Set();
 const memoryGameMESSAGEID = new Set();
 const memoryGameLastCommand = new Set();
 const memoryGameROW1 = new Set();
@@ -20,6 +21,19 @@ const memoryGameChoice2 = new Set();
 
 module.exports.run = async (bot, message, args) => {
   if(args[2]) return message.channel.send(`${message.author.username}, please use the correct format: ~memory or ~memory SPARKCOINAMOUNT.`);
+	
+	let ARRmemoryGameBUSY = Array.from(memoryGameBUSY);
+	ARRmemoryGameBUSY = ARRmemoryGameBUSY[0];
+	if (ARRmemoryGameBUSY === "YES" || ARRmemoryGameBUSY === "NO") {
+		if (ARRmemoryGameBUSY === "YES") {
+			console.log("Game is busy, user needs to wait!");
+			message.channel.send(`Please wait.`).then(msg => {
+				msg.delete(2000)
+      });
+			return;
+		}
+	}
+	
 
   let memUser = message.author.id;
   let usersData = await mongoose.model("DiscordUserData").findOne ({
@@ -49,6 +63,8 @@ module.exports.run = async (bot, message, args) => {
 		message.channel.bulkDelete(1);
 		let ARRmemoryGameUser = Array.from(memoryGameUser);
 		ARRmemoryGameUser = ARRmemoryGameUser[0];
+		console.log(ARRmemoryGameUser);
+		console.log(memUser);
 		if (ARRmemoryGameUser != memUser) {
       console.log("Can't end another user's game!");
 			message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
@@ -100,6 +116,8 @@ module.exports.run = async (bot, message, args) => {
 	ARRmemoryGameUser = ARRmemoryGameUser[0];
   if (!args[0]) {
     if (memoryGameUser.size === 0) {
+			memoryGameBUSY.clear();
+			memoryGameBUSY.add("YES");
       console.log(`New game started!`);
       memoryGameUser.add(memUser);
       memoryGameLives.add(3);
@@ -490,7 +508,10 @@ module.exports.run = async (bot, message, args) => {
                           botMessage.edit(fbwlembed);
                           //console.log(`Message ID: ${botMessage.id}`);
                           memoryGameMESSAGEID.add(botMessage);
-                          return console.log("Now waiting for user's guesses...");
+                          console.log("Now waiting for user's guesses...");
+													memoryGameBUSY.clear();
+													memoryGameBUSY.add("NO");
+													return;
                         }, 1000);
                       }, 1000);
                     }, 1000);
@@ -892,6 +913,8 @@ module.exports.run = async (bot, message, args) => {
 			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
 				console.log(`A match! :)`);
 			} else {
+				memoryGameBUSY.clear();
+				memoryGameBUSY.add("YES");
 				console.log(`Not a match... :(`);
 				r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
 				r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
@@ -924,6 +947,8 @@ module.exports.run = async (bot, message, args) => {
 						memoryGameChoice1.clear();
 						memoryGameChoice2.clear();
 						console.log("Game Over. Sets have been reset.");
+						memoryGameBUSY.clear();
+						memoryGameBUSY.add("NO");
 						let fbwlembed = new Discord.RichEmbed()
       			.setColor(`#${usersData.col}`)
       			.setTitle(`Memory! 🧠`)
@@ -931,6 +956,8 @@ module.exports.run = async (bot, message, args) => {
 						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
 						//---------
 					} else {
+						memoryGameBUSY.clear();
+						memoryGameBUSY.add("NO");
 						let fbwlembed = new Discord.RichEmbed()
 						.setColor(`#${usersData.col}`)
 						.setTitle(`Memory! 🧠`)
