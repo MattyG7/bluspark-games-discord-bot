@@ -64,8 +64,8 @@ module.exports.run = async (bot, message, args) => {
 		message.channel.bulkDelete(1);
 		let ARRmemoryGameUser = Array.from(memoryGameUser);
 		ARRmemoryGameUser = ARRmemoryGameUser[0];
-		console.log(ARRmemoryGameUser);
-		console.log(memUser);
+		//console.log(ARRmemoryGameUser);
+		//console.log(memUser);
 		if (ARRmemoryGameUser != memUser) {
       console.log("Can't end another user's game!");
 			message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
@@ -545,6 +545,10 @@ module.exports.run = async (bot, message, args) => {
 			return message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
 				msg.delete(4000)
       });
+		}
+		let choiceLC = choice.toLowerCase();
+		if (choiceLC != "a1" || choiceLC != "a2" || choiceLC != "a3" || choiceLC != "a4") {
+			return;
 		}
     let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
 		if (ARRAYmemoryGameChoices[0] === 1) {
