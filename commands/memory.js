@@ -27,6 +27,7 @@ module.exports.run = async (bot, message, args) => {
 	if (ARRmemoryGameBUSY === "YES" || ARRmemoryGameBUSY === "NO") {
 		if (ARRmemoryGameBUSY === "YES") {
 			console.log("Game is busy, user needs to wait!");
+			message.channel.bulkDelete(1);
 			message.channel.send(`Please wait.`).then(msg => {
 				msg.delete(2000)
       });
@@ -108,7 +109,7 @@ module.exports.run = async (bot, message, args) => {
 		memoryGameChoices.clear();
 		memoryGameChoice1.clear();
 		memoryGameChoice2.clear();
-		console.log("Game ended. Sets have been reset.");
+		return console.log("Game ended. Sets have been reset.");
     //return message.channel.send(`Your game of Memory has ended.`);
   }
 	
@@ -454,9 +455,9 @@ module.exports.run = async (bot, message, args) => {
       memoryGameROW2C.add(r2S);
       memoryGameROW3C.add(r3S);
       console.log(`Rows of squares set!`);
-      console.log(memoryGameROW1);
-      console.log(memoryGameROW2);
-      console.log(memoryGameROW3);
+      console.log(memoryGameROW1C);
+      console.log(memoryGameROW2C);
+      console.log(memoryGameROW3C);
 
       let lives = 3;
       let pairs = 0;
