@@ -62,6 +62,13 @@ module.exports.run = async (bot, message, args) => {
 	
 	if (args[0] === "end") {
 		message.channel.bulkDelete(1);
+		if (memoryGameUser.size === 0) {
+			console.log("No game in play!");
+			message.channel.send(`There is currently no game in play.`).then(msg => {
+				msg.delete(4000)
+      });
+			return;
+		}
 		let ARRmemoryGameUser = Array.from(memoryGameUser);
 		ARRmemoryGameUser = ARRmemoryGameUser[0];
 		//console.log(ARRmemoryGameUser);
