@@ -4,12 +4,17 @@ const Schema = mongoose.Schema;
 const memoryGameBUSY = new Set();
 const memoryGameMESSAGEID = new Set();
 const memoryGameLastCommand = new Set();
+const memoryGamePairCommands = new Set();
+const memoryGamePairCommandsTEMP = new Set();
 const memoryGameROW1 = new Set();
 const memoryGameROW2 = new Set();
 const memoryGameROW3 = new Set();
 const memoryGameROW1C = new Set();
 const memoryGameROW2C = new Set();
 const memoryGameROW3C = new Set();
+const memoryGameROW1C_back = new Set();
+const memoryGameROW2C_back = new Set();
+const memoryGameROW3C_back = new Set();
 const memoryGameUser = new Set();
 const memoryGameLives = new Set();
 const memoryGamePairs = new Set();
@@ -23,17 +28,18 @@ module.exports.run = async (bot, message, args) => {
   if(args[2]) return message.channel.send(`${message.author.username}, please use the correct format: ~memory or ~memory SPARKCOINAMOUNT.`);
 
 	let ARRmemoryGameBUSY = Array.from(memoryGameBUSY);
-	ARRmemoryGameBUSY = ARRmemoryGameBUSY[0];
-	if (ARRmemoryGameBUSY === "YES" || ARRmemoryGameBUSY === "NO") {
-		if (ARRmemoryGameBUSY === "YES") {
-			console.log("Game is busy, user needs to wait!");
-			message.channel.bulkDelete(1);
-			message.channel.send(`Please wait.`).then(msg => {
-				msg.delete(2000)
-      });
-			return;
-		}
-	}
+	//ARRmemoryGameBUSY = ARRmemoryGameBUSY[0];
+  if (ARRmemoryGameBUSY === "YES") {
+    console.log("Game is busy, user needs to wait!");
+    message.channel.bulkDelete(1);
+    message.channel.send(`Please wait.`).then(msg => {
+      msg.delete(2000)
+    });
+    return;
+  } else {
+    memoryGameBUSY.clear();
+    memoryGameBUSY.add("YES");
+  }
 
 
   let memUser = message.author.id;
@@ -57,6 +63,8 @@ module.exports.run = async (bot, message, args) => {
   console.log(`> Still ${usersData.col}`);
 
   if (args[0] === "?") {
+    memoryGameBUSY.clear();
+    memoryGameBUSY.add("NO");
     return message.channel.send(`Type "~memory" and then any letter combination from A1 to C6 to choose which square you'd like to reveal. You can choose two per turn. If the two revealed emojis match, they will stay and not change back to a square.\n\n*Example command: ~memory B2*`);
   }
 
@@ -67,6 +75,8 @@ module.exports.run = async (bot, message, args) => {
 			message.channel.send(`There is currently no game in play.`).then(msg => {
 				msg.delete(4000)
       });
+      memoryGameBUSY.clear();
+      memoryGameBUSY.add("NO");
 			return;
 		}
 		let ARRmemoryGameUser = Array.from(memoryGameUser);
@@ -78,6 +88,8 @@ module.exports.run = async (bot, message, args) => {
 			message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {
 				msg.delete(4000)
       });
+      memoryGameBUSY.clear();
+      memoryGameBUSY.add("NO");
 			return;
 		}
 		let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
@@ -103,19 +115,27 @@ module.exports.run = async (bot, message, args) => {
 		.setTitle(`Memory! 🧠`)
 		.setDescription(`Game ended.\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${ARRr1[0]} ${ARRr1[1]} ${ARRr1[2]} ${ARRr1[3]}\n${ARRr2[0]} ${ARRr2[1]} ${ARRr2[2]} ${ARRr2[3]}\n${ARRr3[0]} ${ARRr3[1]} ${ARRr3[2]} ${ARRr3[3]}\n\n**Your game of Memory has ended.**`);
 		aRRmemoryGameMESSAGEID.edit(fbwlembed);
-		memoryGameMESSAGEID.clear();
-		memoryGameROW1.clear();
-		memoryGameROW2.clear();
-		memoryGameROW3.clear();
-		memoryGameROW1C.clear();
-		memoryGameROW2C.clear();
-		memoryGameROW3C.clear();
-		memoryGameUser.clear();
-		memoryGameLives.clear();
-		memoryGamePairs.clear();
-		memoryGameChoices.clear();
-		memoryGameChoice1.clear();
-		memoryGameChoice2.clear();
+    memoryGameMESSAGEID.clear();
+    memoryGameLastCommand.clear();
+    memoryGamePairCommands.clear();
+    memoryGamePairCommandsTEMP.clear();
+    memoryGameROW1.clear();
+    memoryGameROW2.clear();
+    memoryGameROW3.clear();
+    memoryGameROW1C.clear();
+    memoryGameROW2C.clear();
+    memoryGameROW3C.clear();
+    memoryGameROW1C_back.clear();
+    memoryGameROW2C_back.clear();
+    memoryGameROW3C_back.clear();
+    memoryGameUser.clear();
+    memoryGameLives.clear();
+    memoryGamePairs.clear();
+    memoryGameChoices.clear();
+    memoryGameChoice1.clear();
+    memoryGameChoice2.clear();
+    memoryGameBUSY.clear();
+    memoryGameBUSY.add("NO");
 		return console.log("Game ended. Sets have been reset.");
     //return message.channel.send(`Your game of Memory has ended.`);
   }
@@ -124,8 +144,6 @@ module.exports.run = async (bot, message, args) => {
 	ARRmemoryGameUser = ARRmemoryGameUser[0];
   if (!args[0]) {
     if (memoryGameUser.size === 0) {
-			memoryGameBUSY.clear();
-			memoryGameBUSY.add("YES");
       console.log(`New game started!`);
       memoryGameUser.add(memUser);
       memoryGameLives.add(3);
@@ -517,8 +535,8 @@ module.exports.run = async (bot, message, args) => {
                           //console.log(`Message ID: ${botMessage.id}`);
                           memoryGameMESSAGEID.add(botMessage);
                           console.log("Now waiting for user's guesses...");
-													memoryGameBUSY.clear();
-													memoryGameBUSY.add("NO");
+                          memoryGameBUSY.clear();
+                          memoryGameBUSY.add("NO");
 													return;
                         }, 1000);
                       }, 1000);
@@ -534,11 +552,15 @@ module.exports.run = async (bot, message, args) => {
 			message.channel.bulkDelete(1);
 			if (ARRmemoryGameUser != memUser) {
       	console.log("Another user's game already exists!");
+        memoryGameBUSY.clear();
+        memoryGameBUSY.add("NO");
 				return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {
 					msg.delete(4000)
       	});
 			} else {
 				console.log("Game already exists!");
+        memoryGameBUSY.clear();
+        memoryGameBUSY.add("NO");
 				return message.channel.send(`You have already started a game. *Type "~memory end" to end your game early.*`).then(msg => {
 					msg.delete(4000)
       	});
@@ -549,13 +571,19 @@ module.exports.run = async (bot, message, args) => {
     message.channel.bulkDelete(1);
 		if (ARRmemoryGameUser != memUser) {
       console.log("Another user's game already exists!");
-			return message.channel.send(`This isn't your game. Please wait until it finishes.`).then(msg => {
-				msg.delete(4000)
+      memoryGameBUSY.clear();
+      memoryGameBUSY.add("NO");
+			return message.channel.send(`This isn't your game!`).then(msg => {
+				msg.delete(2000)
       });
 		}
 		let choiceLC = choice.toLowerCase();
-		if (choiceLC != "a1" || choiceLC != "a2" || choiceLC != "a3" || choiceLC != "a4") {
-			return;
+		if (choiceLC != "a1" && choiceLC != "a2" && choiceLC != "a3" && choiceLC != "a4" && choiceLC != "b1" && choiceLC != "b2" && choiceLC != "b3" && choiceLC != "b4" && choiceLC != "c1" && choiceLC != "c2" && choiceLC != "c3" && choiceLC != "c4") {
+      memoryGameBUSY.clear();
+      memoryGameBUSY.add("NO");
+      return message.channel.send(`Not a valid space! It goes from A1 to A4, B1 to B4 and C1 to C4.`).then(msg => {
+				msg.delete(4000)
+      });
 		}
     let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
 		if (ARRAYmemoryGameChoices[0] === 1) {
@@ -563,11 +591,35 @@ module.exports.run = async (bot, message, args) => {
     	ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase();
 			let choiceLC = choice.toLowerCase();
 			if (ARRmemoryGameLastCommand === choiceLC) {
+        memoryGameBUSY.clear();
+        memoryGameBUSY.add("NO");
 				return message.channel.send("You have already chosen this square.").then(msg => {
         	msg.delete(2000)
       	});
 			}
 		}
+
+    let ARRpairCommands = Array.from(memoryGamePairCommands);
+    //ARRpairCommands = ARRpairCommands[0];
+    if (ARRpairCommands != null) {
+      console.log(`Checking 'memoryGamePairCommands' set:`);
+      console.log(ARRpairCommands.length);
+      console.log(ARRpairCommands);
+      let pairCommand = "";
+      for (i = 0; i < ARRpairCommands.length; i++) {
+        //pairCommand = ARRpairCommands[i].toLowerCase();
+        if (ARRpairCommands[i].toLowerCase() === choiceLC) {
+          memoryGameBUSY.clear();
+          memoryGameBUSY.add("NO");
+          return message.channel.send("You have already chosen this square.").then(msg => {
+            msg.delete(2000)
+          });
+        }
+      }
+    }
+
+    let ARRpairCommandsTEMP = Array.from(memoryGamePairCommandsTEMP);
+    ARRpairCommandsTEMP = ARRpairCommandsTEMP[0];
 
     let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
     aRRmemoryGameMESSAGEID = aRRmemoryGameMESSAGEID[0];
@@ -598,6 +650,7 @@ module.exports.run = async (bot, message, args) => {
     //1 CHOICE LEFT
     //let ARRAYmemoryGameChoices = Array.from(memoryGameChoices); DECLARED FURTHER UP
     if (ARRAYmemoryGameChoices[0] === 2) {
+      memoryGamePairCommandsTEMP.add(choice);
 			memoryGameLastCommand.clear();
 			memoryGameLastCommand.add(choice);
       console.log(`Choices left: 1`);
@@ -785,6 +838,7 @@ module.exports.run = async (bot, message, args) => {
     //--------------
     //0 CHOICES LEFT
     if (ARRAYmemoryGameChoices[0] === 1) {
+      memoryGamePairCommandsTEMP.add(choice);
       console.log(`Choices left: 0`);
       if (choice === "A1" || choice === "a1") {
         r1S = [`${r1[0]}`, `${r1S[1]}`, `${r1S[2]}`, `${r1S[3]}`];
@@ -888,7 +942,7 @@ module.exports.run = async (bot, message, args) => {
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
-        memoryGameChoice2.add(`${r1[2]}`);
+        memoryGameChoice2.add(`${r2[2]}`);
         console.log(`Choice: B3`);
       }
 			if (choice === "B4" || choice === "b4") {
@@ -967,7 +1021,7 @@ module.exports.run = async (bot, message, args) => {
         console.log(`Choice: C4`);
       }
       //Re-retrieve rows
-  		ARRr1C = Array.from(memoryGameROW1C);
+      ARRr1C = Array.from(memoryGameROW1C);
       ARRr1C = ARRr1C[0];
       ARRr2C = Array.from(memoryGameROW2C);
       ARRr2C = ARRr2C[0];
@@ -976,7 +1030,7 @@ module.exports.run = async (bot, message, args) => {
       r1S = [`${ARRr1C[0]}`, `${ARRr1C[1]}`, `${ARRr1C[2]}`, `${ARRr1C[3]}`];
       r2S = [`${ARRr2C[0]}`, `${ARRr2C[1]}`, `${ARRr2C[2]}`, `${ARRr2C[3]}`];
       r3S = [`${ARRr3C[0]}`, `${ARRr3C[1]}`, `${ARRr3C[2]}`, `${ARRr3C[3]}`];
-
+      //----------------
 			let ARRmemoryGameChoice1 = Array.from(memoryGameChoice1);
       ARRmemoryGameChoice1 = ARRmemoryGameChoice1[0];
 			let ARRmemoryGameChoice2 = Array.from(memoryGameChoice2);
@@ -984,8 +1038,18 @@ module.exports.run = async (bot, message, args) => {
 			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
         console.log(`A match! :)`);
         ARRAYmemoryGamePairs++;
-        memoryGameLives.clear();
-        memoryGameLives.add(ARRAYmemoryGamePairs);
+        memoryGamePairs.clear();
+        memoryGamePairs.add(ARRAYmemoryGamePairs);
+        memoryGameROW1C_back.clear();
+        memoryGameROW1C_back.add(r1S);
+        memoryGameROW2C_back.clear();
+        memoryGameROW2C_back.add(r2S);
+        memoryGameROW3C_back.clear();
+        memoryGameROW3C_back.add(r3S);
+  			let ARRmemoryGamePairCommandsTEMP = Array.from(memoryGamePairCommandsTEMP);
+        memoryGamePairCommands.add(`${ARRmemoryGamePairCommandsTEMP[0]}`);
+        memoryGamePairCommands.add(`${ARRmemoryGamePairCommandsTEMP[1]}`);
+        memoryGamePairCommandsTEMP.clear();
         let fbwlembed = new Discord.RichEmbed()
         .setColor(`#${usersData.col}`)
         .setTitle(`Memory! 🧠`)
@@ -993,22 +1057,73 @@ module.exports.run = async (bot, message, args) => {
         aRRmemoryGameMESSAGEID.edit(fbwlembed);
         memoryGameChoices.delete(1);
         memoryGameChoices.add(2);
-        setTimeout(() => {
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
-          let fbwlembed = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
-          .setTitle(`Memory! 🧠`)
-          .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick two.*`);
-          return aRRmemoryGameMESSAGEID.edit(fbwlembed);
-        }, 3000);
+        memoryGameChoice1.clear();
+        memoryGameChoice2.clear();
+        if (ARRAYmemoryGamePairs === 6) {
+          setTimeout(() => {
+            //User won!
+            console.log("Game Finished. User won. Sets have been reset.");
+            let fbwlembed = new Discord.RichEmbed()
+            .setColor(`#${usersData.col}`)
+            .setTitle(`Memory! 🧠`)
+            .setDescription(`Game Finished!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n**You won! You memorised all emoji locations.**`);
+            aRRmemoryGameMESSAGEID.edit(fbwlembed);
+            memoryGameMESSAGEID.clear();
+            memoryGameLastCommand.clear();
+            memoryGamePairCommands.clear();
+            memoryGamePairCommandsTEMP.clear();
+            memoryGameROW1.clear();
+            memoryGameROW2.clear();
+            memoryGameROW3.clear();
+            memoryGameROW1C.clear();
+            memoryGameROW2C.clear();
+            memoryGameROW3C.clear();
+            memoryGameROW1C_back.clear();
+            memoryGameROW2C_back.clear();
+            memoryGameROW3C_back.clear();
+            memoryGameUser.clear();
+            memoryGameLives.clear();
+            memoryGamePairs.clear();
+            memoryGameChoices.clear();
+            memoryGameChoice1.clear();
+            memoryGameChoice2.clear();
+            memoryGameBUSY.clear();
+            memoryGameBUSY.add("NO");
+            //---------
+          }, 3000);
+          return;
+        } else {
+          setTimeout(() => {
+            let fbwlembed = new Discord.RichEmbed()
+            .setColor(`#${usersData.col}`)
+            .setTitle(`Memory! 🧠`)
+            .setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick two.*`);
+            aRRmemoryGameMESSAGEID.edit(fbwlembed);
+            memoryGameBUSY.clear();
+            memoryGameBUSY.add("NO");
+          }, 3000);
+          return;
+        }
 			} else {
-				memoryGameBUSY.clear();
-				memoryGameBUSY.add("YES");
 				console.log(`Not a match... :(`);
-				r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
-				r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
-				r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+				//r1S = [`◻️`, `◻️`, `◻️`, `◻️`];
+				//r2S = [`◻️`, `◻️`, `◻️`, `◻️`];
+				//r3S = [`◻️`, `◻️`, `◻️`, `◻️`];
+        //memoryGameROW1C.clear();
+        //memoryGameROW1C.add(r1S);
+        //memoryGameROW2C.clear();
+        //memoryGameROW2C.add(r2S);
+        //memoryGameROW3C.clear();
+        //memoryGameROW3C.add(r3S);
+        ARRr1C = Array.from(memoryGameROW1C_back);
+        ARRr1C = ARRr1C[0];
+        ARRr2C = Array.from(memoryGameROW2C_back);
+        ARRr2C = ARRr2C[0];
+        ARRr3C = Array.from(memoryGameROW3C_back);
+        ARRr3C = ARRr3C[0];
+        r1S = [`${ARRr1C[0]}`, `${ARRr1C[1]}`, `${ARRr1C[2]}`, `${ARRr1C[3]}`];
+        r2S = [`${ARRr2C[0]}`, `${ARRr2C[1]}`, `${ARRr2C[2]}`, `${ARRr2C[3]}`];
+        r3S = [`${ARRr3C[0]}`, `${ARRr3C[1]}`, `${ARRr3C[2]}`, `${ARRr3C[3]}`];
         memoryGameROW1C.clear();
         memoryGameROW1C.add(r1S);
         memoryGameROW2C.clear();
@@ -1023,19 +1138,6 @@ module.exports.run = async (bot, message, args) => {
 				setTimeout(() => {
 					if (ARRAYmemoryGameLives === 0) {
 						//GAME OVER
-						memoryGameMESSAGEID.clear();
-						memoryGameROW1.clear();
-						memoryGameROW2.clear();
-						memoryGameROW3.clear();
-						memoryGameROW1C.clear();
-						memoryGameROW2C.clear();
-						memoryGameROW3C.clear();
-						memoryGameUser.clear();
-						memoryGameLives.clear();
-						memoryGamePairs.clear();
-						memoryGameChoices.clear();
-						memoryGameChoice1.clear();
-						memoryGameChoice2.clear();
 						console.log("Game Over. Sets have been reset.");
 						memoryGameBUSY.clear();
 						memoryGameBUSY.add("NO");
@@ -1043,25 +1145,45 @@ module.exports.run = async (bot, message, args) => {
       			.setColor(`#${usersData.col}`)
       			.setTitle(`Memory! 🧠`)
 						.setDescription(`Game Over!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* 0\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n**Too many incorrect guesses.**`);
-						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
+            aRRmemoryGameMESSAGEID.edit(fbwlembed);
+						memoryGameMESSAGEID.clear();
+            memoryGameLastCommand.clear();
+            memoryGamePairCommands.clear();
+            memoryGamePairCommandsTEMP.clear();
+						memoryGameROW1.clear();
+						memoryGameROW2.clear();
+						memoryGameROW3.clear();
+						memoryGameROW1C.clear();
+						memoryGameROW2C.clear();
+						memoryGameROW3C.clear();
+            memoryGameROW1C_back.clear();
+            memoryGameROW2C_back.clear();
+            memoryGameROW3C_back.clear();
+						memoryGameUser.clear();
+						memoryGameLives.clear();
+						memoryGamePairs.clear();
+						memoryGameChoices.clear();
+						memoryGameChoice1.clear();
+						memoryGameChoice2.clear();
+            memoryGameBUSY.clear();
+            memoryGameBUSY.add("NO");
+            return;
 						//---------
 					} else {
-						memoryGameBUSY.clear();
-						memoryGameBUSY.add("NO");
+            memoryGameChoice1.clear();
+            memoryGameChoice2.clear();
+            memoryGamePairCommandsTEMP.clear();
 						let fbwlembed = new Discord.RichEmbed()
 						.setColor(`#${usersData.col}`)
 						.setTitle(`Memory! 🧠`)
 						.setDescription(`Game in play!\n*Pairs:* ${ARRAYmemoryGamePairs} **|** *Lives:* ${ARRAYmemoryGameLives}\n\n${r1S[0]} ${r1S[1]} ${r1S[2]} ${r1S[3]}\n${r2S[0]} ${r2S[1]} ${r2S[2]} ${r2S[3]}\n${r3S[0]} ${r3S[1]} ${r3S[2]} ${r3S[3]}\n\n*Pick two.*`);
+            memoryGameBUSY.clear();
+            memoryGameBUSY.add("NO");
 						return aRRmemoryGameMESSAGEID.edit(fbwlembed);
 					}
 				}, 3000);
 			}
-      //...
     }
-
-    //if (memoryGameChoice1 === 0) {
-      //memoryGameChoice1.add();
-    //}
   }
 }
 
