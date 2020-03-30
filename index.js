@@ -30,6 +30,7 @@ var discordUserDataSchema = new mongoose.Schema ({
   lo: String,
   lastbowled: String,
   lastplayeddeal: String,
+  lastplayedmemory: String,
   lastkicked: String,
   lastrolled: String
 });
@@ -175,6 +176,7 @@ bot.on("message", async message => {
           lo: "not-set",
           lastbowled: "no-date",
           lastplayeddeal: "no-date",
+          lastplayedmemory: "no-date",
           lastkicked: "no-date",
           lastrolled: "no-date"
         }, function(error, data) {
