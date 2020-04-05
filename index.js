@@ -89,7 +89,7 @@ bot.on("message", async message => {
   console.log(`Word count for ${message.author.username}: ${wordCount}`);
   //console.log(`+ ${wordCount} exp`);
   console.log(`+ ${wordCount}xp`);
-  mongoose.model("DiscordUserData").findOne ({
+  await mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
     if (error) {
