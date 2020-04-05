@@ -11,11 +11,11 @@ module.exports.run = async (bot, message, args) => {
   .addField("Emotions & Solo Actions", "`~laugh`...")
   .addField("Games (no prize)", "`~flip`...")
   .addField("Games", "`~dontgetbit SPARKCOINAMOUNT`** | **`~flip COINSIDE SPARKCOINAMOUNT`** | **`~rps CHOICE SPARKCOINAMOUNT`")
-  .addField("Daily Games", "`~bowl SPARKCOINAMOUNT`** | **`~deal low`, `~deal high`** | **`~memory SPARKCOINAMOUNT`** | **`~penalty 100`** | **`~roll DICENUMBER`")
+  .addField("Daily Games", "`~bowl SPARKCOINAMOUNT`** | **`~deal low`, `~deal high`** | **`~memory`** | **`~penalty prize`** | **`~roll DICENUMBER`")
   .addField("Fun", "`~8ball should i go to bed`** | **`~blumoji`** | **`~say i am a bot`")
   .addField("Randomising", "`~anime`** | **`~colour`** | **`~emoji`** | **`~fortune`** | **`~loli`** | **`~sing`")
   .addField("Education", "`~calc`")
-  .addField("Admin Only", "`~clear MESSAGESAMOUNT`** | **`~gift @NAME SPARKCOINAMOUNT`** | **`~spam MESSAGESAMOUNT`** | **`~steal @NAME SPARKCOINAMOUNT`")
+  .addField("Admin Only", "`~clear MESSAGESAMOUNT`** | **`~gift @NAME SPARKCOINAMOUNT`** | **`~log USERNAME SPARKCOINAMOUNT GAMENAME`** | **`~spam MESSAGESAMOUNT`** | **`~steal @NAME SPARKCOINAMOUNT`")
   return message.channel.send(helpxembed);
 }
 

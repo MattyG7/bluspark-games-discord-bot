@@ -36,9 +36,9 @@ module.exports.run = async (bot, message, args) => {
       }
     });
   }
-  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~penalty 100.`);
+  if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~penalty prize.`);
   if(args[0]) {
-    if(args[0] != "100") return message.channel.send(`${message.author.username}, please use the correct format: ~penalty 100.`);
+    if(args[0] != "prize") return message.channel.send(`${message.author.username}, please use the correct format: ~penalty prize.`);
     let penaltyUser = `${message.author.id}`;
     mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
