@@ -1814,7 +1814,7 @@ module.exports.run = async (bot, message, args) => {
             gameOutcome = "lose";
           }
           botMessageOFFER.delete();
-          if (gameOutcome = "win") {
+          if (gameOutcome === "win") {
             let sparkcoinlogmembed = new Discord.RichEmbed()
             .setColor("#1c9472")
             .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins.`)
@@ -1826,7 +1826,7 @@ module.exports.run = async (bot, message, args) => {
             .setDescription(`*YOUR BOX*\n> ${boxCol} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n-----------------------------------------------------------------\n:point_right: **You swapped your box. You won ${ChosenBox[1]} SparkCoins!**\n-----------------------------------------------------------------`);
             botMessage.edit(fbwlembed);
           }
-          if (gameOutcome = "lose") {
+          if (gameOutcome === "lose") {
             let sparkcoinlogmembed = new Discord.RichEmbed()
             .setColor("#1c9472")
             .setDescription(`**${message.author.username}** lost ${ChosenBox[1]} SparkCoins.`)
