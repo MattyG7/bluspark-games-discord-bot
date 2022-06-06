@@ -1,7 +1,9 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGO_URI, {
+const Schema = mongoose.Schema;
+mongoose.connect("mongodb+srv://bluspark_games01:dBpass_XzZx1BG!@cluster1.xwmfn9k.mongodb.net/Data", {
+//mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true
 }, function(error) {
   if (error) {
