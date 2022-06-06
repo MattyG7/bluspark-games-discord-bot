@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://bluspark_games01:dBpass_XzZx1BG!@cluster0.lhj0jat.mongodb.net/?retryWrites=true&w=majority", {
-//mongoose.connect("mongodb://heroku_30zt7p9z:iiup0hqf84ddrlksfaa7mckmj4@ds147181.mlab.com:47181/heroku_30zt7p9z", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true
 }, function(error) {
   if (error) {
