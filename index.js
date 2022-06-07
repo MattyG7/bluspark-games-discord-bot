@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const mongoose = require(`mongoose`);
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
   useUnifiedTopology: true
 }, function(error) {
   if (error) {
