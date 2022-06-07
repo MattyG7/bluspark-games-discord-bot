@@ -1,14 +1,14 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const mongoose = require(`mongoose`);
-mongoose.connect(process.env.MONGODB_URI, {
+const mongoose = require("mongoose");
+await mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }, function(error) {
   if (error) {
     console.log(error);
   } else {
-    console.log("Connected to database! NEW");
+    console.log("Connected to database!");
   }
 });
 
@@ -37,7 +37,7 @@ const discordUserDataSchema = mongoose.Schema ({
 }, {collection: "DiscordUserData"});
 var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
 //module.exports = mongoose.model("DiscordUserData", discordUserDataSchema);
-console.log(DiscordUserData);
+console.log(DiscordUserData.userID);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -49,7 +49,7 @@ fs.readdir("./commands/", (err, files) => {
 
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`)
-    console.log(`${f} loaded! NEW`);
+    console.log(`${f} loaded!`);
     bot.commands.set(props.help.name, props);
   });
 });
@@ -60,7 +60,7 @@ bot.on("guildMemberAdd", member => {
 });
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} is online! NEW`);
+  console.log(`${bot.user.username} is online!`);
   bot.user.setActivity("your ~ commands", {type: "LISTENING"});
 });
 
@@ -73,7 +73,7 @@ bot.on("message", async message => {
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-
+  
   //LOAD IN VARIABLES
   //let coins = 100;
   //let level = 0;
@@ -81,74 +81,7 @@ bot.on("message", async message => {
   //let xptogo = 8;
   //let xpforlvl = 10;
   //-----------------
-
-  //WORD COUNT FOR XP
-  let wordCount = 1;
-  args.forEach(element => {
-    wordCount++;
-  });
-  console.log(`Word count for ${message.author.username}: ${wordCount}`);
-  //console.log(`+ ${wordCount} exp`);
-  console.log(`+ ${wordCount}xp`);
-  await mongoose.model("DiscordUserData").findOne ({
-    userID: `${message.author.id}`
-  }, function(error, data) {
-    if (error) {
-      console.log("Failed to get data :(");
-      console.log(error);
-    } else {
-      let userColour = data.col;
-      let userCurrentXP = data.currentxp;
-      let userGoalXP = data.targetxp;
-      let OverflowXP = 0;
-      let userNowXP = userCurrentXP + wordCount;
-      let userLevel = data.level;
-      console.log(`${userCurrentXP}xp + ${wordCount}xp = ${userNowXP}xp`);
-      if (userNowXP === userGoalXP || userNowXP > userGoalXP) {
-        OverflowXP = userNowXP - userGoalXP;
-        let userLevelNEW = userLevel + 1;
-        let userIcon = message.author.displayAvatarURL;
-        let lvlupembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
-        .setThumbnail(`${userIcon}`)
-        .setTitle(`✨ Level Up!`)
-        .setDescription(`You reached level ${userLevelNEW}!`);
-        message.channel.send(lvlupembed);
-        console.log(`Level Up! User grew from level ${userLevel} to ${userLevelNEW}.`);
-        console.log(`Overflow XP is ${OverflowXP} and was added to user's current level XP count.`);
-        let userGoalXPNEW_UNROUNDED = userGoalXP * 1.2;
-        let userGoalXPNEW = Math.round(userGoalXPNEW_UNROUNDED);
-        console.log(`XP needed to next level has gone up from ${userGoalXP} to ${userGoalXPNEW}.`);
-        mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
-          currentxp: `${OverflowXP}`,
-          targetxp: `${userGoalXPNEW}`,
-          level: `${userLevelNEW}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully set overflow XP as current XP, increased target XP by 1.2 and added 1 to the level!`);
-            console.log(`- BEFORE: ${userCurrentXP}/${userGoalXP}. AFTER: ${OverflowXP}/${userGoalXPNEW}`);
-            console.log(`- BEFORE: ${userLevel}. AFTER: ${userLevelNEW}`);
-          }
-        });
-      } else {
-        mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
-          currentxp: `${userNowXP}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully added new XP to current XP!`);
-            console.log(`- BEFORE: ${userCurrentXP}. AFTER: ${userNowXP}`);
-          }
-        });
-      }
-    }
-  });
-
+  
   if (message.content.startsWith(prefix)) {
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(bot, message, args, author, messageArray);
@@ -182,10 +115,10 @@ bot.on("message", async message => {
           lastrolled: "no-date"
         }, function(error, data) {
           if (error) {
-            console.log("ALERT! User couldn't be added to mLab database!");
+            console.log("ALERT! User couldn't be added to database!");
             console.log(error);
           } else {
-            console.log("SUCCESS! User added to mLab database!");
+            console.log("SUCCESS! User added to database!");
             console.log(data);
           }
         });
