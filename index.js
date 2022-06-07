@@ -49,7 +49,7 @@ fs.readdir("./commands/", (err, files) => {
 
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`)
-    console.log(`${f} loaded!`);
+    console.log(`${f} loaded! NEW`);
     bot.commands.set(props.help.name, props);
   });
 });
@@ -60,7 +60,7 @@ bot.on("guildMemberAdd", member => {
 });
 
 bot.on("ready", async () => {
-  console.log(`${bot.user.username} is online!`);
+  console.log(`${bot.user.username} is online! NEW`);
   bot.user.setActivity("your ~ commands", {type: "LISTENING"});
 });
 
