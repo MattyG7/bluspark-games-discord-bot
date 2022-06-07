@@ -1,43 +1,8 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-mongoose.connect("mongodb+srv://bluspark_games01:dBpass_XzZx1BG!@cluster1.xwmfn9k.mongodb.net/Data", {
-//mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true
-}, function(error) {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Connected to mLab database!");
-  }
-});
 
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
-
-
-var discordUserDataSchema = new mongoose.Schema ({
-  userID: String,
-  sparkcoins: Number,
-  currentxp: Number,
-  targetxp: Number,
-  level: Number,
-  dailydate: String,
-  dailystreak: Number,
-  col: String,
-  web: String,
-  yt: String,
-  tw: String,
-  lo: String,
-  lastbowled: String,
-  lastplayeddeal: String,
-  lastplayedmemory: String,
-  lastkicked: String,
-  lastrolled: String
-});
-var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
-
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
