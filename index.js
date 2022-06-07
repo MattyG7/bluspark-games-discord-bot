@@ -1,8 +1,42 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true
+  useUnifiedTopology: true
+}, function(error) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Connected to database!");
+  }
+});
 
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
+
+
+const discordUserDataSchema = mongoose.Schema ({
+  userID: String,
+  sparkcoins: Number,
+  currentxp: Number,
+  targetxp: Number,
+  level: Number,
+  dailydate: String,
+  dailystreak: Number,
+  col: String,
+  web: String,
+  yt: String,
+  tw: String,
+  lo: String,
+  lastbowled: String,
+  lastplayeddeal: String,
+  lastplayedmemory: String,
+  lastkicked: String,
+  lastrolled: String
+}, {collection: "DiscordUserData"});
+//var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
+module.exports = mongoose.model("DiscordUserData", discordUserDataSchema);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -31,7 +65,6 @@ bot.on("ready", async () => {
 
 
 bot.on("message", async message => {
-  if (message.author.bot) return;
   if (message.author.bot) return;
 
   let prefix = "~";
@@ -148,10 +181,10 @@ bot.on("message", async message => {
           lastrolled: "no-date"
         }, function(error, data) {
           if (error) {
-            console.log("ALERT! User couldn't be added to mLab database!");
+            console.log("ALERT! User couldn't be added to database!");
             console.log(error);
           } else {
-            console.log("SUCCESS! User added to mLab database!");
+            console.log("SUCCESS! User added to database!");
             console.log(data);
           }
         });
