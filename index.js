@@ -262,4 +262,4 @@ bot.on("message", async message => {
   }
 
 });
-bot.login("NDk2Nzc1MDQyMzQ1MDc0NzA5.DqecXw.AIcoNn4YCxWOrudAK_HQK_NQmPw";
+bot.login(process.env.token);
