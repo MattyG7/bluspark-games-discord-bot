@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const mongoose = require("mongoose");
+const mongoose = require(`mongoose`);
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true
   useUnifiedTopology: true
@@ -8,7 +8,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   if (error) {
     console.log(error);
   } else {
-    console.log("Connected to database!");
+    console.log("Connected to database! NEW");
   }
 });
 
@@ -35,8 +35,9 @@ const discordUserDataSchema = mongoose.Schema ({
   lastkicked: String,
   lastrolled: String
 }, {collection: "DiscordUserData"});
-//var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
-module.exports = mongoose.model("DiscordUserData", discordUserDataSchema);
+var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
+//module.exports = mongoose.model("DiscordUserData", discordUserDataSchema);
+console.log(DiscordUserData);
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -181,10 +182,10 @@ bot.on("message", async message => {
           lastrolled: "no-date"
         }, function(error, data) {
           if (error) {
-            console.log("ALERT! User couldn't be added to database!");
+            console.log("ALERT! User couldn't be added to mLab database!");
             console.log(error);
           } else {
-            console.log("SUCCESS! User added to database!");
+            console.log("SUCCESS! User added to mLab database!");
             console.log(data);
           }
         });
