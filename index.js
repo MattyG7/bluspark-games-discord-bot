@@ -91,7 +91,9 @@ bot.on("message", async message => {
     if (message.channel.name === "rules-and-info") {
       if (message.content.toLowerCase() === "i agree") {
         if (!message.member.roles.cache.some(role => role.name === 'Invited Spark')) {
-          return message.channel.send(`You have already agreed to the rules.`).then(sentMessage => { sentMessage.delete(2000); });
+          message.delete();
+          console.log(`User has already agreed to the server's rules and info.`);
+          return message.channel.send('You have already agreed to the rules and info.').then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)}).catch(console.log(`! ! ! - Failed to delete message. - ! ! !`););
         }
         let MsgAuthorID = `${message.author.id}`;
         let MsgAuthor = `${message.author}`;
