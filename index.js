@@ -96,7 +96,7 @@ bot.on("message", async message => {
           return message.channel.send('You have already agreed to the rules and info.').then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
         }
         let MsgAuthorID = `${message.author.id}`;
-        let MsgAuthor = `${message.author}`;
+        let MsgAuthor = `${message.author.username}`;
         let MsgAuthorRoleCol = `${message.guild.me.displayHexColor}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
@@ -112,7 +112,7 @@ bot.on("message", async message => {
           level: 1,
           dailydate: "no-date",
           dailystreak: 0,
-          col: "not-set",
+          col: MsgAuthorRoleCol,
           web: "not-set",
           yt: "not-set",
           tw: "not-set",
@@ -204,8 +204,8 @@ bot.on("message", async message => {
           welcome = `:arrow_forward:  **${message.author.username}** ${replies[result]}`;
         }
         //======================================================
-        let wlcmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let wlcmembed = new Discord.MessageEmbed()
+        .setColor(message.member.displayHexColor)
         .setDescription(welcome);
         bot.channels.get(`681245368025219257`).send(wlcmembed);
         //======================================================
