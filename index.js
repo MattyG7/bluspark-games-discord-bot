@@ -97,7 +97,7 @@ bot.on("message", async message => {
         }
         let MsgAuthorID = `${message.author.id}`;
         let MsgAuthor = `${message.author.username}`;
-        let MsgAuthorRoleCol = `${message.guild.me.displayHexColor}`;
+        let MsgAuthorRoleCol = `${message.member.me.displayHexColor}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
         message.member.roles.add("679460991150587936");
