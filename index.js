@@ -92,8 +92,8 @@ bot.on("message", async message => {
         let MsgAuthorID = `${message.author.id}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
-        message.member.addRole('679460991150587936');
-        message.member.removeRole ('681232507492106281');
+        message.member.roles.add('679460991150587936');
+        message.member.roles.delete ('681232507492106281');
         message.author.send(`⚡ Welcome to Bluspark Studio's Discord server! I hope you'll find this an enjoyable server to be a member of.\n\n- Master Bluspark`);
         DiscordUserData.create ({
           userID: MsgAuthorID,
