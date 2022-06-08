@@ -92,9 +92,9 @@ bot.on("message", async message => {
         let MsgAuthorID = `${message.author.id}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
-        let roleAdd = message.guild.roles.cache.find(r => r.id === "679460991150587936");
+        let roleAdd = message.guild.roles.cache.get("679460991150587936");
         message.member.roles.add(roleAdd);
-        let roleDelete = message.guild.roles.cache.find(r => r.id === "681232507492106281");
+        let roleDelete = message.guild.roles.cache.get("681232507492106281");
         message.member.roles.remove(roleDelete);
         message.author.send(`⚡ Welcome to Bluspark Studio's Discord server! I hope you'll find this an enjoyable server to be a member of.\n\n- Master Bluspark`);
         DiscordUserData.create ({
