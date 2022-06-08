@@ -18,6 +18,7 @@ bot.commands = new Discord.Collection();
 
 const discordUserDataSchema = mongoose.Schema ({
   userID: String,
+  user: String,
   sparkcoins: Number,
   currentxp: Number,
   targetxp: Number,
@@ -89,16 +90,20 @@ bot.on("message", async message => {
   else {
     if (message.channel.name === "rules-and-info") {
       if (message.content.toLowerCase() === "i agree") {
+        if (!message.member.roles.get("681232507492106281") {
+          return message.channel.send(`You have already agreed to the rules.`).then(sentMessage => { sentMessage.delete(2000); });
+        }
         let MsgAuthorID = `${message.author.id}`;
+        let MsgAuthor = `${message.author}`;
+        let MsgAuthorRoleCol = `${message.guild.me.displayHexColor}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
-        let roleAdd = message.guild.roles.cache.get("679460991150587936");
-        message.member.roles.add(roleAdd);
-        let roleDelete = message.guild.roles.cache.get("681232507492106281");
-        message.member.roles.remove(roleDelete);
-        message.author.send(`⚡ Welcome to Bluspark Studio's Discord server! I hope you'll find this an enjoyable server to be a member of.\n\n- Master Bluspark`);
+        message.member.roles.add("679460991150587936");
+        message.member.roles.remove("681232507492106281");
+        message.author.send(`⚡ Welcome to the Bluspark Games Discord server! I hope you'll find this an enjoyable server to be a member of. 😊`);
         DiscordUserData.create ({
           userID: MsgAuthorID,
+          user: MsgAuthor,
           sparkcoins: 0,
           currentxp: 0,
           targetxp: 100,
