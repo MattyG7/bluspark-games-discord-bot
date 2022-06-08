@@ -7,23 +7,23 @@ module.exports.run = async (bot, message, args) => {
   let result = Math.floor((Math.random() * replies.length));
 
   if (result === 11) {
-    let bllembed = new Discord.RichEmbed()
-    .setColor("#141c29")
+    let bllembed = new Discord.MessageEmbed()
+    .setColor(data.col)
     .setTitle(`*8-Ball*`)
     .setDescription(`**${replies[result]}**`);
     message.channel.send(bllembed);
     let repliesMore = ["Yes.", "My magic failed to work, try again later.", "It's better if you don't know the answer right now.", "Ask someone else, I'm busy right now.", "Probably not.", "Definitely.", "Maybe.", "No.", "Definitely not.", "Yes, definitely.", "I don't know."];
     let resultMore = Math.floor((Math.random() * repliesMore.length));
     setTimeout(() => {
-      let blllembed = new Discord.RichEmbed()
-      .setColor("#141c29")
+      let blllembed = new Discord.MessageEmbed()
+      .setColor(data.col)
       .setDescription(`**${repliesMore[resultMore]}**`);
       return message.channel.send(blllembed);
     }, 3000);
   }
   if (result != 11) {
-    let bllembed = new Discord.RichEmbed()
-    .setColor("#141c29")
+    let bllembed = new Discord.MessageEmbed()
+    .setColor(data.col)
     .setTitle(`*8-Ball*`)
     .setDescription(`**${replies[result]}**`);
     return message.channel.send(bllembed);
