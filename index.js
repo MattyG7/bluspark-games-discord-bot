@@ -207,7 +207,7 @@ bot.on("message", async message => {
         let wlcmembed = new Discord.MessageEmbed()
         .setColor(message.member.displayHexColor)
         .setDescription(welcome);
-        bot.channels.get(`681245368025219257`).send(wlcmembed);
+        bot.channels.cache.get(`681245368025219257`).send(wlcmembed);
         //======================================================
       }
       else {
