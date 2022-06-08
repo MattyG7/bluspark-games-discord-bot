@@ -1,9 +1,9 @@
 {
   "name": "bluspark-games",
+  "author": "Bluspark Studio",
   "version": "1.0.0",
   "description": "A bunch of fun minigames and commands. Command is ~ (example: ~help).",
   "main": "index.js",
-  "author": "Bluspark Studio",
   "dependencies": {
     "discord.js": "^13.8.0",
     "mongoose": "^5.11.19"
