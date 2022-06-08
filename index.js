@@ -90,7 +90,7 @@ bot.on("message", async message => {
   else {
     if (message.channel.name === "rules-and-info") {
       if (message.content.toLowerCase() === "i agree") {
-        if (!message.member.roles.get("681232507492106281")) {
+        if (!message.member.roles.cache.some(role => role.name === 'Invited Spark')) {
           return message.channel.send(`You have already agreed to the rules.`).then(sentMessage => { sentMessage.delete(2000); });
         }
         let MsgAuthorID = `${message.author.id}`;
