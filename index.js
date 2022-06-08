@@ -212,7 +212,8 @@ bot.on("message", async message => {
       }
       else {
         message.delete();
-        message.channel.send(`Please type **i agree**.`).then(sentMessage => { sentMessage.delete(2000); });
+        console.log(`User failed to type i agree.`);
+        return message.channel.send(`Please type **i agree**.`).then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
       }
     }
 
