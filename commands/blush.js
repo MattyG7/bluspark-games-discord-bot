@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,14 +9,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if(!args[0]) {
         let result = "0";
         let repliesCHOICE = ["0", "1"];
@@ -34,153 +24,153 @@ module.exports.run = async (bot, message, args) => {
         }
 
         if(result === 0) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_1.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 1) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_2.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 2) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_3.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 3) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_4.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 4) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_5.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 5) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_6.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 6) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_7.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 7) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_8.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 8) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_9.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 9) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_10.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 10) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_11.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 11) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_12.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 12) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_13.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 13) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_14.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 14) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_15.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 15) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_16.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 16) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_17.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 17) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_18.gif`);
           return message.channel.send(blshembed);
         }
         if(result === 18) {
-          let blshicon = message.author.displayAvatarURL;
-          let blshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let blshicon = message.author.displayAvatarURL();
+          let blshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is blushing.`, blshicon)
           .setImage (`https://blusparkstudio.com/discord/blush_19.gif`);
           return message.channel.send(blshembed);
@@ -204,171 +194,171 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_1.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 1) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_2.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 2) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_3.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 3) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_4.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 4) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_5.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 5) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_6.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 6) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_7.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 7) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_8.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 8) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_9.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 9) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_10.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 10) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_11.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 11) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_12.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 12) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_13.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 13) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_14.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 14) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_15.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 15) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_16.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 16) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_17.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 17) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_18.gif`);
         return message.channel.send(blshembed);
       }
       if(result === 18) {
-        let blshicon = message.author.displayAvatarURL;
-        let blshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let blshicon = message.author.displayAvatarURL();
+        let blshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Blush 😳", blshicon)
         .setDescription(`***${rUser.user.username} made ${message.author.username} blush.***\nLol 😏`)
         .setImage (`https://blusparkstudio.com/discord/blush_19.gif`);
