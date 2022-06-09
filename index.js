@@ -95,7 +95,7 @@ bot.on("message", async message => {
     console.log(`+ ${wordCount}xp`);
     await mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
-    }, function(error, data) {
+    }, (error, data) => {
       if (error) {
         console.log("Failed to get data :(");
         console.log(error);
