@@ -38,7 +38,7 @@ const discordUserDataSchema = mongoose.Schema ({
 }, {collection: "DiscordUserData"});
 var DiscordUserData = mongoose.model("DiscordUserData", discordUserDataSchema);
 //module.exports = mongoose.model("DiscordUserData", discordUserDataSchema);
-console.log(DiscordUserData.userID);
+
 
 fs.readdir("./commands/", (err, files) => {
   if (err) console.log(err);
@@ -47,7 +47,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log("Couldn't find commands.");
     return;
   }
-
+  
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`)
     console.log(`${f} loaded!`);
@@ -68,7 +68,7 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
   if (message.author.bot) return;
-
+  
   let prefix = "~";
   let author = "MasterBluspark#0119";
   let messageArray = message.content.split(" ");
@@ -82,6 +82,78 @@ bot.on("message", async message => {
   //let xptogo = 8;
   //let xpforlvl = 10;
   //-----------------
+  
+  
+  //WORD COUNT FOR XP
+  if (message.channel.name !== "rules-and-info") {
+    let wordCount = 1;
+    args.forEach(element => {
+      wordCount++;
+    });
+    console.log(`Word count for ${message.author.username}: ${wordCount}`);
+    //console.log(`+ ${wordCount} exp`);
+    console.log(`+ ${wordCount}xp`);
+    await mongoose.model("DiscordUserData").findOne ({
+      userID: `${message.author.id}`
+    }, function(error, data) {
+      if (error) {
+        console.log("Failed to get data :(");
+        console.log(error);
+        return message.channel.send('You are not in the database. Have you agreed to the rules and info?').then(sentMessage => {setTimeout(() => sentMessage.delete(), 4000)});
+      } else {
+        let userColour = data.col;
+        let userCurrentXP = data.currentxp;
+        let userGoalXP = data.targetxp;
+        let OverflowXP = 0;
+        let userNowXP = userCurrentXP + wordCount;
+        let userLevel = data.level;
+        console.log(`${userCurrentXP}xp + ${wordCount}xp = ${userNowXP}xp`);
+        if (userNowXP === userGoalXP || userNowXP > userGoalXP) {
+          OverflowXP = userNowXP - userGoalXP;
+          let userLevelNEW = userLevel + 1;
+          let userIcon = message.author.displayAvatarURL();
+          let lvlupembed = new Discord.MessageEmbed()
+          .setColor(`#${userColour}`)
+          .setThumbnail(`${userIcon}`)
+          .setTitle(`✨ Level Up!`)
+          .setDescription(`You reached level ${userLevelNEW}!`);
+          message.channel.send(lvlupembed);
+          console.log(`Level Up! User grew from level ${userLevel} to ${userLevelNEW}.`);
+          console.log(`Overflow XP is ${OverflowXP} and was added to user's current level XP count.`);
+          let userGoalXPNEW_UNROUNDED = userGoalXP * 1.2;
+          let userGoalXPNEW = Math.round(userGoalXPNEW_UNROUNDED);
+          console.log(`XP needed to next level has gone up from ${userGoalXP} to ${userGoalXPNEW}.`);
+          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+            currentxp: `${OverflowXP}`,
+            targetxp: `${userGoalXPNEW}`,
+            level: `${userLevelNEW}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully set overflow XP as current XP, increased target XP by 1.2 and added 1 to the level!`);
+              console.log(`- BEFORE: ${userCurrentXP}/${userGoalXP}. AFTER: ${OverflowXP}/${userGoalXPNEW}`);
+              console.log(`- BEFORE: ${userLevel}. AFTER: ${userLevelNEW}`);
+            }
+          });
+        } else {
+          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+            currentxp: `${userNowXP}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully added new XP to current XP!`);
+              console.log(`- BEFORE: ${userCurrentXP}. AFTER: ${userNowXP}`);
+            }
+          });
+        }
+      }
+    });
+  }
+  
   
   if (message.content.startsWith(prefix)) {
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
@@ -205,7 +277,7 @@ bot.on("message", async message => {
         }
         //======================================================
         let wlcmembed = new Discord.MessageEmbed()
-        .setColor(message.member.displayHexColor)
+        .setColor("#7c889c")
         .setDescription(welcome);
         bot.channels.cache.get(`681245368025219257`).send(wlcmembed);
         //======================================================
@@ -216,7 +288,7 @@ bot.on("message", async message => {
         return message.channel.send(`Please type **i agree**.`).then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
       }
     }
-
+    
     if (message.content === "Thanks blu" || message.content === "Thank you blu" || message.content === "Thanks bot" || message.content === "Thank you bot") {
       return message.channel.send(`You're welcome.`);
     }
