@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   if(args[0]) {
-    let colembed = new Discord.RichEmbed()
-    .setColor("#303030")
+    let colembed = new Discord.MessageEmbed()
+    .setColor("#000000")
     .setDescription("No colour for you.");
     return message.channel.send(colembed);
   }
@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   let result5 = Math.floor((Math.random() * replies.length));
   let result6 = Math.floor((Math.random() * replies.length));
 
-  let colembed = new Discord.RichEmbed()
+  let colembed = new Discord.MessageEmbed()
   .setColor(`#${replies[result1]}${replies[result2]}${replies[result3]}${replies[result4]}${replies[result5]}${replies[result6]}`)
   .setDescription(`Colour: #${replies[result1]}${replies[result2]}${replies[result3]}${replies[result4]}${replies[result5]}${replies[result6]}`);
   return message.channel.send(colembed);
