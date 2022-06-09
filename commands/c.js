@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
       let wlltembed = new Discord.MessageEmbed()
       .setColor(`${data.col}`)
       .setAuthor(`💳 ${message.author.username}'s Wallet`, wicon)
-      .setDescription(`You have 0 SparkCoins.`);
+      .setDescription(`You have 0 SparkCoins.`)
       .setFooter("Lol, jk.");
       return message.channel.send(wlltembed);
     }
