@@ -4,7 +4,7 @@ module.exports.run = async (bot, message, args) => {
   let nmbr = "**number**";
   let symbls = "`+ - x / ^`";
   if (!args[0] || args[0] === "help") {
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setTitle(`📐 **Calculator Help**`)
     //.setDescription("*Type one of the mathematical symbols below and press 'Enter'.*")
@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Multiply", "`x`")
     .addField("Divide", "`/`")
     .addField("Power of", "`^`")
-    .setFooter("Alternate commands: ~maths ~calc");
+    .setFooter("Alternate commands: ~maths ~calculator");
     return message.channel.send(mthembed);
   }
   let nothelp = "***~calc***";
@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
     let sum = `${args[0]} + ${args[2]}`;
     let ans = Number(args[0]) + Number(args[2]);
 
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setDescription(`${sum} = ${ans}`);
     return message.channel.send(mthembed);
@@ -41,7 +41,7 @@ module.exports.run = async (bot, message, args) => {
     let sum = `${args[0]} - ${args[2]}`;
     let ans = args[0] - args[2];
 
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setDescription(`${sum} = ${ans}`);
     return message.channel.send(mthembed);
@@ -54,7 +54,7 @@ module.exports.run = async (bot, message, args) => {
     let sum = `${args[0]} x ${args[2]}`;
     let ans = args[0] * args[2];
 
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setDescription(`${sum} = ${ans}`);
     return message.channel.send(mthembed);
@@ -67,7 +67,7 @@ module.exports.run = async (bot, message, args) => {
     let sum = `${args[0]} / ${args[2]}`;
     let ans = args[0] / args[2];
 
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setDescription(`${sum} = ${ans}`);
     return message.channel.send(mthembed);
@@ -77,7 +77,7 @@ module.exports.run = async (bot, message, args) => {
     if(args[3]) return message.channel.send(`Please use the correct format, ${message.author.username}. Type *~calc help* for assistance.`);
     if(args[2] === "0") {
       let sum = `${args[0]} to the power of ${args[2]}`;
-      let mthembed = new Discord.RichEmbed()
+      let mthembed = new Discord.MessageEmbed()
       .setColor("#f5f0e1")
       .setDescription(`${sum} is 0`);
       return message.channel.send(mthembed);
@@ -85,7 +85,7 @@ module.exports.run = async (bot, message, args) => {
     if(args[2] === "1") {
       if (isNaN(args[0]) || isNaN(args[2])) return message.channel.send(`Please use the correct format, ${message.author.username}. Type *~calc help* for assistance.`);
       let sum = `${args[0]} to the power of ${args[2]}`;
-      let mthembed = new Discord.RichEmbed()
+      let mthembed = new Discord.MessageEmbed()
       .setColor("#f5f0e1")
       .setDescription(`${sum} is ${args[0]}`);
       return message.channel.send(mthembed);
@@ -101,7 +101,7 @@ module.exports.run = async (bot, message, args) => {
       num2 = num2 - 1;
     }
 
-    let mthembed = new Discord.RichEmbed()
+    let mthembed = new Discord.MessageEmbed()
     .setColor("#f5f0e1")
     .setDescription(`${sum} is ${ans}`);
     return message.channel.send(mthembed);
