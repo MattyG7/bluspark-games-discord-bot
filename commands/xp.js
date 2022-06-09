@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   mongoose.model("DiscordUserData").findOne ({
@@ -24,8 +23,8 @@ module.exports.run = async (bot, message, args) => {
       } else {
         xcolour = data.col;
       }
-      let xicon = message.author.displayAvatarURL;
-      let wlltembed = new Discord.RichEmbed()
+      let xicon = message.author.displayAvatarURL();
+      let wlltembed = new Discord.MessageEmbed()
       .setColor(`#${xcolour}`)
       .setAuthor(`🎮 ${message.author.username}'s Level`, xicon)
       .setDescription(`You are Level ${level} and have ${xptogo}XP to go until you level up!`)
