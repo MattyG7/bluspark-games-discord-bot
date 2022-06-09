@@ -17,15 +17,9 @@ module.exports.run = async (bot, message, args) => {
       let xphave = data.currentxp;
       let xptogo = data.targetxp - data.currentxp;
       let xpforlvl = data.targetxp;
-      let xcolour = "";
-      if (data.col === "not-set") {
-        xcolour = "202225";
-      } else {
-        xcolour = data.col;
-      }
       let xicon = message.author.displayAvatarURL();
       let wlltembed = new Discord.MessageEmbed()
-      .setColor(`#${xcolour}`)
+      .setColor(data.col)
       .setAuthor(`🎮 ${message.author.username}'s Level`, xicon)
       .setDescription(`You are Level ${level} and have ${xptogo}XP to go until you level up!`)
       .setFooter(`${xphave}/${xpforlvl}XP`);
