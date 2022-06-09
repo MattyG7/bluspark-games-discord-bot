@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if(!args[0]) {
@@ -12,29 +11,21 @@ module.exports.run = async (bot, message, args) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
-        let userColour = "";
-        if (data.col === "not-set") {
-          userColour = "202225";
-        } else {
-          userColour = data.col;
-        }
-        console.log("Got user's colour Successfully!");
-
         let replies = ["0", "1"];
         let result = Math.floor((Math.random() * replies.length));
 
         if(result === 0) {
-          let brshicon = message.author.displayAvatarURL;
-          let brshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let brshicon = message.author.displayAvatarURL();
+          let brshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is brushing their hair.`, brshicon)
           .setImage (`https://blusparkstudio.com/discord/brushhair_1.gif`);
           return message.channel.send(brshembed);
         }
         if(result === 1) {
-          let brshicon = message.author.displayAvatarURL;
-          let brshembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let brshicon = message.author.displayAvatarURL();
+          let brshembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is brushing their hair.`, brshicon)
           .setImage (`https://blusparkstudio.com/discord/brushhair_3.gif`);
           return message.channel.send(brshembed);
@@ -54,30 +45,22 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       let replies = ["0", "1"];
       let result = Math.floor((Math.random() * replies.length));
 
       if(result === 0) {
-        let brshicon = message.author.displayAvatarURL;
-        let brshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let brshicon = message.author.displayAvatarURL();
+        let brshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Brush Hair 💆", brshicon)
         .setDescription(`***${message.author.username} is brushing ${rUser.user.username}'s hair.***\nAww, how nice. 😊`)
         .setImage (`https://blusparkstudio.com/discord/brushhair_2.gif`);
         return message.channel.send(brshembed);
       }
       if(result === 1) {
-        let brshicon = message.author.displayAvatarURL;
-        let brshembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let brshicon = message.author.displayAvatarURL();
+        let brshembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Brush Hair 💆", brshicon)
         .setDescription(`***${message.author.username} is br...erm...sniffing ${rUser.user.username}'s hair?***\nHow...nice? 😶`)
         .setImage (`https://blusparkstudio.com/discord/brushhair_4.gif`);
