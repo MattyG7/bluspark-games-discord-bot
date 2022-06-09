@@ -5,8 +5,8 @@ module.exports.run = async (bot, message, args) => {
   //let result = Math.floor((Math.random() * replies.length));
 
   if(!args[0]) {
-    let mthembed = new Discord.RichEmbed()
-    .setColor("#667ed6")
+    let mthembed = new Discord.MessageEmbed()
+    .setColor("#7c889c")
     .setTitle(`**Blumojis**`)
     //.setDescription("*Type one of the mathematical symbols below and press 'Enter'.*")
     .addField("~blumoji happy", `<:bluhappy:502494527425347605>`)
