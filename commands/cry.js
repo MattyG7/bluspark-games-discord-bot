@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,14 +9,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[0]) {
         let result = "0";
         let repliesCHOICE = ["0", "1"];
@@ -34,169 +24,169 @@ module.exports.run = async (bot, message, args) => {
         }
 
         if(result === 0) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_1.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 1) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_2.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 2) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_3.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 3) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_4.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 4) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_5.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 5) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_6.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 6) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_7.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 7) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_8.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 8) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_9.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 9) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_10.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 10) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_11.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 11) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_12.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 12) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_13.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 13) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_14.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 14) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_15.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 15) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_16.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 16) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_17.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 17) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_18.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 18) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_19.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 19) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_20.gif`);
           return message.channel.send(cryembed);
         }
         if(result === 20) {
-          let cryicon = message.author.displayAvatarURL;
-          let cryembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let cryicon = message.author.displayAvatarURL();
+          let cryembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is crying!`, cryicon)
           .setImage (`https://blusparkstudio.com/discord/cry_21.gif`);
           return message.channel.send(cryembed);
@@ -220,189 +210,189 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_1.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 1) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_2.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 2) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_3.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 3) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_4.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 4) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_5.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 5) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_6.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 6) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_7.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 7) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_8.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 8) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_9.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 9) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_10.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 10) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_11.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 11) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_12.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 12) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_13.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 13) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_14.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 14) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_15.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 15) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_16.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 16) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_17.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 17) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_18.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 18) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_19.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 19) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_20.gif`);
         return message.channel.send(cryembed);
       }
       if(result === 20) {
-        let cryicon = message.author.displayAvatarURL;
-        let cryembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let cryicon = message.author.displayAvatarURL();
+        let cryembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Cry 😭", cryicon)
         .setDescription(`***${message.author.username} is crying because of ${rUser.user.username}.***\nThat was mean! 😠`)
         .setImage (`https://blusparkstudio.com/discord/cry_21.gif`);
