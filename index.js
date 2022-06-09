@@ -47,7 +47,7 @@ fs.readdir("./commands/", (err, files) => {
     console.log("Couldn't find commands.");
     return;
   }
-  
+
   jsfile.forEach((f, i) => {
     let props = require(`./commands/${f}`)
     console.log(`${f} loaded!`);
@@ -68,13 +68,13 @@ bot.on("ready", async () => {
 
 bot.on("message", async message => {
   if (message.author.bot) return;
-  
+
   let prefix = "~";
   let author = "MasterBluspark#0119";
   let messageArray = message.content.split(" ");
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
-  
+
   //LOAD IN VARIABLES
   //let coins = 100;
   //let level = 0;
@@ -82,8 +82,8 @@ bot.on("message", async message => {
   //let xptogo = 8;
   //let xpforlvl = 10;
   //-----------------
-  
-  
+
+
   //WORD COUNT FOR XP
   if (message.channel.name !== "rules-and-info") {
     let wordCount = 1;
@@ -95,7 +95,7 @@ bot.on("message", async message => {
     console.log(`+ ${wordCount}xp`);
     await mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
-    }, (error, data) => {
+    }, function(error, data) {
       if (error) {
         console.log("Failed to get data :(");
         console.log(error);
@@ -153,8 +153,8 @@ bot.on("message", async message => {
       }
     });
   }
-  
-  
+
+
   if (message.content.startsWith(prefix)) {
     let commandfile = bot.commands.get(cmd.slice(prefix.length));
     if (commandfile) commandfile.run(bot, message, args, author, messageArray);
@@ -288,7 +288,7 @@ bot.on("message", async message => {
         return message.channel.send(`Please type **i agree**.`).then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
       }
     }
-    
+
     if (message.content === "Thanks blu" || message.content === "Thank you blu" || message.content === "Thanks bot" || message.content === "Thank you bot") {
       return message.channel.send(`You're welcome.`);
     }
