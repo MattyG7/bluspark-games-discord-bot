@@ -123,7 +123,7 @@ bot.on("message", async message => {
           let userGoalXPNEW_UNROUNDED = userGoalXP * 1.2;
           let userGoalXPNEW = Math.round(userGoalXPNEW_UNROUNDED);
           console.log(`XP needed to next level has gone up from ${userGoalXP} to ${userGoalXPNEW}.`);
-          await mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
             currentxp: `${OverflowXP}`,
             targetxp: `${userGoalXPNEW}`,
             level: `${userLevelNEW}`
@@ -138,7 +138,7 @@ bot.on("message", async message => {
             }
           });
         } else {
-          await mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
             currentxp: `${userNowXP}`
           }, function(error, data) {
             if (error) {
