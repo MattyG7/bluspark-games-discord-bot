@@ -101,7 +101,7 @@ bot.on("message", async message => {
         console.log(error);
         return message.channel.send('You are not in the database. Have you agreed to the rules and info?').then(sentMessage => {setTimeout(() => sentMessage.delete(), 4000)});
       } else {
-        let userColour = data.col;
+        //let userColour = data.col;
         let userCurrentXP = data.currentxp;
         let userGoalXP = data.targetxp;
         let OverflowXP = 0;
@@ -111,10 +111,10 @@ bot.on("message", async message => {
         if (userNowXP === userGoalXP || userNowXP > userGoalXP) {
           OverflowXP = userNowXP - userGoalXP;
           let userLevelNEW = userLevel + 1;
-          let userIcon = message.author.displayAvatarURL();
+          //let userIcon = message.author.displayAvatarURL();
           let lvlupembed = new Discord.MessageEmbed()
-          .setColor(`#${userColour}`)
-          .setThumbnail(`${userIcon}`)
+          .setColor(`${data.col}`)
+          .setThumbnail(`${message.author.displayAvatarURL()}`)
           .setTitle(`✨ Level Up!`)
           .setDescription(`You reached level ${userLevelNEW}!`);
           message.channel.send(lvlupembed);
@@ -123,7 +123,7 @@ bot.on("message", async message => {
           let userGoalXPNEW_UNROUNDED = userGoalXP * 1.2;
           let userGoalXPNEW = Math.round(userGoalXPNEW_UNROUNDED);
           console.log(`XP needed to next level has gone up from ${userGoalXP} to ${userGoalXPNEW}.`);
-          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+          await mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
             currentxp: `${OverflowXP}`,
             targetxp: `${userGoalXPNEW}`,
             level: `${userLevelNEW}`
@@ -138,7 +138,7 @@ bot.on("message", async message => {
             }
           });
         } else {
-          mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
+          await mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
             currentxp: `${userNowXP}`
           }, function(error, data) {
             if (error) {
@@ -162,7 +162,11 @@ bot.on("message", async message => {
   else {
     if (message.channel.name === "rules-and-info") {
       if (message.content.toLowerCase() === "i agree") {
-        if (!message.member.roles.cache.some(role => role.name === 'Invited Spark')) {
+        if (!message.member.roles.cache.some(role => role.name === 'Invited Supporter Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Regular Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Great Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Ultra Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Legendary Spark')) {
           message.delete();
           console.log(`User has already agreed to the server's rules and info.`);
           return message.channel.send('You have already agreed to the rules and info.').then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
@@ -172,8 +176,26 @@ bot.on("message", async message => {
         let MsgAuthorRoleCol = `${message.member.displayHexColor}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
-        message.member.roles.add("679460991150587936");
-        message.member.roles.remove("681232507492106281");
+        if (message.member.roles.cache.some(role => role.name === 'Invited Supporter Spark')) {
+          message.member.roles.add("683464371506380855");
+          message.member.roles.remove("681232507492106281");
+        }
+        if (message.member.roles.cache.some(role => role.name === 'Invited Regular Spark')) {
+          message.member.roles.add("679096400751099932");
+          message.member.roles.remove("984815210277769276");
+        }
+        if (message.member.roles.cache.some(role => role.name === 'Invited Great Spark')) {
+          message.member.roles.add("679092537897779220");
+          message.member.roles.remove("984815610968039434");
+        }
+        if (message.member.roles.cache.some(role => role.name === 'Invited Ultra Spark')) {
+          message.member.roles.add("679093215260966952");
+          message.member.roles.remove("984815750025973780");
+        }
+        if (message.member.roles.cache.some(role => role.name === 'Invited Legendary Spark')) {
+          message.member.roles.add("983491639882448967");
+          message.member.roles.remove("984815852811608104");
+        }
         message.author.send(`⚡ Welcome to the Bluspark Games Discord server! I hope you'll find this an enjoyable server to be a member of. 😊`);
         DiscordUserData.create ({
           userID: MsgAuthorID,
@@ -277,7 +299,7 @@ bot.on("message", async message => {
         }
         //======================================================
         let wlcmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
+        .setColor(`${MsgAuthorRoleCol}`)
         .setDescription(welcome);
         bot.channels.cache.get(`681245368025219257`).send(wlcmembed);
         //======================================================
