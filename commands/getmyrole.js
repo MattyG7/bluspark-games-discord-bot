@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   let member = message.guild.member(message.author);
-  let memberRoles1 = member.roles.map(roles => `${roles.name}`).join(' ');
+  let memberRoles1 = member.roles.map(roles => `${roles}`).join(' ');
   let memberRoles2 = memberRoles1.split(" ");
   let memberRoles3 = memberRoles2.slice(1);
   let memberRoles4 = "";
