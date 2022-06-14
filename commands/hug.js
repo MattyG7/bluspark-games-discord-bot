@@ -1,13 +1,11 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   let rUser = message.mentions.members.first();
   if(!rUser) return message.channel.send(`User not found! 😕`);
   if(rUser.id === message.author.id) return message.channel.send(`***Aw. Do you need a hug, ${message.author.username}?***`);
 
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -15,14 +13,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       let result = "0";
       let repliesCHOICE = ["0", "1"];
       let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
@@ -37,171 +27,171 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_1.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 1) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_2.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 2) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_3.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 3) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_4.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 4) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_5.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 5) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_6.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 6) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_7.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 7) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_8.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 8) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_9.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 9) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_10.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 10) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_11.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 11) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_12.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 12) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_13.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 13) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_14.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 14) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} would like a warm hug from ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_15.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 15) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_16.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 16) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_17.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 17) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_18.gif`);
         return message.channel.send(hgembed);
       }
       if(result === 18) {
-        let hgicon = message.author.displayAvatarURL;
-        let hgembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let hgicon = message.author.displayAvatarURL();
+        let hgembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Hug 🤗", hgicon)
         .setDescription(`***${message.author.username} hugged ${rUser.user.username}.***\nAww. ☺️`)
         .setImage (`https://blusparkstudio.com/discord/hug_19.gif`);
