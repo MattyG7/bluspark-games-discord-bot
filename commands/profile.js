@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
@@ -29,24 +28,16 @@ module.exports.run = async (bot, message, args) => {
         let _targetxp = data.targetxp;
         let _level = data.level;
         let _dailystreak = data.dailystreak;
-        let _col = "";
-        if (data.col === "not-set") {
-          _col = "202225";
-        } else {
-          _col = data.col;
-        }
         let _web = data.web;
         let _yt = data.yt;
         let _tw = data.tw;
         let _lo = data.lo;
-        //NO COLOUR SET
-        if (_col === "not-set") {_col = "000000";}
         //ALL SET
         if (_web != "not-set" && _yt != "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -60,10 +51,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT TW LO
         if (_web === "not-set" && _yt === "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -76,10 +67,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT TW LO
         if (_web != "not-set" && _yt === "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -93,10 +84,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB TW LO
         if (_web === "not-set" && _yt != "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -110,10 +101,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT LO
         if (_web === "not-set" && _yt === "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -127,10 +118,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT TW
         if (_web === "not-set" && _yt === "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -144,10 +135,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT
         if (_web === "not-set" && _yt === "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -161,10 +152,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB TW
         if (_web === "not-set" && _yt != "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -178,10 +169,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB LO
         if (_web === "not-set" && _yt != "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -195,10 +186,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT TW
         if (_web != "not-set" && _yt === "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -212,10 +203,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT LO
         if (_web != "not-set" && _yt === "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -229,10 +220,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //TW LO
         if (_web != "not-set" && _yt != "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -246,10 +237,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB
         if (_web === "not-set" && _yt != "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -263,10 +254,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT
         if (_web != "not-set" && _yt === "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -280,10 +271,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //TW
         if (_web != "not-set" && _yt != "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -297,10 +288,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //LO
         if (_web != "not-set" && _yt != "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = message.author.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = message.author.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -344,19 +335,16 @@ module.exports.run = async (bot, message, args) => {
         let _targetxp = data.targetxp;
         let _level = data.level;
         let _dailystreak = data.dailystreak;
-        let _col = data.col;
         let _web = data.web;
         let _yt = data.yt;
         let _tw = data.tw;
         let _lo = data.lo;
-        //NO COLOUR SET
-        if (_col === "not-set") {_col = "000000";}
         //ALL SET
         if (_web != "not-set" && _yt != "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -370,10 +358,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT TW LO
         if (_web === "not-set" && _yt === "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -386,10 +374,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT TW LO
         if (_web != "not-set" && _yt === "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -403,10 +391,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB TW LO
         if (_web === "not-set" && _yt != "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -420,10 +408,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT LO
         if (_web === "not-set" && _yt === "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -437,10 +425,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT TW
         if (_web === "not-set" && _yt === "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -454,10 +442,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB YT
         if (_web === "not-set" && _yt === "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -471,10 +459,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB TW
         if (_web === "not-set" && _yt != "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -488,10 +476,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB LO
         if (_web === "not-set" && _yt != "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -505,10 +493,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT TW
         if (_web != "not-set" && _yt === "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -522,10 +510,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT LO
         if (_web != "not-set" && _yt === "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -539,10 +527,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //TW LO
         if (_web != "not-set" && _yt != "not-set" && _tw === "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -556,10 +544,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //WEB
         if (_web === "not-set" && _yt != "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -573,10 +561,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //YT
         if (_web != "not-set" && _yt === "not-set" && _tw != "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -590,10 +578,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //TW
         if (_web != "not-set" && _yt != "not-set" && _tw === "not-set" && _lo != "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
@@ -607,10 +595,10 @@ module.exports.run = async (bot, message, args) => {
         }
         //LO
         if (_web != "not-set" && _yt != "not-set" && _tw != "not-set" && _lo === "not-set") {
-          let picon = userMentioned.user.displayAvatarURL;
-          let pembed = new Discord.RichEmbed()
+          let picon = userMentioned.user.displayAvatarURL();
+          let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`#${_col}`)
+          .setColor(`${data.col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
