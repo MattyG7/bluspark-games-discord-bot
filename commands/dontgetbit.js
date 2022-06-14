@@ -1,11 +1,11 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if(args[1]) return message.channel.send(`${message.author.username}, please use the correct format: ~dontgetbit or ~dontgetbit SPARKCOINAMOUNT.`);
 
   let bitUser = message.author.id;
+  //Get user data
   let usersData = await mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -13,17 +13,10 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-      console.log(`> ${userColour}`);
-      return userColour;
+      console.log("Got user's data Successfully!");
+      return;
     }
   });
-  console.log(`> Still ${usersData.col}`);
 
   if (!args[0]) {
     //▇
@@ -35,8 +28,8 @@ module.exports.run = async (bot, message, args) => {
     console.log(badChoice);
     let teethLeft = 10;
     let gameFinished = "No";
-    let fbwlembed = new Discord.RichEmbed()
-    .setColor(`#${usersData.col}`) //2b573e
+    let fbwlembed = new Discord.MessageEmbed()
+    .setColor(`${usersData.col}`) //2b573e
     .setTitle(`Don't Get Bit! (no prize) 🐊`)
     .setDescription(`Game started! ${teethLeft} teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
     const m = await message.channel.send(fbwlembed);
@@ -216,8 +209,8 @@ module.exports.run = async (bot, message, args) => {
     let teethDown = 0;
     let coinCount = 0;
     let gameFinished = "No";
-    let fbwlembed = new Discord.RichEmbed()
-    .setColor(`#${usersData.col}`) //195e37,2b573e
+    let fbwlembed = new Discord.MessageEmbed()
+    .setColor(`${usersData.col}`) //195e37,2b573e
     .setTitle(`Don't Get Bit! 🐊`)
     .setDescription(`Game started! ${teethLeft} teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
     const m = await message.channel.send(fbwlembed);
@@ -242,11 +235,11 @@ module.exports.run = async (bot, message, args) => {
     if (gameFinished === "Yess") {
       coinCount = coinCount + SparkCoinsBET;
       let userSparkCoinsNEW = userSparkCoins + coinCount;
-      let sparkcoinlogmembed = new Discord.RichEmbed()
-      .setColor("#1c9472")
+      let sparkcoinlogmembed = new Discord.MessageEmbed()
+      .setColor("#7c889c")
       .setDescription(`**${message.author.username}** won ${coinCount} SparkCoins!`)
       .setFooter("Don't Get Bit");
-      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
       fbwlembed
         .setDescription(`Well done! You won ${coinCount} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
       m.edit(fbwlembed);
@@ -267,11 +260,11 @@ module.exports.run = async (bot, message, args) => {
       let userSparkCoinsNEW = userSparkCoins + coinCount;
       if (coinCount < 0) {
         let coinCountPositive = coinCount * -1;
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** lost ${coinCountPositive} SparkCoins.`)
         .setFooter("Don't Get Bit");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
         fbwlembed
           .setDescription(`Game Over! You lose ${coinCountPositive} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
         m.edit(fbwlembed);
@@ -282,11 +275,11 @@ module.exports.run = async (bot, message, args) => {
         m.edit(fbwlembed);
       }
       if (coinCount > 0) {
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${coinCount} SparkCoins!`)
         .setFooter("Don't Get Bit");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
         fbwlembed
           .setDescription(`Game Over! You won ${coinCount} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
         m.edit(fbwlembed);
