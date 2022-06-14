@@ -1,13 +1,11 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   let rUser = message.mentions.members.first();
   if(!rUser) return message.channel.send(`User not found! 😕`);
   if(rUser.id === message.author.id) return message.channel.send(`***You need a gf or bf, ${message.author.username}.***`);
 
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -15,14 +13,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       let result = "0";
       let repliesCHOICE = ["0", "1"];
       let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
@@ -37,153 +27,153 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_1.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 1) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} wants to kis ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_2.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 2) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username} but some randomer interfered.***\n😕`)
         .setImage (`https://blusparkstudio.com/discord/kiss_3.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 3) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_4.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 4) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_5.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 5) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_6.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 6) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_7.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 7) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_8.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 8) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_9.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 9) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_10.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 10) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_11.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 11) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_12.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 12) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_13.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 13) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_14.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 14) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_15.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 15) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_16.gif`);
         return message.channel.send(kssembed);
       }
       if(result === 16) {
-        let kssicon = message.author.displayAvatarURL;
-        let kssembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let kssicon = message.author.displayAvatarURL();
+        let kssembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Kiss 😚", kssicon)
         .setDescription(`***${message.author.username} kissed ${rUser.user.username}.***\nOoooh. 😏`)
         .setImage (`https://blusparkstudio.com/discord/kiss_17.gif`);
