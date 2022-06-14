@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
     while (num1 != 0) {
       num1a = num1;
       num1 = num1 - 1;
-      let spmembed = new Discord.RichEmbed()
+      let spmembed = new Discord.MessageEmbed()
       .setColor("#000000")
       .setDescription(`Spam ${num1a}`);
       message.channel.send(spmembed);
