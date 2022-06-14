@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,78 +9,70 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[0]) {
         let replies = ["0", "1", "2", "3", "4", "5", "6", "7"];
         let result = Math.floor((Math.random() * replies.length));
 
         if(result === 0) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_1.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 1) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_2.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 2) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_3.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 3) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_4.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 4) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_5.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 5) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_6.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 6) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_7.gif`);
           return message.channel.send(slpembed);
         }
         if(result === 7) {
-          let slpicon = message.author.displayAvatarURL;
-          let slpembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let slpicon = message.author.displayAvatarURL();
+          let slpembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is sleeping. 😴`, slpicon)
           .setImage (`https://blusparkstudio.com/discord/sleeping_8.gif`);
           return message.channel.send(slpembed);
