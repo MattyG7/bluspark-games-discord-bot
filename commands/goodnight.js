@@ -1,20 +1,20 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8"];
+  let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   let result = Math.floor((Math.random() * replies.length));
 
   if(result === 0) {
     return message.channel.send(`Goodnight ${message.author.username}.`);
   }
   if(result === 1) {
-    return message.channel.send(`Goodnight ${message.author.username}. I hope you have nightmares ;)`);
+    return message.channel.send(`Goodnight ${message.author.username}. I hope you have nightmares. 😉`);
   }
   if(result === 2) {
     return message.channel.send(`Night ${message.author.username}.`);
   }
   if(result === 3) {
-    return message.channel.send(`Night ${message.author.username}. I hope you have nightmares ;)`);
+    return message.channel.send(`Night ${message.author.username}. I hope you have nightmares. 😉`);
   }
   if(result === 4) {
     return message.channel.send(`Finally going to bed then are we?`);
@@ -30,6 +30,12 @@ module.exports.run = async (bot, message, args) => {
   }
   if(result === 8) {
     return message.channel.send(`💤 ...\n[Automatic message] Sorry, I am asleep right now too.`);
+  }
+  if(result === 9) {
+    return message.channel.send(`Nooo, don't leave me. 🙁`);
+  }
+  if(result === 10) {
+    return message.channel.send(`I think you should become a bot like me so you don't need sleep.`);
   }
 }
 
