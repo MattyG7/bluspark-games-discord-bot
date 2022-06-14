@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  let helpembed = new Discord.RichEmbed()
+  let helpembed = new Discord.MessageEmbed()
   .setDescription("**Commands:**")
   .setColor("#1c9472")
   .addField("Profile Stuff", "`exp/xp/lvl/level, daily, m/money/w/wallet, p/profile, setup, getdate, getday, getmonth, getmyid, getmynametag, getmyrole, getmyusername`")
@@ -12,7 +12,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Games (no prize)", "`bowl, dontgetbit, flip, penalty, roll, rps`")
   .addField("Games", "`dontgetbit, flip, rps`")
   .addField("Daily Games", "`bowl, deal, memory, penalty, roll`")
-  .addField("Fun", "`8ball, blumoji, say`")
+  .addField("Fun", "`8ball, blumoji, c/coin/coins, say`")
   .addField("Randomising", "`anime, colour, emoji, fortune, loli, sing`")
   .addField("Education", "`calc/calculator/maths`")
   .addField("Admin Only", "`clear, gift, log, spam, steal`")
