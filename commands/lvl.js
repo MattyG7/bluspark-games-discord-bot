@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   mongoose.model("DiscordUserData").findOne ({
@@ -18,15 +17,9 @@ module.exports.run = async (bot, message, args) => {
       let xphave = data.currentxp;
       let xptogo = data.targetxp - data.currentxp;
       let xpforlvl = data.targetxp;
-      let lcolour = "";
-      if (data.col === "not-set") {
-        lcolour = "202225";
-      } else {
-        lcolour = data.col;
-      }
       let licon = message.author.displayAvatarURL;
-      let wlltembed = new Discord.RichEmbed()
-      .setColor(`#${lcolour}`)
+      let wlltembed = new Discord.MessageEmbed()
+      .setColor(`${data.col}`)
       .setAuthor(`🎮 ${message.author.username}'s Level`, licon)
       .setDescription(`You are Level ${level} and have ${xptogo}XP to go until you level up!`)
       .setFooter(`${xphave}/${xpforlvl}XP`);
