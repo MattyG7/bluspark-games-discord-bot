@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 const dealGameBUSY = new Set();
 const dealGameMESSAGEID = new Set();
 const dealGameMESSAGEIDbankeroffer = new Set();
@@ -23,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send(`For most of the game, you need to type "~deal" and then a number from 1 to 21. To start with, you choose the box you want. Next, you'll have to pick a box, five times. The boxes will be opened and will remove a negative or positive SparkCoin value from what's left. The banker will then call and give you an offer. You can accept by typing "~deal deal" or reject by typing "~deal no deal". If you reject, you will go through up to another 4 rounds where you pick 3 boxes in each and then 1 round where you pick 2 boxes. There will also be an offer from The Banker at the end of each of those rounds. When there are 2 boxes left, you can choose to keep your box or swap ("~deal keep" or "deal swap").`);
   }
 
-  //Get user colour and other data
+  //Get user data
   let usersData = await mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -31,13 +30,7 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-      console.log(`> ${userColour}`);
+      console.log("Got user's data Successfully!");
       return;
     }
   });
@@ -89,17 +82,13 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[0] === "waitingforfirstchoice") {
       if (gameUser[0] != message.author.id) {
         message.channel.bulkDelete(1);
-        return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
       if (isNaN(args[0])) {
         if (args[0] != "deal" && args[0] != "keep" && args[0] != "swap") {
           if (args[0] != "no" && args[1] != "deal") {
             message.channel.bulkDelete(1);
-            return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {
-              msg.delete(4000)
-            });
+            return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
           }
         }
       }
@@ -160,17 +149,15 @@ module.exports.run = async (bot, message, args) => {
         botMessage = botMessage[0];
         dealGameChosenBox.add("firstround");
         dealGameChosenBox.add(5);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${choice}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick 5 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         return botMessage.edit(fbwlembed);
         //console.log(`Not LOW or HIGH...`);
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
 
@@ -198,8 +185,8 @@ module.exports.run = async (bot, message, args) => {
           dealGameBoxSparkCoins.add(arrDealGameBoxSparkCoins);
           dealGameBoxNumbers.add(arrDealGameBoxNumbers);
           dealGameChosenBox.add("waitingforfirstchoice");
-          let fbwlembed = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> <:dealboxemptyplace:695360518394740758>\n\n*BOXES*\n> <:dealboxclosed1:695281194706927707> <:dealboxclosed2:695281227833540668> <:dealboxclosed3:695303634535055364> <:dealboxclosed4:695303685625872455> <:dealboxclosed5:695303716378640466> <:dealboxclosed6:695303802747879464> <:dealboxclosed7:695303810867920897> <:dealboxclosed8:695303821978632223> <:dealboxclosed9:695303831482925058> <:dealboxclosed10:695303840085573796> <:dealboxclosed11:695303848180449300> <:dealboxclosed12:695303857009459242> <:dealboxclosed13:695303864122998965> <:dealboxclosed14:695303871861489685> <:dealboxclosed15:695350119880589463> <:dealboxclosed16:695350320867442840> <:dealboxclosed17:695350337955037235> <:dealboxclosed18:695350355881492590> <:dealboxclosed19:695350380493537420> <:dealboxclosed20:695350393689079869> <:dealboxclosed21:695350411028070421>\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: -125 **|** -100 **|** -75 **|** -50 **|** -25 **|** -10 **|** -5 **|** -1\n> :red_circle: 1 **|** 5 **|** 10 **|** 25 **|** 50 **|** 75 **|** 100 **|** 125 **|** 150 **|** 175 **|** 200 **|** 225 **|** 250\n\n--------------------\n:point_right: **Pick a box.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           let botMessage = await message.channel.send(fbwlembed);
@@ -226,8 +213,8 @@ module.exports.run = async (bot, message, args) => {
           dealGameBoxSparkCoins.add(arrDealGameBoxSparkCoins);
           dealGameBoxNumbers.add(arrDealGameBoxNumbers);
           dealGameChosenBox.add("waitingforfirstchoice");
-          let fbwlembed = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> <:dealboxemptyplace:695360518394740758>\n\n*BOXES*\n> <:dealboxclosed1:695281194706927707> <:dealboxclosed2:695281227833540668> <:dealboxclosed3:695303634535055364> <:dealboxclosed4:695303685625872455> <:dealboxclosed5:695303716378640466> <:dealboxclosed6:695303802747879464> <:dealboxclosed7:695303810867920897> <:dealboxclosed8:695303821978632223> <:dealboxclosed9:695303831482925058> <:dealboxclosed10:695303840085573796> <:dealboxclosed11:695303848180449300> <:dealboxclosed12:695303857009459242> <:dealboxclosed13:695303864122998965> <:dealboxclosed14:695303871861489685> <:dealboxclosed15:695350119880589463> <:dealboxclosed16:695350320867442840> <:dealboxclosed17:695350337955037235> <:dealboxclosed18:695350355881492590> <:dealboxclosed19:695350380493537420> <:dealboxclosed20:695350393689079869> <:dealboxclosed21:695350411028070421>\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: -250 **|** -200 **|** -150 **|** -100 **|** -50 **|** -25 **|** -10 **|** -5\n> :red_circle: 5 **|** 10 **|** 25 **|** 50 **|** 100 **|** 150 **|** 200 **|** 250 **|** 300 **|** 350 **|** 400 **|** 450 **|** 500\n\n--------------------\n:point_right: **Pick a box.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           let botMessage = await message.channel.send(fbwlembed);
@@ -236,18 +223,14 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`Please wait until the current game of Deal ends.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`Please wait until the current game of Deal ends.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     if (isNaN(args[0])) {
       if (args[0] != "deal" && args[0] != "keep" && args[0] != "swap") {
         if (args[0] != "no" && args[1] != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -258,9 +241,7 @@ module.exports.run = async (bot, message, args) => {
     botMessage = botMessage[0];
     if (gameUser[0] != message.author.id) {
       message.channel.bulkDelete(1);
-      return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {
-        msg.delete(4000)
-      });
+      return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
     }
     //==============================================
     // FIRST ROUND
@@ -281,9 +262,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -335,8 +314,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -363,12 +342,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -385,9 +364,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -413,13 +390,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -471,8 +448,8 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         dealGameMESSAGEIDbankeroffer.clear();
         botMessageOFFER.delete();
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n--------------------\n:point_right: **Pick 3 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -487,9 +464,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -512,9 +487,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -566,8 +539,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -594,12 +567,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -616,9 +589,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -644,13 +615,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -702,8 +673,8 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         dealGameMESSAGEIDbankeroffer.clear();
         botMessageOFFER.delete();
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n--------------------\n:point_right: **Pick 3 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -718,9 +689,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -743,9 +712,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -801,8 +768,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -829,12 +796,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -851,9 +818,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -879,13 +844,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -937,8 +902,8 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         dealGameMESSAGEIDbankeroffer.clear();
         botMessageOFFER.delete();
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n--------------------\n:point_right: **Pick 3 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -953,9 +918,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -978,9 +941,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -1036,8 +997,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1064,12 +1025,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -1086,9 +1047,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -1114,13 +1073,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -1172,8 +1131,8 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         dealGameMESSAGEIDbankeroffer.clear();
         botMessageOFFER.delete();
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n--------------------\n:point_right: **Pick 3 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1188,9 +1147,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -1213,9 +1170,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -1271,8 +1226,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1299,12 +1254,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -1321,9 +1276,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -1349,13 +1302,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -1407,8 +1360,8 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         dealGameMESSAGEIDbankeroffer.clear();
         botMessageOFFER.delete();
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n--------------------\n:point_right: **Pick 2 boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1423,9 +1376,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -1448,9 +1399,7 @@ module.exports.run = async (bot, message, args) => {
         gameBoxNumbers = gameBoxNumbers[0];
         choice--;
         if (gameBoxNumbers[choice] === "<:dealboxemptyplace:695360518394740758>" || gameBoxNumbers[choice] === "<:dealboxopenred:695354325870051329>" || gameBoxNumbers[choice] === "<:dealboxopenblue:695354293653602444>") {
-          return message.channel.send(`You have already chosen this box`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`You have already chosen this box`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
         console.log(gameBoxNumbers[choice]);
         console.log(gameSparkCoins[choice]);
@@ -1506,8 +1455,8 @@ module.exports.run = async (bot, message, args) => {
         let botMessage = Array.from(dealGameMESSAGEID);
         botMessage = botMessage[0];
         let roundTurn = ChosenBox[3] - 1;
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------\n:point_right: **Pick ${roundTurn} boxes.**\n--------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1534,12 +1483,12 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.add(offerNewNew);
           console.log(dealGameTempSet);
           fbwlembed
-          .setColor(`#${usersData.col}`)
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${gameSparkCoinsSTRING_BLUE}\n> :red_circle: ${gameSparkCoinsSTRING_RED}\n\n--------------------------------------\n:point_right: **Accept or decline The Banker's offer.**\n--------------------------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
           botMessage.edit(fbwlembed);
-          let fbwlembedd = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          let fbwlembedd = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           //.setTitle(`Banker 📞`)
           .setDescription(`***The Banker*** has called and is offering **${offerNewNew} Sparkcoins**.\n\n"*Deal*" or "*No Deal*"?`);
           let botMessageOFFER = await message.channel.send(fbwlembedd);
@@ -1556,9 +1505,7 @@ module.exports.run = async (bot, message, args) => {
         }
       } else {
         message.channel.bulkDelete(1);
-        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     //==============================================
@@ -1584,13 +1531,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.RichEmbed()
-        .setColor("#1c9472")
+        let sparkcoinlogmembed = new Discord.MessageEmbed()
+        .setColor("#7c889c")
         .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
         .setFooter("Deal");
-        bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -1639,13 +1586,13 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_RED
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
-        let fbwlembedd = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembedd = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         //.setTitle(`Banker 📞`)
         .setDescription(`Would you like to **keep** your box or **swap** it for the one that's left?\n\n"*Keep*" or "*Swap*"?`);
         botMessageOFFER.edit(fbwlembedd);
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n-----------------------------------\n:point_right: **Answer the final question.**\n-----------------------------------\n\n*Type "~deal ?" if you don't know how to play.*`);
         botMessage.edit(fbwlembed);
@@ -1660,9 +1607,7 @@ module.exports.run = async (bot, message, args) => {
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
           message.channel.bulkDelete(1);
-          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {
-            msg.delete(4000)
-          });
+          return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
     }
@@ -1678,9 +1623,7 @@ module.exports.run = async (bot, message, args) => {
       let choice = args[0];
       message.channel.bulkDelete(1);
       if (choice != "keep" && choice != "swap") {
-        return message.channel.send(`${message.author.username}, please say ~deal keep or ~deal swap.`).then(msg => {
-          msg.delete(4000)
-        });
+        return message.channel.send(`${message.author.username}, please say ~deal keep or ~deal swap.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
       //================
       // KEEP
@@ -1709,26 +1652,26 @@ module.exports.run = async (bot, message, args) => {
           gameOutcome = "lose";
         }
         botMessageOFFER.delete();
-        if (gameOutcome === "win") {
-          let sparkcoinlogmembed = new Discord.RichEmbed()
-          .setColor("#1c9472")
+        if (gameOutcome = "win") {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins.`)
           .setFooter("Deal");
-          bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-          let fbwlembed = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${boxCol} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n---------------------------------------------------------------\n:point_right: **You kept your box. You won ${ChosenBox[1]} SparkCoins!**\n---------------------------------------------------------------`);
           botMessage.edit(fbwlembed);
         }
-        if (gameOutcome === "lose") {
-          let sparkcoinlogmembed = new Discord.RichEmbed()
-          .setColor("#1c9472")
+        if (gameOutcome = "lose") {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
           .setDescription(`**${message.author.username}** lost ${ChosenBox[1]} SparkCoins.`)
           .setFooter("Deal");
-          bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-          let fbwlembed = new Discord.RichEmbed()
-          .setColor(`#${usersData.col}`)
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
           .setDescription(`*YOUR BOX*\n> ${boxCol} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n---------------------------------------------------------------\n:point_right: **You kept your box. You lose ${ChosenBox[1]} SparkCoins.**\n---------------------------------------------------------------`);
           botMessage.edit(fbwlembed);
@@ -1797,8 +1740,8 @@ module.exports.run = async (bot, message, args) => {
             l = gameBoxNumbers.length;
           }
         }
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${usersData.col}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${usersData.col}`)
         .setTitle(`Deal 📦`)
         .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n-----------------------------------------------------------------\n:point_right: **You swapped your box. Now opening the box you swapped...**\n-----------------------------------------------------------------`);
         botMessage.edit(fbwlembed);
@@ -1814,26 +1757,26 @@ module.exports.run = async (bot, message, args) => {
             gameOutcome = "lose";
           }
           botMessageOFFER.delete();
-          if (gameOutcome === "win") {
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
+          if (gameOutcome = "win") {
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
             .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins.`)
             .setFooter("Deal");
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let fbwlembed = new Discord.RichEmbed()
-            .setColor(`#${usersData.col}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let fbwlembed = new Discord.MessageEmbed()
+            .setColor(`${usersData.col}`)
             .setTitle(`Deal 📦`)
             .setDescription(`*YOUR BOX*\n> ${boxCol} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n-----------------------------------------------------------------\n:point_right: **You swapped your box. You won ${ChosenBox[1]} SparkCoins!**\n-----------------------------------------------------------------`);
             botMessage.edit(fbwlembed);
           }
-          if (gameOutcome === "lose") {
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
+          if (gameOutcome = "lose") {
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
             .setDescription(`**${message.author.username}** lost ${ChosenBox[1]} SparkCoins.`)
             .setFooter("Deal");
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let fbwlembed = new Discord.RichEmbed()
-            .setColor(`#${usersData.col}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let fbwlembed = new Discord.MessageEmbed()
+            .setColor(`${usersData.col}`)
             .setTitle(`Deal 📦`)
             .setDescription(`*YOUR BOX*\n> ${boxCol} \n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n-----------------------------------------------------------------\n:point_right: **You swapped your box. You lose ${ChosenBox[1]} SparkCoins.**\n-----------------------------------------------------------------`);
             botMessage.edit(fbwlembed);
