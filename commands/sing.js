@@ -137,18 +137,18 @@ module.exports.run = async (bot, message, args) => {
         "**Peter Pan**\n\nYou're just a lost boy, with your head up in the clouds\nYou're just a lost boy, never keep your feet on the ground\nAlways gonna fly away, just because you know you can\nYou're never gonna learn there's no such place as a Neverland\nYou don't understand\nYou'll never grow up\nYou're never gonna be a man\nPeter Pan"];
 
       let result = Math.floor((Math.random() * replies.length));
-      if (result === 4){
-        let sngembed = new Discord.MessageEmbed()
-        .setColor(`${data.col}`)
-        .setTitle(`🎵`)
-        .setDescription(replies[result]);
-        const m = message.channel.send(sngembed).then(msg => {setTimeout(() =>
-          msg
-          .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
-          m.edit(msg);
-          , 4000)});
-        return;
-      }
+//      if (result === 4){
+//        let sngembed = new Discord.MessageEmbed()
+//        .setColor(`${data.col}`)
+//        .setTitle(`🎵`)
+//        .setDescription(replies[result]);
+//        const m = message.channel.send(sngembed).then(msg => {setTimeout(() =>
+//          msg
+//          .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
+//          m.edit(msg);
+//          , 4000)});
+//        return;
+//      }
       if (result === 1 || result === 2 || result === 58 || result === 59 || result === 116){
         let sngembed = new Discord.MessageEmbed()
         .setColor(`${data.col}`)
