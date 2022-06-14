@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,14 +9,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[0]) {
         let result = "0";
         let repliesCHOICE = ["0", "1"];
@@ -34,201 +24,201 @@ module.exports.run = async (bot, message, args) => {
         }
 
         if(result === 0) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_1.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 1) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_2.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 2) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_3.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 3) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_4.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 4) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_5.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 5) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_6.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 6) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_7.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 7) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_8.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 8) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_9.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 9) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_10.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 10) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_11.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 11) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_12.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 12) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_13.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 13) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_14.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 14) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_15.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 15) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_16.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 16) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_17.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 17) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_18.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 18) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_19.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 19) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_20.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 20) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_21.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 21) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_22.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 22) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_23.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 23) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_24.gif`);
           return message.channel.send(sdembed);
         }
         if(result === 24) {
-          let sdicon = message.author.displayAvatarURL;
-          let sdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let sdicon = message.author.displayAvatarURL();
+          let sdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is very sad.`, sdicon)
           .setImage (`https://blusparkstudio.com/discord/sad_25.gif`);
           return message.channel.send(sdembed);
@@ -252,225 +242,225 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_1.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 1) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_2.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 2) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_3.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 3) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_4.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 4) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_5.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 5) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_6.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 6) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_7.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 7) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_8.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 8) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_9.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 9) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_10.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 10) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_11.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 11) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_12.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 12) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_13.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 13) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_14.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 14) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_15.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 15) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_16.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 16) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_17.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 17) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_18.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 18) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_19.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 19) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_20.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 20) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_21.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 21) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_22.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 22) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_23.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 23) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_24.gif`);
         return message.channel.send(sdembed);
       }
       if(result === 24) {
-        let sdicon = message.author.displayAvatarURL;
-        let sdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let sdicon = message.author.displayAvatarURL();
+        let sdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Sad 😔", sdicon)
         .setDescription(`***${message.author.username} is sad because of ${rUser.user.username}.***\nWhat did you do? 😟`)
         .setImage (`https://blusparkstudio.com/discord/sad_25.gif`);
