@@ -299,7 +299,7 @@ bot.on("message", async message => {
         }
         //======================================================
         let wlcmembed = new Discord.MessageEmbed()
-        .setColor(`${MsgAuthorRoleCol}`)
+        .setColor("#7c889c")
         .setDescription(welcome);
         bot.channels.cache.get(`681245368025219257`).send(wlcmembed);
         //======================================================
