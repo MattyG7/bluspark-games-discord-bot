@@ -20,22 +20,22 @@ module.exports.run = async (bot, message, args) => {
   var dateNumber = date.getMonth();
   if (dateNumber === 11 || dateNumber === 0 || dateNumber === 1) {
     //season = "Winter";
-    seasonColour = "b1d6e3";
+    seasonColour = "a4d6de"; //b1d6e3
   }
   if (dateNumber === 2 || dateNumber === 3 || dateNumber === 4) {
     //season = "Spring";
-    seasonColour = "2d9652";
+    seasonColour = "479e5b"; //2d9652
   }
   if (dateNumber === 5 || dateNumber === 6 || dateNumber === 7) {
     //season = "Summer";
-    seasonColour = "edae40"; //edc31c
+    seasonColour = "#e6b060"; //edae40, edc31c
   }
   if (dateNumber === 8 || dateNumber === 9 || dateNumber === 10) {
     //season = "Autumn";
-    seasonColour = "8f561a"; //804c11
+    seasonColour = "804e18"; //8f561a, 804c11
   }
   if (!args[0] || args[0] === "help" || args[0] === "greets" || args[0] === "greetings") {
-    let ssnlembed = new Discord.RichEmbed()
+    let ssnlembed = new Discord.MessageEmbed()
     //.setColor("#cc1d37")
     .setColor(`#${seasonColour}`)
     .setTitle(`📅 **Seasonal Greetings**`)
