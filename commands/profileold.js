@@ -6,16 +6,16 @@ module.exports.run = async (bot, message, args) => {
   let xphave = 2;
   let xptogo = 8;
   let xpforlvl = 10;
-  let picon = message.author.displayAvatarURL;
-  let pembed = new Discord.RichEmbed()
+  let picon = message.author.displayAvatarURL();
+  let pembed = new Discord.MessageEmbed()
   .setTitle(`⚡ ${message.author.username}'s Profile`)
-  .setColor("#1fd1c8")
+  .setColor(`${message.member.displayHexColor}`)
   .setThumbnail(`${picon}`)
   .addField("Money", `${coins}`, false)
   .addField("Level", `${level}`, true)
   .addField("XP", `${xphave}/${xpforlvl}`, true)
   .addBlankField(true)
-  .addField("Discord Tag", `${message.author}`);
+  .addField("Discord Tag", `${message.author}`); //#1fd1c8
   return message.channel.send(pembed);
 }
 
