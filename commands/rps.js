@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if(!args[0]) return message.channel.send(`${message.author.username}, please use the correct format: ~rps CHOICE or ~rps CHOICE SPARKCOINSAMOUNT.`);
@@ -13,14 +12,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[1]) {
         if (args[0] === "⛰️" || args[0] === "Rock" || args[0] === "rock") {
           let replies = ["⛰️Rock", "📄Paper", "✂️Scissors"];
@@ -34,22 +25,22 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.bulkDelete(3).then(() => {
                   message.channel.send(`**You**: ⛰️Rock\n**Bot**: ${replies[result]}`);
                   if (result === 2) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`⛰️Rock beats ✂️Scissors! You win!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 0) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`It's a draw!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 1) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`📄Paper beats ⛰️Rock! You lose!`);
                     return message.channel.send(fbwlembed);
@@ -71,22 +62,22 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.bulkDelete(3).then(() => {
                   message.channel.send(`**You**: 📄Paper\n**Bot**: ${replies[result]}`);
                   if (result === 0) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`📄Paper beats ⛰️Rock! You win!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 1) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`It's a draw!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 2) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`✂️Scissors beats 📄Paper! You lose!`);
                     return message.channel.send(fbwlembed);
@@ -108,22 +99,22 @@ module.exports.run = async (bot, message, args) => {
                 message.channel.bulkDelete(3).then(() => {
                   message.channel.send(`**You**: ✂️Scissors\n**Bot**: ${replies[result]}`);
                   if (result === 1) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`✂️Scissors beats 📄Paper! You win!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 2) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`It's a draw!`);
                     return message.channel.send(fbwlembed);
                   }
                   if (result === 0) {
-                    let fbwlembed = new Discord.RichEmbed()
-                    .setColor(`#${userColour}`)
+                    let fbwlembed = new Discord.MessageEmbed()
+                    .setColor(`${data.col}`)
                     .setTitle(`Rock Paper Scissors (no prize) ⛰️📄✂️`)
                     .setDescription(`⛰️Rock beats ✂️Scissors! You lose!`);
                     return message.channel.send(fbwlembed);
@@ -158,13 +149,13 @@ module.exports.run = async (bot, message, args) => {
                     message.channel.send(`**You**: ⛰️Rock\n**Bot**: ${replies[result]}`);
                     if (result === 2) {
                       console.log(`User won ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** won ${SparkCoinsBET} SparkCoins!`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`⛰️Rock beats ✂️Scissors! You won ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -182,21 +173,21 @@ module.exports.run = async (bot, message, args) => {
                       });
                     }
                     if (result === 0) {
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`It's a draw! You didn't win or lose any SparkCoins.`);
                       message.channel.send(fbwlembed);
                     }
                     if (result === 1) {
                       console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins.`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`📄Paper beats ⛰️Rock! You lost ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -232,13 +223,13 @@ module.exports.run = async (bot, message, args) => {
                     message.channel.send(`**You**: 📄Paper\n**Bot**: ${replies[result]}`);
                     if (result === 0) {
                       console.log(`User won ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** won ${SparkCoinsBET} SparkCoins!`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`📄Paper beats ⛰️Rock! You won ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -256,21 +247,21 @@ module.exports.run = async (bot, message, args) => {
                       });
                     }
                     if (result === 1) {
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`It's a draw! You didn't win or lose any SparkCoins.`);
                       message.channel.send(fbwlembed);
                     }
                     if (result === 2) {
                       console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins.`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`✂️Scissors beats 📄Paper! You lost ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -306,13 +297,13 @@ module.exports.run = async (bot, message, args) => {
                     message.channel.send(`**You**: ✂️Scissors\n**Bot**: ${replies[result]}`);
                     if (result === 1) {
                       console.log(`User won ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** won ${SparkCoinsBET} SparkCoins!`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`✂️Scissors beats 📄Paper! You won ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -330,21 +321,21 @@ module.exports.run = async (bot, message, args) => {
                       });
                     }
                     if (result === 2) {
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`It's a draw! You didn't win or lose any SparkCoins.`);
                       message.channel.send(fbwlembed);
                     }
                     if (result === 0) {
                       console.log(`User lost ${SparkCoinsBET} SparkCoins.`);
-                      let sparkcoinlogmembed = new Discord.RichEmbed()
-                      .setColor("#1c9472")
+                      let sparkcoinlogmembed = new Discord.MessageEmbed()
+                      .setColor("#7c889c")
                       .setDescription(`**${message.author.username}** lost ${SparkCoinsBET} SparkCoins.`)
                       .setFooter("RPS");
-                      bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-                      let fbwlembed = new Discord.RichEmbed()
-                      .setColor(`#${userColour}`)
+                      bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+                      let fbwlembed = new Discord.MessageEmbed()
+                      .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
                       .setDescription(`⛰️Rock beats ✂️Scissors! You lost ${args[1]} SparkCoins!`);
                       message.channel.send(fbwlembed);
@@ -369,8 +360,8 @@ module.exports.run = async (bot, message, args) => {
           }
         } else {
           console.log("User CAN'T afford bet.");
-          let ntenghembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let ntenghembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setDescription(`❗ Not enough SparkCoins!`)
           .setFooter(`You have ${userSparkCoins}.`);
           return message.channel.send(ntenghembed);
