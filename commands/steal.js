@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args, author, messageArray) => {
   if (message.member.user.tag !== author) return message.channel.send("🚫 You're not allowed to use this command!");
@@ -18,36 +17,28 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
-        let userColour = "";
-        if (data.col === "not-set") {
-          userColour = "202225";
-        } else {
-          userColour = data.col;
-        }
-        console.log("Got user's colour Successfully!");
-
         if (message.member.user.tag === author) {
           let currentSparkCoins = data.sparkcoins;
           let stolenSparkCoins = parseInt(args[1]);
           let newSparkCoins = currentSparkCoins + stolenSparkCoins;
 
-          let sicon = message.author.displayAvatarURL;
-          let stlembed = new Discord.RichEmbed()
+          let sicon = message.author.displayAvatarURL();
+          let stlembed = new Discord.MessageEmbed()
           .setAuthor("Steal 💸", sicon)
-          .setColor(`#${userColour}`)
+          .setColor(`${data.col}`)
           .setDescription(`${message.author.username} stole **${stolenSparkCoins} SparkCoins** from ${rUser.user.username}. 😜`);
           message.channel.send(stlembed);
 
-          let sparkcoinlogmembed1 = new Discord.RichEmbed()
-          .setColor("#1c9472")
+          let sparkcoinlogmembed1 = new Discord.MessageEmbed()
+          .setColor("#7c889c")
           .setDescription(`**${rUser.user.username}** lost ${stolenSparkCoins} SparkCoins!`)
           .setFooter("Steal");
-          bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed1);
-          let sparkcoinlogmembed2 = new Discord.RichEmbed()
-          .setColor("#1c9472")
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed1);
+          let sparkcoinlogmembed2 = new Discord.MessageEmbed()
+          .setColor("#7c889c")
           .setDescription(`**${message.author.username}** received ${stolenSparkCoins} SparkCoins!`)
           .setFooter("Steal");
-          bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed2);
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed2);
 
 
           mongoose.model("DiscordUserData").updateOne ({userID: `${message.author.id}`}, {
