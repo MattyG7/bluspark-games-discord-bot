@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,14 +9,6 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[0]) {
         let result = "0";
         let repliesCHOICE = ["0", "1", "2"];
@@ -39,345 +29,345 @@ module.exports.run = async (bot, message, args) => {
         }
 
         if(result === 0) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_1.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 1) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_2.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 2) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_3.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 3) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_4.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 4) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_5.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 5) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_6.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 6) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_7.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 7) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_8.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 8) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_9.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 9) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} failed to run.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_10.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 10) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_11.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 11) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_12.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 12) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_13.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 13) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_14.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 14) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_15.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 15) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_16.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 16) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_17.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 17) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_18.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 18) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_19.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 19) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_20.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 20) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_21.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 21) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_22.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 22) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_23.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 23) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_24.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 24) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_25.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 25) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_26.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 26) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_27.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 27) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_28.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 28) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running but not getting anywhere.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_29.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 29) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_30.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 30) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_31.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 31) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_32.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 32) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_33.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 33) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_34.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 34) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_35.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 35) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_36.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 36) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_37.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 37) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_38.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 38) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_39.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 39) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_40.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 40) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_41.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 41) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_42.gif`);
           return message.channel.send(rnembed);
         }
         if(result === 42) {
-          let rnicon = message.author.displayAvatarURL;
-          let rnembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let rnicon = message.author.displayAvatarURL();
+          let rnembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor(`${message.author.username} is running.`, rnicon)
           .setImage (`https://blusparkstudio.com/discord/run_43.gif`);
           return message.channel.send(rnembed);
@@ -406,387 +396,387 @@ module.exports.run = async (bot, message, args) => {
       }
 
       if(result === 0) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***‍`)
         .setImage (`https://blusparkstudio.com/discord/run_1.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 1) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is beating ${rUser.user.username} in a race.***`)
         .setImage (`https://blusparkstudio.com/discord/run_2.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 2) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_3.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 3) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_4.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 4) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running to ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_5.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 5) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} stole ${rUser.user.username}'s tie and is running away.***`)
         .setImage (`https://blusparkstudio.com/discord/run_6.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 6) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_7.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 7) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running in ${rUser.user.username}'s high heels.***`)
         .setImage (`https://blusparkstudio.com/discord/run_8.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 8) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running towards ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_9.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 9) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} witnessed ${rUser.user.username} failing to run.***`)
         .setImage (`https://blusparkstudio.com/discord/run_10.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 10) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is telling ${rUser.user.username} to run.***`)
         .setImage (`https://blusparkstudio.com/discord/run_11.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 11) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is racing ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_12.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 12) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from something scary with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_13.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 13) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} and ${rUser.user.username} are running away from a scary Pokemon.***`)
         .setImage (`https://blusparkstudio.com/discord/run_14.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 14) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} and ${rUser.user.username} are running away from something.***`)
         .setImage (`https://blusparkstudio.com/discord/run_15.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 15) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running towards ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_16.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 16) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running after ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_17.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 17) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} tried to run away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_18.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 18) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running happily away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_19.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 19) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_20.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 20) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running after ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_21.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 21) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}, crying.***`)
         .setImage (`https://blusparkstudio.com/discord/run_22.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 22) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}'s girlfriends'.***`)
         .setImage (`https://blusparkstudio.com/discord/run_23.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 23) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running after ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_24.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 24) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running through groups of ${rUser.user.username} clones.***`)
         .setImage (`https://blusparkstudio.com/discord/run_25.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 25) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running towards ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_26.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 26) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_27.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 27) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_28.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 28) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username} but not getting anywhere.***`)
         .setImage (`https://blusparkstudio.com/discord/run_29.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 29) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_30.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 30) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_31.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 31) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running towards ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_32.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 32) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_33.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 33) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_34.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 34) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_35.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 35) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_36.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 36) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_37.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 37) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_38.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 38) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running towards ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_39.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 39) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running with ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_40.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 40) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_41.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 41) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_42.gif`);
         return message.channel.send(rnembed);
       }
       if(result === 42) {
-        let rnicon = message.author.displayAvatarURL;
-        let rnembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let rnicon = message.author.displayAvatarURL();
+        let rnembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Run 🏃‍", rnicon)
         .setDescription(`***${message.author.username} is running away from ${rUser.user.username}.***`)
         .setImage (`https://blusparkstudio.com/discord/run_43.gif`);
