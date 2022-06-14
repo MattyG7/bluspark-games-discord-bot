@@ -1,9 +1,7 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
-  //GET USER COLOUR
   mongoose.model("DiscordUserData").findOne ({
     userID: `${message.author.id}`
   }, function(error, data) {
@@ -11,148 +9,140 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       if (!args[0]) {
         let replies = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"];
         let result = Math.floor((Math.random() * replies.length));
 
         if(result === 0) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_1.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 1) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_2.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 2) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_3.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 3) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_4.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 4) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_5.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 5) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_6.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 6) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_7.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 7) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_8.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 8) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_9.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 9) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_10.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 10) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_11.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 11) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_12.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 12) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is...not scared.***\n🤨`)
           .setImage (`https://blusparkstudio.com/discord/scared_13.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 13) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_14.gif`);
           return message.channel.send(scrdembed);
         }
         if(result === 14) {
-          let scrdicon = message.author.displayAvatarURL;
-          let scrdembed = new Discord.RichEmbed()
-          .setColor(`#${userColour}`)
+          let scrdicon = message.author.displayAvatarURL();
+          let scrdembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
           .setAuthor("Scared 👻", scrdicon)
           .setDescription(`***${rUser.author.username} is scared.***\n🙈`)
           .setImage (`https://blusparkstudio.com/discord/scared_15.gif`);
@@ -167,135 +157,135 @@ module.exports.run = async (bot, message, args) => {
       let result = Math.floor((Math.random() * replies.length));
 
       if(result === 0) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_1.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 1) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_2.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 2) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_3.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 3) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_4.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 4) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_5.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 5) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_6.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 6) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_7.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 7) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_8.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 8) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_9.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 9) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_10.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 10) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_11.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 11) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_12.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 12) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of the situation ${rUser.user.username} is in but ${rUser.user.username} is not.***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_13.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 13) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of ${rUser.user.username}!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_14.gif`);
         return message.channel.send(scrdembed);
       }
       if(result === 14) {
-        let scrdicon = message.author.displayAvatarURL;
-        let scrdembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let scrdicon = message.author.displayAvatarURL();
+        let scrdembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setAuthor("Scared 👻", scrdicon)
         .setDescription(`***${message.author.username} is scared of what ${rUser.user.username} just said!***\n*😱`)
         .setImage (`https://blusparkstudio.com/discord/scared_15.gif`);
