@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
@@ -11,19 +10,11 @@ module.exports.run = async (bot, message, args) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
-        let userColour = "";
-        if (data.col === "not-set") {
-          userColour = "202225";
-        } else {
-          userColour = data.col;
-        }
-        console.log("Got user's colour Successfully!");
-
         let replies = ["1", "2", "3", "4", "5", "6"];
         let result = Math.floor((Math.random() * replies.length));
 
-        let fbwlembed = new Discord.RichEmbed()
-        .setColor(`#${userColour}`)
+        let fbwlembed = new Discord.MessageEmbed()
+        .setColor(`${data.col}`)
         .setTitle(`Dice Roll (no prize) 🎲`)
         .setDescription(`You rolled a **${replies[result]}**.`);
         return message.channel.send(fbwlembed);
@@ -64,13 +55,13 @@ module.exports.run = async (bot, message, args) => {
             console.log(`User wins ${winnings} SparkCoins!`);
             console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
             .setDescription(`**${message.author.username}** won ${winnings} SparkCoins.`)
             .setFooter("Dice Roll");
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let fbwlembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let fbwlembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
             .setTitle(`Dice Roll 🎲`)
             .setDescription(`You rolled a **${replies[result]}**. You guessed correctly so you win **${winnings} SparkCoins**!`);
             message.channel.send(fbwlembed);
@@ -92,13 +83,13 @@ module.exports.run = async (bot, message, args) => {
             console.log(`User only wins ${replies[result]} SparkCoins!`);
             console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
             .setDescription(`**${message.author.username}** won ${replies[result]} SparkCoins.`)
             .setFooter("Dice Roll");
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let fbwlembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let fbwlembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
             .setTitle(`Dice Roll 🎲`)
             .setDescription(`You rolled a **${replies[result]}**. You didn't guess correctly so you only win **${replies[result]} SparkCoins**.`);
             message.channel.send(fbwlembed);
