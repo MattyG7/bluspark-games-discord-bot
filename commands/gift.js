@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const mongoose = require(`mongoose`);
-const Schema = mongoose.Schema;
 
 module.exports.run = async (bot, message, args, author, messageArray) => {
   if (message.member.user.tag !== author) return message.channel.send("🚫 You're not allowed to use this command!");
@@ -30,14 +29,6 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
-      let userColour = "";
-      if (data.col === "not-set") {
-        userColour = "202225";
-      } else {
-        userColour = data.col;
-      }
-      console.log("Got user's colour Successfully!");
-
       console.log("Successfully got the receiver's SparkCoin amount: " + data.sparkcoins);
       let SparkCoinsGIFT = parseInt(args[1]);
       let receiverSparkCoinsBEFORE = data.sparkcoins;
@@ -63,73 +54,15 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
             //.setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
             //return message.channel.send(dlyembed);
           //}
-          if (SparkCoinsGIFT != 600 && SparkCoinsGIFT != 250 && SparkCoinsGIFT != 100) {
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
+          if (SparkCoinsGIFT != 100 && SparkCoinsGIFT != 200 && SparkCoinsGIFT != 500 && SparkCoinsGIFT != 1000 && SparkCoinsGIFT != 1500) {
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
             .setDescription(`**${rUser.user.username}** received ${SparkCoinsGIFT} SparkCoins!`)
             .setFooter(`Gift`);
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let dicon = rUser.user.displayAvatarURL;
-            let dlyembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
-            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
-            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
-            return message.channel.send(dlyembed);
-          }
-          if (SparkCoinsGIFT === 600) {
-            var months = new Array();
-            months[0] = "January";
-            months[1] = "February";
-            months[2] = "March";
-            months[3] = "April";
-            months[4] = "May";
-            months[5] = "June";
-            months[6] = "July";
-            months[7] = "August";
-            months[8] = "September";
-            months[9] = "October";
-            months[10] = "November";
-            months[11] = "December";
-            var dateFull = new Date();
-            var monthName = months[dateFull.getMonth()];
-
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
-            .setDescription(`**${rUser.user.username}** just received their monthly ${SparkCoinsGIFT} SparkCoins!`)
-            .setFooter(`Ultra Spark Patron - ${monthName}`);
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let dicon = rUser.user.displayAvatarURL;
-            let dlyembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
-            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
-            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
-            return message.channel.send(dlyembed);
-          }
-          if (SparkCoinsGIFT === 250) {
-            var months = new Array();
-            months[0] = "January";
-            months[1] = "February";
-            months[2] = "March";
-            months[3] = "April";
-            months[4] = "May";
-            months[5] = "June";
-            months[6] = "July";
-            months[7] = "August";
-            months[8] = "September";
-            months[9] = "October";
-            months[10] = "November";
-            months[11] = "December";
-            var dateFull = new Date();
-            var monthName = months[dateFull.getMonth()];
-
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
-            .setDescription(`**${rUser.user.username}** just received their monthly ${SparkCoinsGIFT} SparkCoins!`)
-            .setFooter(`Great Spark Patron - ${monthName}`);
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let dicon = rUser.user.displayAvatarURL;
-            let dlyembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
             .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
             .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
             return message.channel.send(dlyembed);
@@ -151,14 +84,130 @@ module.exports.run = async (bot, message, args, author, messageArray) => {
             var dateFull = new Date();
             var monthName = months[dateFull.getMonth()];
 
-            let sparkcoinlogmembed = new Discord.RichEmbed()
-            .setColor("#1c9472")
-            .setDescription(`**${rUser.user.username}** just received their monthly ${SparkCoinsGIFT} SparkCoins!`)
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
+            .setDescription(`**${rUser.user.username}** received their monthly ${SparkCoinsGIFT} SparkCoins!`)
+            .setFooter(`Supporter Spark Patron - ${monthName}`);
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
+            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
+            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
+            return message.channel.send(dlyembed);
+          }
+          if (SparkCoinsGIFT === 200) {
+            var months = new Array();
+            months[0] = "January";
+            months[1] = "February";
+            months[2] = "March";
+            months[3] = "April";
+            months[4] = "May";
+            months[5] = "June";
+            months[6] = "July";
+            months[7] = "August";
+            months[8] = "September";
+            months[9] = "October";
+            months[10] = "November";
+            months[11] = "December";
+            var dateFull = new Date();
+            var monthName = months[dateFull.getMonth()];
+
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
+            .setDescription(`**${rUser.user.username}** received their monthly ${SparkCoinsGIFT} SparkCoins!`)
             .setFooter(`Regular Spark Patron - ${monthName}`);
-            bot.channels.get(`681249230232223767`).send(sparkcoinlogmembed);
-            let dicon = rUser.user.displayAvatarURL;
-            let dlyembed = new Discord.RichEmbed()
-            .setColor(`#${userColour}`)
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
+            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
+            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
+            return message.channel.send(dlyembed);
+          }
+          if (SparkCoinsGIFT === 500) {
+            var months = new Array();
+            months[0] = "January";
+            months[1] = "February";
+            months[2] = "March";
+            months[3] = "April";
+            months[4] = "May";
+            months[5] = "June";
+            months[6] = "July";
+            months[7] = "August";
+            months[8] = "September";
+            months[9] = "October";
+            months[10] = "November";
+            months[11] = "December";
+            var dateFull = new Date();
+            var monthName = months[dateFull.getMonth()];
+
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
+            .setDescription(`**${rUser.user.username}** received their monthly ${SparkCoinsGIFT} SparkCoins!`)
+            .setFooter(`Great Spark Patron - ${monthName}`);
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
+            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
+            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
+            return message.channel.send(dlyembed);
+          }
+          if (SparkCoinsGIFT === 1000) {
+            var months = new Array();
+            months[0] = "January";
+            months[1] = "February";
+            months[2] = "March";
+            months[3] = "April";
+            months[4] = "May";
+            months[5] = "June";
+            months[6] = "July";
+            months[7] = "August";
+            months[8] = "September";
+            months[9] = "October";
+            months[10] = "November";
+            months[11] = "December";
+            var dateFull = new Date();
+            var monthName = months[dateFull.getMonth()];
+
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
+            .setDescription(`**${rUser.user.username}** received their monthly ${SparkCoinsGIFT} SparkCoins!`)
+            .setFooter(`Ultra Spark Patron - ${monthName}`);
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
+            .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
+            .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
+            return message.channel.send(dlyembed);
+          }
+          if (SparkCoinsGIFT === 1500) {
+            var months = new Array();
+            months[0] = "January";
+            months[1] = "February";
+            months[2] = "March";
+            months[3] = "April";
+            months[4] = "May";
+            months[5] = "June";
+            months[6] = "July";
+            months[7] = "August";
+            months[8] = "September";
+            months[9] = "October";
+            months[10] = "November";
+            months[11] = "December";
+            var dateFull = new Date();
+            var monthName = months[dateFull.getMonth()];
+
+            let sparkcoinlogmembed = new Discord.MessageEmbed()
+            .setColor("#7c889c")
+            .setDescription(`**${rUser.user.username}** received their monthly ${SparkCoinsGIFT} SparkCoins!`)
+            .setFooter(`Legendary Spark Patron - ${monthName}`);
+            bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+            let dicon = rUser.user.displayAvatarURL();
+            let dlyembed = new Discord.MessageEmbed()
+            .setColor(`${data.col}`)
             .setAuthor(`🎁 ${message.author.username} gifted ${SparkCoinsGIFT} SparkCoins to ${rUser.user.username}!`, dicon)
             .setDescription(`You now have ${receiverSparkCoinsNOW} SparkCoins.`);
             return message.channel.send(dlyembed);
