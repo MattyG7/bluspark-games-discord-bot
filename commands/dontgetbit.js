@@ -44,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
       const chosenTooth = await getResult(reacts); //, teeth
 
       //Clear reactions
-      await m.clearReactions();
+      await m.reactions.removeAll();
 
       fbwlembed
         .setDescription(`${teethLeft} teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
@@ -225,7 +225,7 @@ module.exports.run = async (bot, message, args) => {
       const chosenTooth = await getResult(reacts); //, teeth
 
       //Clear reactions
-      await m.clearReactions();
+      await m.reactions.removeAll();
 
       fbwlembed
         .setDescription(`${teethLeft} teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
