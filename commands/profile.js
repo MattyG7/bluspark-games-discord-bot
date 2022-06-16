@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
     console.log(`User called their own profile.`);
     let member = message.guild.member(message.author);
-    let memberRoles1 = member.roles.map(roles => `${roles.name}`).join(' ');
+    let memberRoles1 = message.member.roles.cache.some(role => role.name).join(' ');
     let memberRoles2 = memberRoles1.split(" ");
     let memberRoles3 = memberRoles2.slice(1);
     let memberRoles4 = "";
