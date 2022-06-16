@@ -126,6 +126,7 @@ module.exports.run = async (bot, message, args) => {
         "**Miracle**\n\nWhy do bad things always happen to good people?\nFine upstanding citizens like you and me\nWhy when we've done nothing wrong\nShould this disaster come along?\nThis horrible, weird looking\nHairy little stinky thing\nWith no sign of a winky-ding at all",
         "**Naughty**\n\nJust because you find that life's not fair, it\nDoesn't mean that you just have to grin and bear it\nIf you always take it on the chin and wear it\nNothing will change",
         "**When I Grow Up**\n\nJust because I find myself in this story\nIt doesn't mean that everything is written for me\nIf I think the ending is fixed already\nI might as well be saying\nI think that it's OK!\nAnd that's not right!",
+        "**Quiet**\n\nQuiet\nLike silence, but not really silent\nJust that nice kind of quiet\nLike the sound when you lie upside down in your bed\nJust the sound of your heart in your head",
         "**Always Safe**\n\nThrough the raging winds\nThrough the chaos and back again\nKnow that I am always here and you are safe\nThrough the thick and thin\nThrough what's scary and back again\nKnow that I am always here and you are safe\nYou're always safe",
         "**Caledonia**\n\nLet me tell you that I love you and I think about you all the time\nCaledonia you're calling me, now I'm going home\nIf I should become a stranger\nKnow that it would make me more than sad\nCaledonia's been everything I've ever had",
         "**Every Dog Has Its Day**\n\nEvery dog has its day\nIf the stars line up that way\n'N' every night has its day\nIf the sun comes up again",
@@ -228,7 +229,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter("- The Mitchells vs. The Machines");
         return message.channel.send(sngembed);
       }
-      if (result === 113 || result === 114 || result === 115){
+      if (result === 113 || result === 114 || result === 115 || result === 116){
         let sngembed = new Discord.MessageEmbed()
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
