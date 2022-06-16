@@ -587,8 +587,8 @@ module.exports.run = async (bot, message, args) => {
       	ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase();
   			let choiceLC = choice.toLowerCase();
   			if (ARRmemoryGameLastCommand === choiceLC) {
-          memoryGameBUSY.clear(),
-          memoryGameBUSY.add("NO"),
+          memoryGameBUSY.clear();
+          memoryGameBUSY.add("NO");
   				return message.channel.send("You have already chosen this square.").then(msg => {setTimeout(() => msg.delete(2000))});
   			}
   		}
