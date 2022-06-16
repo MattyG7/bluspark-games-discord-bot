@@ -162,11 +162,13 @@ bot.on("message", async message => {
   else {
     if (message.channel.name === "rules-and-info") {
       if (message.content.toLowerCase() === "i agree") {
-        if (!message.member.roles.cache.some(role => role.name === 'Invited Supporter Spark') &&
-        !message.member.roles.cache.some(role => role.name === 'Invited Regular Spark') &&
-        !message.member.roles.cache.some(role => role.name === 'Invited Great Spark') &&
-        !message.member.roles.cache.some(role => role.name === 'Invited Ultra Spark') &&
-        !message.member.roles.cache.some(role => role.name === 'Invited Legendary Spark')) {
+        if (message.member.roles.cache.some(role => role.name === 'Blu') ||
+        message.member.roles.cache.some(role => role.name === 'New Spark') ||
+        message.member.roles.cache.some(role => role.name === 'Supporter Spark') ||
+        message.member.roles.cache.some(role => role.name === 'Regular Spark') ||
+        message.member.roles.cache.some(role => role.name === 'Great Spark') ||
+        message.member.roles.cache.some(role => role.name === 'Ultra Spark') ||
+        message.member.roles.cache.some(role => role.name === 'Legendary Spark')) {
           message.delete();
           console.log(`User has already agreed to the server's rules and info.`);
           return message.channel.send('You have already agreed to the rules and info.').then(sentMessage => {setTimeout(() => sentMessage.delete(), 2000)});
@@ -176,6 +178,14 @@ bot.on("message", async message => {
         let MsgAuthorRoleCol = `${message.member.displayHexColor}`;
         message.delete();
         console.log(`The new user has agreed to the server's rules and info.`);
+        if (!message.member.roles.cache.some(role => role.name === 'Invited Supporter Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Regular Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Great Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Ultra Spark') &&
+        !message.member.roles.cache.some(role => role.name === 'Invited Legendary Spark')) {
+          console.log(`(NON-PATRON)`);
+          message.member.roles.add("679460991150587936");
+        }
         if (message.member.roles.cache.some(role => role.name === 'Invited Supporter Spark')) {
           message.member.roles.add("683464371506380855");
           message.member.roles.remove("681232507492106281");
