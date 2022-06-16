@@ -20,27 +20,27 @@ module.exports.run = async (bot, message, args) => {
       let replies = "0";
       let repliesCHOICE = ["0", "1", "2", "3", "4", "5"];
       let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
-      if(resultCHOICE === "0") {
-        let replies = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
+      if(repliesCHOICE[resultCHOICE] === "0") {
+        replies = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === "1") {
+      if(repliesCHOICE[resultCHOICE] === "1") {
         replies = ["🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "🥱", "😴"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === "2") {
+      if(repliesCHOICE[resultCHOICE] === "2") {
         replies = ["😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹", "🙁", "😖", "😞", "😟", "😤", "😢"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === "3") {
+      if(repliesCHOICE[resultCHOICE] === "3") {
         replies = ["😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "🥴", "😠", "😡", "🤬", "😷"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === "4") {
+      if(repliesCHOICE[resultCHOICE] === "4") {
         replies = ["🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "💀", "👾"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === "5") {
+      if(repliesCHOICE[resultCHOICE] === "5") {
         replies = ["🤖", "💩", "🐢", "🐬", "🐥", "🐤", "🐣", "🐌", "🐛", "🐝", "🕷"];
         result = Math.floor((Math.random() * replies.length));
       }
