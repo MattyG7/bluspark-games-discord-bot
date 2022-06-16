@@ -68,9 +68,9 @@ module.exports.run = async (bot, message, args) => {
   		if (memoryGameUser.size === 0) {
   			console.log("No game in play!");
   			return message.channel.send(`There is currently no game in play.`).then(msg => {setTimeout(() =>
-  				msg.delete(4000);
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
+  				msg.delete(4000),
+          memoryGameBUSY.clear(),
+          memoryGameBUSY.add("NO")
         )});
   		}
   		let ARRmemoryGameUser = Array.from(memoryGameUser);
@@ -80,9 +80,9 @@ module.exports.run = async (bot, message, args) => {
   		if (ARRmemoryGameUser != memUser) {
         console.log("Can't end another user's game!");
   			return message.channel.send(`You can't end someone else's game! Please wait until it finishes.`).then(msg => {setTimeout(() =>
-  				msg.delete(4000);
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
+  				msg.delete(4000),
+          memoryGameBUSY.clear(),
+          memoryGameBUSY.add("NO")
         )});
   		}
   		let aRRmemoryGameMESSAGEID = Array.from(memoryGameMESSAGEID);
@@ -549,16 +549,16 @@ module.exports.run = async (bot, message, args) => {
   			if (ARRmemoryGameUser != memUser) {
         	console.log("Another user's game already exists!");
   				return message.channel.send(`A game has already started. Please wait until it finishes.`).then(msg => {setTimeout(() =>
-  					msg.delete(4000);
-            memoryGameBUSY.clear();
-            memoryGameBUSY.add("NO");
+            msg.delete(4000),
+            memoryGameBUSY.clear(),
+            memoryGameBUSY.add("NO")
         	)});
   			} else {
   				console.log("Game already exists!");
   				return message.channel.send(`You have already started a game. *Type "~memory end" to end your game early.*`).then(msg => {setTimeout(() =>
-  					msg.delete(4000);
-            memoryGameBUSY.clear();
-            memoryGameBUSY.add("NO");
+            msg.delete(4000),
+            memoryGameBUSY.clear(),
+            memoryGameBUSY.add("NO")
         	)});
   			}
       }
@@ -568,17 +568,17 @@ module.exports.run = async (bot, message, args) => {
   		if (ARRmemoryGameUser != memUser) {
         console.log("Another user's game already exists!");
   			return message.channel.send(`This isn't your game!`).then(msg => {setTimeout(() =>
-  				msg.delete(2000);
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
+          msg.delete(2000),
+          memoryGameBUSY.clear(),
+          memoryGameBUSY.add("NO")
         )});
   		}
   		let choiceLC = choice.toLowerCase();
   		if (choiceLC != "a1" && choiceLC != "a2" && choiceLC != "a3" && choiceLC != "a4" && choiceLC != "b1" && choiceLC != "b2" && choiceLC != "b3" && choiceLC != "b4" && choiceLC != "c1" && choiceLC != "c2" && choiceLC != "c3" && choiceLC != "c4") {
         return message.channel.send(`Not a valid space! It goes from A1 to A4, B1 to B4 and C1 to C4.`).then(msg => {setTimeout(() =>
-  				msg.delete(4000);
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
+          msg.delete(4000),
+          memoryGameBUSY.clear(),
+          memoryGameBUSY.add("NO")
         )});
   		}
       let ARRAYmemoryGameChoices = Array.from(memoryGameChoices);
@@ -587,11 +587,9 @@ module.exports.run = async (bot, message, args) => {
       	ARRmemoryGameLastCommand = ARRmemoryGameLastCommand[0].toLowerCase();
   			let choiceLC = choice.toLowerCase();
   			if (ARRmemoryGameLastCommand === choiceLC) {
-          memoryGameBUSY.clear();
-          memoryGameBUSY.add("NO");
-  				return message.channel.send("You have already chosen this square.").then(msg => {setTimeout(() =>
-          	msg.delete(2000)
-        	)});
+          memoryGameBUSY.clear(),
+          memoryGameBUSY.add("NO"),
+  				return message.channel.send("You have already chosen this square.").then(msg => {setTimeout(() => msg.delete(2000))});
   			}
   		}
 
@@ -607,9 +605,7 @@ module.exports.run = async (bot, message, args) => {
           if (ARRpairCommands[i].toLowerCase() === choiceLC) {
             memoryGameBUSY.clear();
             memoryGameBUSY.add("NO");
-            return message.channel.send("You have already chosen this square.").then(msg => {setTimeout(() =>
-              msg.delete(2000)
-            )});
+            return message.channel.send("You have already chosen this square.").then(msg => {setTimeout(() => msg.delete(2000))});
           }
         }
       }
