@@ -19,27 +19,27 @@ module.exports.run = async (bot, message, args) => {
       let result = "0";
       let repliesCHOICE = ["0", "1", "2", "3", "4", "5"];
       let resultCHOICE = Math.floor((Math.random() * repliesCHOICE.length));
-      if(resultCHOICE === 0) {
+      if(resultCHOICE === "0") {
         let replies = ["😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊", "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "☺"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === 1) {
+      if(resultCHOICE === "1") {
         let replies = ["🙂", "🤗", "🤩", "🤔", "🤨", "😐", "😑", "😶", "🙄", "😏", "😣", "😥", "😮", "🤐", "😯", "😪", "😫", "🥱", "😴"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === 2) {
+      if(resultCHOICE === "2") {
         let replies = ["😌", "😛", "😜", "😝", "🤤", "😒", "😓", "😔", "😕", "🙃", "🤑", "😲", "☹", "🙁", "😖", "😞", "😟", "😤", "😢"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === 3) {
+      if(resultCHOICE === "3") {
         let replies = ["😭", "😦", "😧", "😨", "😩", "🤯", "😬", "😰", "😱", "🥵", "🥶", "😳", "🤪", "😵", "🥴", "😠", "😡", "🤬", "😷"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === 4) {
+      if(resultCHOICE === "4") {
         let replies = ["🤒", "🤕", "🤢", "🤮", "🤧", "😇", "🥳", "🥺", "🤠", "🤡", "🤥", "🤫", "🤭", "🧐", "🤓", "😈", "👿", "💀", "👾"];
         result = Math.floor((Math.random() * replies.length));
       }
-      if(resultCHOICE === 5) {
+      if(resultCHOICE === "5") {
         let replies = ["🤖", "💩", "🐢", "🐬", "🐥", "🐤", "🐣", "🐌", "🐛", "🐝", "🕷"];
         result = Math.floor((Math.random() * replies.length));
       }
