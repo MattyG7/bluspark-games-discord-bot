@@ -4,7 +4,7 @@ const mongoose = require(`mongoose`);
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
     console.log(`User called their own profile.`);
-    let memberRole = message.member.roles.cache.map(role => `${role}`).join(', ');
+    let memberRole = message.member.roles.cachemap(roles => roles.name).slice(0,-1);
     console.log(`Got user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -53,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true);
+          .addField("Server Role", `${memberRole}`, true);
           return message.channel.send(pembed);
         }
         //YT TW LO
@@ -69,7 +69,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web}`);
           return message.channel.send(pembed);
         }
@@ -86,7 +86,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -103,7 +103,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -120,7 +120,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -137,7 +137,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -154,7 +154,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -171,7 +171,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -188,7 +188,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -205,7 +205,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -222,7 +222,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -239,7 +239,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -256,7 +256,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -273,7 +273,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -290,7 +290,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -301,7 +301,7 @@ module.exports.run = async (bot, message, args) => {
   if (args[0]) {
     console.log(`User called someone else's profile.`);
     let userMentioned = message.mentions.members.first();
-    let memberRole = userMentioned.roles.cache.some(role => role.name);
+    let memberRole = userMentioned.roles.cachemap(roles => roles.name).slice(0,-1);
     console.log(`Got mentioned user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${userMentioned.id}`
@@ -334,7 +334,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -351,7 +351,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true);
+          .addField("Server Role", `${memberRole}`, true);
           return message.channel.send(pembed);
         }
         //YT TW LO
@@ -367,7 +367,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web}`);
           return message.channel.send(pembed);
         }
@@ -384,7 +384,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -401,7 +401,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -418,7 +418,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -435,7 +435,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -452,7 +452,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -469,7 +469,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -486,7 +486,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -503,7 +503,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -520,7 +520,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -537,7 +537,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -554,7 +554,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -571,7 +571,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -588,7 +588,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Streak", `${_dailystreak}`, false)
           .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRoles4}`, true)
+          .addField("Server Role", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
