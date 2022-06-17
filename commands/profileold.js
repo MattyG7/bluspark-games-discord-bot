@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Money", `${coins}`, false)
   .addField("Level", `${level}`, true)
   .addField("XP", `${xphave}/${xpforlvl}`, true)
-  .addBlankField(true)
+  .addField("** **", "** **")
   .addField("Discord Tag", `${message.author}`); //#1fd1c8
   return message.channel.send(pembed);
 }
