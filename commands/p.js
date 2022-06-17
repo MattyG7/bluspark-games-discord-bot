@@ -27,16 +27,16 @@ module.exports.run = async (bot, message, args) => {
         if (_web != "not-set" && _yt != "not-set" && _tw != "not-set" && _lo != "not-set") {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
-          .setTitle(`⚡ ${message.author.username}'s Profile`)
+          .setTitle(`**⚡ ${message.author.username}'s Profile**`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -47,13 +47,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true);
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           return message.channel.send(pembed);
         }
         //YT TW LO
@@ -63,13 +63,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web}`);
           return message.channel.send(pembed);
         }
@@ -80,13 +80,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -97,13 +97,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -114,13 +114,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -131,13 +131,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -148,13 +148,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -165,13 +165,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -182,13 +182,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -199,13 +199,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -216,13 +216,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -233,13 +233,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -250,13 +250,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -267,13 +267,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -284,13 +284,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${message.author.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${message.author}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -328,13 +328,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -345,13 +345,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true);
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           return message.channel.send(pembed);
         }
         //YT TW LO
@@ -361,13 +361,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web}`);
           return message.channel.send(pembed);
         }
@@ -378,13 +378,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -395,13 +395,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -412,13 +412,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -429,13 +429,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -446,13 +446,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -463,13 +463,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -480,13 +480,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -497,13 +497,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
@@ -514,13 +514,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
           return message.channel.send(pembed);
         }
@@ -531,13 +531,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -548,13 +548,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -565,13 +565,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
           return message.channel.send(pembed);
         }
@@ -582,13 +582,13 @@ module.exports.run = async (bot, message, args) => {
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
           .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
-          .addField("SparkCoins", `${_sparkcoins}`, true)
-          .addField("Level", `${_level}`, true)
-          .addField("XP", `${_currentxp}/${_targetxp}`, true)
-          .addField("Streak", `${_dailystreak}`, false)
+          .addField("**SparkCoins**", `${_sparkcoins}`, true)
+          .addField("**Level**", `${_level}`, true)
+          .addField("**XP**", `${_currentxp}/${_targetxp}`, true)
+          .addField("**Streak**", `${_dailystreak}`, false)
           .addField("** **", "** **")
-          .addField("Discord Tag", `${userMentioned.user}`, true)
-          .addField("Server Role", `${memberRole}`, true)
+          .addField("**Discord Tag**", `${message.author}`, true)
+          .addField("**Server Role**", `${memberRole}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
           return message.channel.send(pembed);
         }
