@@ -43,7 +43,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -60,7 +60,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true);
           return message.channel.send(pembed);
@@ -76,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web}`);
@@ -93,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt}`);
@@ -110,7 +110,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw}`);
@@ -127,7 +127,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌍 ${_lo}`);
@@ -144,7 +144,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
@@ -161,7 +161,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
@@ -178,7 +178,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
@@ -195,7 +195,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
@@ -212,7 +212,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
@@ -229,7 +229,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
@@ -246,7 +246,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -263,7 +263,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -280,7 +280,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
@@ -297,7 +297,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
@@ -350,7 +350,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -367,7 +367,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true);
           return message.channel.send(pembed);
@@ -383,7 +383,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web}`);
@@ -400,7 +400,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt}`);
@@ -417,7 +417,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw}`);
@@ -434,7 +434,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌍 ${_lo}`);
@@ -451,7 +451,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
@@ -468,7 +468,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
@@ -485,7 +485,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
@@ -502,7 +502,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
@@ -519,7 +519,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
@@ -536,7 +536,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
@@ -553,7 +553,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -570,7 +570,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -587,7 +587,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
@@ -604,7 +604,7 @@ module.exports.run = async (bot, message, args) => {
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
