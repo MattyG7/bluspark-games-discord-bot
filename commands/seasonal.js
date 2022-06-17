@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
   }
   if (dateNumber === 5 || dateNumber === 6 || dateNumber === 7) {
     //season = "Summer";
-    seasonColour = "#e6b060"; //edae40, edc31c
+    seasonColour = "e6b060"; //edae40, edc31c
   }
   if (dateNumber === 8 || dateNumber === 9 || dateNumber === 10) {
     //season = "Autumn";
