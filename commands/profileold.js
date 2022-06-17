@@ -8,14 +8,14 @@ module.exports.run = async (bot, message, args) => {
   let xpforlvl = 10;
   let picon = message.author.displayAvatarURL();
   let pembed = new Discord.MessageEmbed()
-  .setTitle(`⚡ ${message.author.username}'s Profile`)
+  .setTitle(`**⚡ ${message.author.username}'s Profile**`)
   .setColor(`${message.member.displayHexColor}`)
   .setThumbnail(`${picon}`)
-  .addField("Money", `${coins}`, false)
-  .addField("Level", `${level}`, true)
-  .addField("XP", `${xphave}/${xpforlvl}`, true)
+  .addField("**Money**", `${coins}`, false)
+  .addField("**Level**", `${level}`, true)
+  .addField("**XP**", `${xphave}/${xpforlvl}`, true)
   .addField("** **", "** **")
-  .addField("Discord Tag", `${message.author}`); //#1fd1c8
+  .addField("**Discord Tag**", `${message.author}`); //#1fd1c8
   return message.channel.send(pembed);
 }
 
