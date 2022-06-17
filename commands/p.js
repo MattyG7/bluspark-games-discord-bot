@@ -4,7 +4,7 @@ const mongoose = require(`mongoose`);
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
     console.log(`User called their own profile.`);
-    let memberRole = message.member.roles.cachemap(roles => roles.name).slice(0,-1);
+    let memberRole = message.member.roles.cache.map(roles => roles.name).slice(0,-1);
     console.log(`Got user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
@@ -301,7 +301,7 @@ module.exports.run = async (bot, message, args) => {
   if (args[0]) {
     console.log(`User called someone else's profile.`);
     let userMentioned = message.mentions.members.first();
-    let memberRole = userMentioned.roles.cachemap(roles => roles.name).slice(0,-1);
+    let memberRole = userMentioned.roles.cache.map(roles => roles.name).slice(0,-1);
     console.log(`Got mentioned user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${userMentioned.id}`
