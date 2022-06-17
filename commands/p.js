@@ -4,18 +4,8 @@ const mongoose = require(`mongoose`);
 module.exports.run = async (bot, message, args) => {
   if (!args[0]) {
     console.log(`User called their own profile.`);
-    let member = message.guild.member(message.author);
-    let memberRoles1 = message.member.roles.cache.some(role => role.name).join(' ');
-    let memberRoles2 = memberRoles1.split(" ");
-    let memberRoles3 = memberRoles2.slice(1);
-    let memberRoles4 = "";
-    var number = 0;
-    for (number in memberRoles3) {
-      memberRoles4 = memberRoles4 + memberRoles3[number] + " ";
-      console.log(`Role array - ${memberRoles3[number]}`);
-      number++;
-    }
-    console.log(`Got user's role Successfully: ${memberRoles4}`);
+    let memberRole = message.member.roles.cache.some(role => role.name);
+    console.log(`Got user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${message.author.id}`
     }, function(error, data) {
@@ -23,6 +13,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
+        let _col = data.col;
         let _sparkcoins = data.sparkcoins;
         let _currentxp = data.currentxp;
         let _targetxp = data.targetxp;
@@ -37,13 +28,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -54,13 +45,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true);
           return message.channel.send(pembed);
@@ -70,13 +61,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web}`);
@@ -87,13 +78,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt}`);
@@ -104,13 +95,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw}`);
@@ -121,13 +112,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌍 ${_lo}`);
@@ -138,13 +129,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
@@ -155,13 +146,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
@@ -172,13 +163,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
@@ -189,13 +180,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
@@ -206,13 +197,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
@@ -223,13 +214,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
@@ -240,13 +231,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -257,13 +248,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -274,13 +265,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
@@ -291,13 +282,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = message.author.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${message.author.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${message.author}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
@@ -310,18 +301,8 @@ module.exports.run = async (bot, message, args) => {
   if (args[0]) {
     console.log(`User called someone else's profile.`);
     let userMentioned = message.mentions.members.first();
-    let member = message.guild.member(userMentioned);
-    let memberRoles1 = member.roles.map(roles => `${roles.name}`).join(' ');
-    let memberRoles2 = memberRoles1.split(" ");
-    let memberRoles3 = memberRoles2.slice(1);
-    let memberRoles4 = "";
-    var number = 0;
-    for (number in memberRoles3) {
-      memberRoles4 = memberRoles4 + memberRoles3[number] + " ";
-      console.log(`Role array - ${memberRoles3[number]}`);
-      number++;
-    }
-    console.log(`Got mentioned user's role Successfully: ${memberRoles4}`);
+    let memberRole = userMentioned.roles.cache.some(role => role.name);
+    console.log(`Got mentioned user's role Successfully: ${memberRole}`);
     mongoose.model("DiscordUserData").findOne ({
       userID: `${userMentioned.id}`
     }, function(error, data) {
@@ -330,6 +311,7 @@ module.exports.run = async (bot, message, args) => {
         console.log("Failed to get data :(");
         console.log(error);
       } else {
+        let _col = data.col;
         let _sparkcoins = data.sparkcoins;
         let _currentxp = data.currentxp;
         let _targetxp = data.targetxp;
@@ -344,13 +326,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -361,13 +343,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true);
           return message.channel.send(pembed);
@@ -377,13 +359,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web}`);
@@ -394,13 +376,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt}`);
@@ -411,13 +393,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw}`);
@@ -428,13 +410,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌍 ${_lo}`);
@@ -445,13 +427,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🐦 @${_tw} || 🌍 ${_lo}`);
@@ -462,13 +444,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🌍 ${_lo}`);
@@ -479,13 +461,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw}`);
@@ -496,13 +478,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🌍 ${_lo}`);
@@ -513,13 +495,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw}`);
@@ -530,13 +512,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt}`);
@@ -547,13 +529,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`📹 ${_yt} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -564,13 +546,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 🐦 @${_tw} || 🌍 ${_lo}`);
@@ -581,13 +563,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🌍 ${_lo}`);
@@ -598,13 +580,13 @@ module.exports.run = async (bot, message, args) => {
           let picon = userMentioned.user.displayAvatarURL();
           let pembed = new Discord.MessageEmbed()
           .setTitle(`⚡ ${userMentioned.user.username}'s Profile`)
-          .setColor(`${data.col}`)
+          .setColor(`${_col}`)
           .setThumbnail(`${picon}`)
           .addField("SparkCoins", `${_sparkcoins}`, true)
           .addField("Level", `${_level}`, true)
           .addField("XP", `${_currentxp}/${_targetxp}`, true)
           .addField("Streak", `${_dailystreak}`, false)
-          .addBlankField(false)
+          .addField("** **", "** **")
           .addField("Discord Tag", `${userMentioned.user}`, true)
           .addField("Server Role", `${memberRoles4}`, true)
           .setFooter(`🌐 ${_web} || 📹 ${_yt} || 🐦 @${_tw}`);
