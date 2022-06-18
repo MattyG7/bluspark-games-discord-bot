@@ -10,22 +10,21 @@ module.exports.run = async (bot, message, args) => {
       console.log(error);
     } else {
       let replies = [
-        "**Random Singing To Self**\n\nLa la la laaa la la laaaa",
+        "**All Star**\n\nSome...",
         "**All Star**\n\nSome..."];
 
       let result = Math.floor((Math.random() * replies.length));
-      if (result === 1){
+      if (result === 1 || result === 0){
         let sngembed = new Discord.MessageEmbed()
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        const m = message.channel.send(sngembed);
+        let botMessage = await message.channel.send(sngembed);
         setTimeout(() => {
-          sngembed
-            .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
-          m.edit(sngembed);
+          let sngembed = new Discord.MessageEmbed()
+          .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
+          botMessage.edit(sngembed);
         }, 4000);
-        return;
       }
       
       let sngembed = new Discord.MessageEmbed()
