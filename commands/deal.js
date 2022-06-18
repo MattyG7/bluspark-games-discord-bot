@@ -81,19 +81,19 @@ module.exports.run = async (bot, message, args) => {
     }
     if (ChosenBox[0] === "waitingforfirstchoice") {
       if (gameUser[0] != message.author.id) {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
       if (isNaN(args[0])) {
         if (args[0] != "deal" && args[0] != "keep" && args[0] != "swap") {
           if (args[0] != "no" && args[1] != "deal") {
-            message.channel.bulkDelete(1);
+            message.delete();
             return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
           }
         }
       }
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log(`User's box: ${choice}`);
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -156,7 +156,7 @@ module.exports.run = async (bot, message, args) => {
         return botMessage.edit(fbwlembed);
         //console.log(`Not LOW or HIGH...`);
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -222,14 +222,14 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`Please wait until the current game of Deal ends.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
     if (isNaN(args[0])) {
       if (args[0] != "deal" && args[0] != "keep" && args[0] != "swap") {
         if (args[0] != "no" && args[1] != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please use numbers: ~deal 1 ... ~deal 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -240,7 +240,7 @@ module.exports.run = async (bot, message, args) => {
     let botMessage = Array.from(dealGameMESSAGEID);
     botMessage = botMessage[0];
     if (gameUser[0] != message.author.id) {
-      message.channel.bulkDelete(1);
+      message.delete();
       return message.channel.send(`This isn't your game! Please wait until it has ended.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
     }
     //==============================================
@@ -253,7 +253,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "firstround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("First Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -363,7 +363,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -378,7 +378,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -434,7 +434,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -463,7 +463,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -478,7 +478,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "secondround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("Second Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -588,7 +588,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -603,7 +603,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -659,7 +659,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -688,7 +688,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -703,7 +703,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "thirdround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("Third Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -817,7 +817,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -832,7 +832,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -888,7 +888,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -917,7 +917,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -932,7 +932,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "fourthround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("Fourth Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -1046,7 +1046,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -1061,7 +1061,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1117,7 +1117,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1146,7 +1146,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -1161,7 +1161,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "fifthround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("Fifth Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -1275,7 +1275,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -1290,7 +1290,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1346,7 +1346,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1375,7 +1375,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -1390,7 +1390,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "sixthround") {
       let dealUser = message.author.id;
       let choice = parseInt(args[0]);
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice > 0 && choice < 22) {
         console.log("Sixth Round");
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
@@ -1504,7 +1504,7 @@ module.exports.run = async (bot, message, args) => {
           return;
         }
       } else {
-        message.channel.bulkDelete(1);
+        message.delete();
         return message.channel.send(`${message.author.username}, please use a number between 1 and 21.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
     }
@@ -1519,7 +1519,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "deal") {
         console.log("User said DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1575,7 +1575,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
-        message.channel.bulkDelete(1);
+        message.delete();
         let gameSparkCoins = Array.from(dealGameBoxSparkCoins);
         gameSparkCoins = gameSparkCoins[0];
         let gameBoxNumbers = Array.from(dealGameBoxNumbers);
@@ -1606,7 +1606,7 @@ module.exports.run = async (bot, message, args) => {
       }
       if (word1 != "deal") {
         if (word1 != "no" && word2 != "deal") {
-          message.channel.bulkDelete(1);
+          message.delete();
           return message.channel.send(`${message.author.username}, please say ~deal deal or ~deal no deal.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
         }
       }
@@ -1621,7 +1621,7 @@ module.exports.run = async (bot, message, args) => {
     if (ChosenBox[2] === "end") {
       let dealUser = message.author.id;
       let choice = args[0];
-      message.channel.bulkDelete(1);
+      message.delete();
       if (choice != "keep" && choice != "swap") {
         return message.channel.send(`${message.author.username}, please say ~deal keep or ~deal swap.`).then(msg => {setTimeout(() => msg.delete(), 4000)});
       }
