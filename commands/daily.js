@@ -17,6 +17,7 @@ module.exports.run = async (bot, message, args) => {
       if (datetimeToday === data.dailydate) {
         return message.channel.send("You have already collected your SparkCoins today.");
       } else {
+        let col = data.col;
         let dateOnDB = data.dailydate;
         let coinsBefore = data.sparkcoins;
         let coinsNow = coinsBefore + 50;
@@ -52,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
               bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
               let dicon = message.author.displayAvatarURL();
               let dlyembed = new Discord.MessageEmbed()
-              .setColor(`${data.col}`)
+              .setColor(`${col}`)
               .setAuthor("💷 Here are your daily 50 SparkCoins!", dicon)
               .setDescription(`You now have ${coinsNow} SparkCoins.`);
               message.channel.send(dlyembed);
@@ -78,7 +79,7 @@ module.exports.run = async (bot, message, args) => {
                     .setFooter(streakNow + " day streak bonus!");
                     bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembedBNS);
                     let dlyembedBNS = new Discord.MessageEmbed()
-                    .setColor(`${data.col}`)
+                    .setColor(`${col}`)
                     .setAuthor(`💷 Here are a bonus ${streakNow} SparkCoins!`, dicon)
                     .setDescription(`You are on a ${streakNow} day streak! You now have ${coinsNowNow} SparkCoins.`);
                     return message.channel.send(dlyembedBNS);
@@ -109,12 +110,12 @@ module.exports.run = async (bot, message, args) => {
               console.log(`- ${datetimeToday}`);
               let sparkcoinlogmembed = new Discord.MessageEmbed()
               .setColor("#7c889c")
-              .setDescription(`**${message.author.username}** just received their daily SparkCoins!`)
+              .setDescription(`**${message.author.username}** received their daily SparkCoins!`)
               .setFooter("1 day streak.");
               bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
               let dicon = message.author.displayAvatarURL();
               let dlyembed = new Discord.MessageEmbed()
-              .setColor(`${data.col}`)
+              .setColor(`${col}`)
               .setAuthor("💷 Here are your daily 50 SparkCoins!", dicon)
               .setDescription(`You now have ${coinsNow} SparkCoins.`);
               return message.channel.send(dlyembed);
