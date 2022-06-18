@@ -6,9 +6,9 @@ module.exports.run = async (bot, message, args, author) => {
     .setDescription("**Bot Info:**")
     .setColor("#7c889c")
     .setThumbnail(bicon)
-    .addField("Bot Name", bot.user.username)
-    .addField("Date Created", bot.user.createdAt)
-    .addField("Created By", author);
+    .addField("**Bot Name**", bot.user.username)
+    .addField("**Date Created**", bot.user.createdAt)
+    .addField("**Created By**", message.author);
     return message.channel.send(botembed);
 }
 
