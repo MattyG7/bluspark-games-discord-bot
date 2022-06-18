@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        const m = await message.channel.send(sngembed);
+        const m = message.channel.send(sngembed);
         setTimeout(() => {
           msg
             .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
