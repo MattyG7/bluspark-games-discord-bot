@@ -21,9 +21,9 @@ module.exports.run = async (bot, message, args) => {
         .setDescription(replies[result]);
         const m = message.channel.send(sngembed);
         setTimeout(() => {
-          msg
+          sngembed
             .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
-          m.edit(msg);
+          m.edit(sngembed);
         }, 4000);
         return;
       }
