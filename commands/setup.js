@@ -10,6 +10,7 @@ module.exports.run = async (bot, message, args) => {
       console.log("Failed to get data :(");
       console.log(error);
     } else {
+      col = data.col;
       web = data.web;
       yt = data.yt;
       tw = data.tw;
@@ -17,26 +18,26 @@ module.exports.run = async (bot, message, args) => {
       if(!args[0]) {
         let setupicon = message.author.displayAvatarURL();
         let setupembed = new Discord.MessageEmbed()
-        .setAuthor(`Profile Setup`, setupicon)
-        .setColor(`${data.col}`)
-        .addField("Profile Colour (use hex codes only and don't include the #)", `~setup col **6charhexcolour**`)
-        .addField("Website (remove 'https://' and 'www.' from the url)", `~setup web **websiteurl**`)
-        .addField("YouTube Channel (remove 'https://' and 'www.' from the url)", `~setup yt **youtubechannelurl**`)
-        .addField("Twitter (don't include the @)", `~setup tw **twitterusername**`)
-        .addField("Location (country)", `~setup lo **country**`);
+        .setAuthor(`**Profile Setup**`, setupicon)
+        .setColor(`${col}`)
+        .addField("**Profile Colour (use hex codes only and don't include the #)**", `~setup col **6charhexcolour**`)
+        .addField("**Website (remove 'https://' and 'www.' from the url)**", `~setup web **websiteurl**`)
+        .addField("**YouTube Channel (remove 'https://' and 'www.' from the url)**", `~setup yt **youtubechannelurl**`)
+        .addField("**Twitter (don't include the @)**", `~setup tw **twitterusername**`)
+        .addField("**Location (country)**", `~setup lo **country**`);
         return message.channel.send(setupembed);
       }
       if(args[0] === "col") {
         if(!args[1]) return message.channel.send("Please specify a 6 character hex colour code. Confused? Search 'colour picker' on Google.");
         mongoose.model("DiscordUserData").updateOne ({userID: setupUser}, {
-          col: `${args[1]}`
+          col: `#${args[1]}`
         }, function(error, data) {
           if (error) {
             console.log("Failed to save the data :(");
             console.log(error);
           } else {
             console.log(`Successfully updated user's profile colour!`);
-            console.log(`- BEFORE: ${col}. AFTER: ${args[1]}`);
+            console.log(`- BEFORE: ${col}. AFTER: #${args[1]}`);
             let setupcolembed = new Discord.MessageEmbed()
             .setColor(`#${args[1]}`)
             .setDescription(`✅ ${message.author.username}'s new profile colour has successfully been set!`);
@@ -56,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
             console.log(`Successfully updated user's website url!`);
             console.log(`- BEFORE: ${web}. AFTER: ${args[1]}`);
             let setupcolembed = new Discord.MessageEmbed()
-            .setColor(`${data.col}`)
+            .setColor(`${col}`)
             .setDescription(`✅ ${message.author.username}'s website has successfully been set on their profile!`);
             return message.channel.send(setupcolembed);
           }
@@ -74,7 +75,7 @@ module.exports.run = async (bot, message, args) => {
             console.log(`Successfully updated user's YouTube Channel URL!`);
             console.log(`- BEFORE: ${yt}. AFTER: ${args[1]}`);
             let setupcolembed = new Discord.MessageEmbed()
-            .setColor(`${data.col}`)
+            .setColor(`${col}`)
             .setDescription(`✅ ${message.author.username}'s YouTube channel has successfully been set on their profile!`);
             return message.channel.send(setupcolembed);
           }
@@ -92,7 +93,7 @@ module.exports.run = async (bot, message, args) => {
             console.log(`Successfully updated user's Twitter username!`);
             console.log(`- BEFORE: ${tw}. AFTER: ${args[1]}`);
             let setupcolembed = new Discord.MessageEmbed()
-            .setColor(`${data.col}`)
+            .setColor(`${col}`)
             .setDescription(`✅ ${message.author.username}'s Twitter username has successfully been set on their profile!`);
             return message.channel.send(setupcolembed);
           }
@@ -127,7 +128,7 @@ module.exports.run = async (bot, message, args) => {
               console.log(`Successfully updated user's location!`);
               console.log(`- BEFORE: ${lo}. AFTER: ${args[1]}`);
               let setupcolembed = new Discord.MessageEmbed()
-              .setColor(`${data.col}`)
+              .setColor(`${col}`)
               .setDescription(`✅ ${message.author.username}'s location has successfully been set on their profile!`);
               return message.channel.send(setupcolembed);
             }
