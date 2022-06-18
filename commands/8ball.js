@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
       if (result === 11) {
         let bllembed = new Discord.MessageEmbed()
         .setColor(`${data.col}`)
-        .setTitle(`*8-Ball*`)
+        .setTitle(`*🎱 8-Ball*`)
         .setDescription(`**${replies[result]}**`);
         message.channel.send(bllembed);
         let repliesMore = ["Yes.", "My magic failed to work, try again later.", "It's better if you don't know the answer right now.", "Ask someone else, I'm busy right now.", "Probably not.", "Definitely.", "Maybe.", "No.", "Definitely not.", "Yes, definitely.", "I don't know."];
@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
       if (result != 11) {
         let bllembed = new Discord.MessageEmbed()
         .setColor(`${data.col}`)
-        .setTitle(`*8-Ball*`)
+        .setTitle(`*🎱 8-Ball*`)
         .setDescription(`**${replies[result]}**`);
         return message.channel.send(bllembed);
       }
