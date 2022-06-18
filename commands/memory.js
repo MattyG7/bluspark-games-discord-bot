@@ -952,7 +952,9 @@ module.exports.run = async (bot, message, args) => {
         //ARRmemoryGameSparkCoins = ARRmemoryGameSparkCoins[0];
   			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
           console.log(`A match! :)`);
-          ARRmemoryGameSparkCoins = ARRmemoryGameSparkCoins + 10;
+          console.log(`Before - ${ARRmemoryGameSparkCoins}`);
+          ARRmemoryGameSparkCoins = parseInt(ARRmemoryGameSparkCoins) + 10;
+          console.log(`After - ${ARRmemoryGameSparkCoins}`);
           memoryGameSparkCoins.clear();
           memoryGameSparkCoins.add(ARRmemoryGameSparkCoins);
           ARRAYmemoryGamePairs++;
