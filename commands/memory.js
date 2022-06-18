@@ -952,9 +952,9 @@ module.exports.run = async (bot, message, args) => {
         //ARRmemoryGameSparkCoins = ARRmemoryGameSparkCoins[0];
   			if (ARRmemoryGameChoice1 === ARRmemoryGameChoice2) {
           console.log(`A match! :)`);
-          console.log(`Before - ${ARRmemoryGameSparkCoins}`);
+          console.log(`Before: ${ARRmemoryGameSparkCoins}`);
           ARRmemoryGameSparkCoins = parseInt(ARRmemoryGameSparkCoins) + 10;
-          console.log(`After - ${ARRmemoryGameSparkCoins}`);
+          console.log(`After: ${ARRmemoryGameSparkCoins}`);
           memoryGameSparkCoins.clear();
           memoryGameSparkCoins.add(ARRmemoryGameSparkCoins);
           ARRAYmemoryGamePairs++;
@@ -1093,7 +1093,7 @@ module.exports.run = async (bot, message, args) => {
   						memoryGameBUSY.add("NO");
               if (ARRmemoryGameSparkCoins != 0) {
                 let userSparkCoins = usersData.sparkcoins;
-                let userSparkCoinsNEW = userSparkCoins + ARRmemoryGameSparkCoins;
+                let userSparkCoinsNEW = userSparkCoins + parseInt(ARRmemoryGameSparkCoins);
                 let ARRmemoryGameUsername = Array.from(memoryGameUsername);
                 let sparkcoinlogmembed = new Discord.MessageEmbed()
                 .setColor("#7c889c")
