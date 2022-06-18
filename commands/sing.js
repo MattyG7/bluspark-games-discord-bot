@@ -19,13 +19,14 @@ module.exports.run = async (bot, message, args) => {
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        let botMessage = await message.channel.send(sngembed);
+        message.channel.send(sngembed);
         setTimeout(() => {
-          let sngembed = new Discord.MessageEmbed()
+          message.delete();
+          let sngembedd = new Discord.MessageEmbed()
           .setColor(`${data.col}`)
           .setTitle(`🎵`)
           .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
-          botMessage.edit(sngembed);
+          message.channel.send(sngembedd);
         }, 4000);
       }
       
