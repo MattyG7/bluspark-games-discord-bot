@@ -19,7 +19,7 @@ module.exports.run = async (bot, message, args) => {
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        let botMessage = await message.channel.send(sngembed);
+        let botMessage = message.channel.send(sngembed);
         setTimeout(() => {
           let sngembed = new Discord.MessageEmbed()
           .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
@@ -27,11 +27,6 @@ module.exports.run = async (bot, message, args) => {
         }, 4000);
       }
       
-      let sngembed = new Discord.MessageEmbed()
-      .setColor(`${data.col}`)
-      .setTitle(`🎵`)
-      .setDescription(replies[result]);
-      return message.channel.send(sngembed);
     }
   });
 }
