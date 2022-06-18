@@ -39,11 +39,11 @@ module.exports.run = async (bot, message, args) => {
     //.setColor("#cc1d37")
     .setColor(`#${seasonColour}`)
     .setTitle(`📅 **Seasonal Greetings**`)
-    .addField("Valentine's Day", "`~happy valentines day, ~happy valentines`")
-    .addField("Easter", "`~happy easter`")
-    .addField("Halloween", "`~happy halloween`")
-    .addField("Christmas", "`~merry christmas`")
-    .addField("Birthday", "`~happy birthday`");
+    .addField("**Valentine's Day**", "`~happy valentines day, ~happy valentines`")
+    .addField("**Easter**", "`~happy easter`")
+    .addField("**Halloween**", "`~happy halloween`")
+    .addField("**Christmas**", "`~merry christmas`")
+    .addField("**Birthday**", "`~happy birthday`");
     return message.channel.send(ssnlembed);
   }
 }
