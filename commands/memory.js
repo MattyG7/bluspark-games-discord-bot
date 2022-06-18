@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
     if (ARRmemoryGameBUSY === "YES") {
       console.log("Game is busy, user needs to wait!");
       message.channel.bulkDelete(1);
-      message.channel.send(`Please wait.`).then(msg => {setTimeout(() => return msg.delete(), 2000)});
+      message.channel.send(`Please wait.`).then(msg => {setTimeout(() => msg.delete(), 2000)});
     } else {
       memoryGameBUSY.clear();
       memoryGameBUSY.add("YES");
@@ -69,7 +69,7 @@ module.exports.run = async (bot, message, args) => {
   			console.log("No game in play!");
         memoryGameBUSY.clear();
         memoryGameBUSY.add("NO");
-        message.channel.send(`There is currently no game in play.`).then(msg => {setTimeout(() => return msg.delete(4000))});
+        message.channel.send(`There is currently no game in play.`).then(msg => {setTimeout(() => msg.delete(4000))});
   		}
   		let ARRmemoryGameUser = Array.from(memoryGameUser);
   		ARRmemoryGameUser = ARRmemoryGameUser[0];
