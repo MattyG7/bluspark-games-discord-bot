@@ -3,7 +3,7 @@ const mongoose = require(`mongoose`);
 
 module.exports.run = async (bot, message, args) => {
   let rUser = message.mentions.members.first();
-  if(!rUser) return message.channel.send(`User not found! 😕`);
+  if(!rUser) return message.channel.send(`Be sure to mention someone you'd like to hit. 😕`);
   if(rUser.id === message.author.id) return message.channel.send(`***Don't hit yourself, ${message.author.username}!***`);
 
   mongoose.model("DiscordUserData").findOne ({
