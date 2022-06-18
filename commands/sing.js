@@ -19,9 +19,9 @@ module.exports.run = async (bot, message, args) => {
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        message.channel.send(sngembed);
+        const msg = message.channel.send(sngembed);
         setTimeout(() => {
-          message.delete();
+          msg.delete();
           let sngembedd = new Discord.MessageEmbed()
           .setColor(`${data.col}`)
           .setTitle(`🎵`)
