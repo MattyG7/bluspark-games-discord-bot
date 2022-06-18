@@ -19,13 +19,14 @@ module.exports.run = async (bot, message, args) => {
         .setColor(`${data.col}`)
         .setTitle(`🎵`)
         .setDescription(replies[result]);
-        
-        let sngembedd = new Discord.MessageEmbed()
-        .setColor(`${data.col}`)
-        .setTitle(`🎵`)
-        .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
-
-        return message.channel.send(sngembed).then(msg => {setTimeout(() => msg.edit(sngembedd), 4000)});
+        let botMessage = await message.channel.send(sngembed);
+        setTimeout(() => {
+          let sngembed = new Discord.MessageEmbed()
+          .setColor(`${data.col}`)
+          .setTitle(`🎵`)
+          .setDescription("**All Star**\n\nSomebody once told me the world is gonna roll me\nI ain't the sharpest tool in the shed");
+          botMessage.edit(sngembed);
+        }, 4000);
       }
       
     }
