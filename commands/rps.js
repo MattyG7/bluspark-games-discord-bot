@@ -189,7 +189,7 @@ module.exports.run = async (bot, message, args) => {
                       let fbwlembed = new Discord.MessageEmbed()
                       .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
-                      .setDescription(`📄Paper beats ⛰️Rock! You lost ${args[1]} SparkCoins!`);
+                      .setDescription(`📄Paper beats ⛰️Rock! You lost ${args[1]} SparkCoins.`);
                       message.channel.send(fbwlembed);
                       let userSparkCoinsNEW = userSparkCoins - SparkCoinsBET;
                       mongoose.model("DiscordUserData").updateOne ({userID: rpsUser}, {
@@ -263,7 +263,7 @@ module.exports.run = async (bot, message, args) => {
                       let fbwlembed = new Discord.MessageEmbed()
                       .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
-                      .setDescription(`✂️Scissors beats 📄Paper! You lost ${args[1]} SparkCoins!`);
+                      .setDescription(`✂️Scissors beats 📄Paper! You lost ${args[1]} SparkCoins.`);
                       message.channel.send(fbwlembed);
                       let userSparkCoinsNEW = userSparkCoins - SparkCoinsBET;
                       mongoose.model("DiscordUserData").updateOne ({userID: rpsUser}, {
@@ -337,7 +337,7 @@ module.exports.run = async (bot, message, args) => {
                       let fbwlembed = new Discord.MessageEmbed()
                       .setColor(`${data.col}`)
                       .setTitle(`Rock Paper Scissors ⛰️📄✂️`)
-                      .setDescription(`⛰️Rock beats ✂️Scissors! You lost ${args[1]} SparkCoins!`);
+                      .setDescription(`⛰️Rock beats ✂️Scissors! You lost ${args[1]} SparkCoins.`);
                       message.channel.send(fbwlembed);
                       let userSparkCoinsNEW = userSparkCoins - SparkCoinsBET;
                       mongoose.model("DiscordUserData").updateOne ({userID: rpsUser}, {
