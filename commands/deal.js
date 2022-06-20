@@ -414,7 +414,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -694,7 +694,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -978,7 +978,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -1262,7 +1262,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -1546,7 +1546,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -1830,7 +1830,7 @@ module.exports.run = async (bot, message, args) => {
         else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -1985,7 +1985,7 @@ module.exports.run = async (bot, message, args) => {
         if (gameOutcome === "win") {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
-          .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins.`)
+          .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins!`)
           .setFooter("Deal");
           bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
           let fbwlembed = new Discord.MessageEmbed()
@@ -2110,7 +2110,7 @@ module.exports.run = async (bot, message, args) => {
           if (gameOutcome === "win") {
             let sparkcoinlogmembed = new Discord.MessageEmbed()
             .setColor("#7c889c")
-            .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins.`)
+            .setDescription(`**${message.author.username}** won ${ChosenBox[1]} SparkCoins!`)
             .setFooter("Deal");
             bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
             let fbwlembed = new Discord.MessageEmbed()
