@@ -390,16 +390,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -415,22 +450,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -615,16 +670,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -640,22 +730,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -844,16 +954,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -869,22 +1014,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -1073,16 +1238,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -1098,22 +1298,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -1302,16 +1522,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -1327,22 +1582,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -1531,16 +1806,51 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        let sparkcoinlogmembed = new Discord.MessageEmbed()
-        .setColor("#7c889c")
-        .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
-        .setFooter("Deal");
-        bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
-        let fbwlembed = new Discord.MessageEmbed()
-        .setColor(`${usersData.col}`)
-        .setTitle(`Deal 📦`)
-        .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
-        botMessage.edit(fbwlembed);
+        if tempSet[2] === 0 {
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You didn't win or lose any SparkCoins.**\n------------------------------------------------------------------------`);
+          //RESET GAME
+          dealGameBUSY.clear();
+          dealGameMESSAGEID.clear();
+          dealGameMESSAGEIDbankeroffer.clear();
+          dealGameTYPE.clear();
+          dealGameBoxSparkCoins.clear();
+          dealGameBoxSparkCoinsUNCHANGED.clear();
+          dealGameBoxNumbers.clear();
+          dealGameChosenBox.clear();
+          dealGameUser.clear();
+          dealGameUsername.clear();
+          dealGameSparkCoins.clear();
+          dealGameBankOffer.clear();
+          dealGameTempSet.clear();
+          return botMessage.edit(fbwlembed);
+        }
+        else if tempSet[2] > 0 {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You won ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
+        else {
+          let sparkcoinlogmembed = new Discord.MessageEmbed()
+          .setColor("#7c889c")
+          .setDescription(`**${message.author.username}** lost ${tempSet[2]} SparkCoins.`)
+          .setFooter("Deal");
+          bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
+          let fbwlembed = new Discord.MessageEmbed()
+          .setColor(`${usersData.col}`)
+          .setTitle(`Deal 📦`)
+          .setDescription(`*YOUR BOX*\n> ${ChosenBox[0]}\n\n*BOXES*\n> ${gameBoxNumbers[0]} ${gameBoxNumbers[1]} ${gameBoxNumbers[2]} ${gameBoxNumbers[3]} ${gameBoxNumbers[4]} ${gameBoxNumbers[5]} ${gameBoxNumbers[6]} ${gameBoxNumbers[7]} ${gameBoxNumbers[8]} ${gameBoxNumbers[9]} ${gameBoxNumbers[10]} ${gameBoxNumbers[11]} ${gameBoxNumbers[12]} ${gameBoxNumbers[13]} ${gameBoxNumbers[14]} ${gameBoxNumbers[15]} ${gameBoxNumbers[16]} ${gameBoxNumbers[17]} ${gameBoxNumbers[18]} ${gameBoxNumbers[19]} ${gameBoxNumbers[20]}\n\n*SPARKCOIN VALUES LEFT*\n> :blue_circle: ${tempSet[1]}\n> :red_circle: ${tempSet[0]}\n\n------------------------------------------------------------------------\n:point_right: **The Banker's offer was accpeted. You lost ${tempSet[2]} SparkCoins!**\n------------------------------------------------------------------------`);
+          botMessage.edit(fbwlembed);
+        }
         //RESET GAME
         dealGameBUSY.clear();
         dealGameMESSAGEID.clear();
@@ -1556,22 +1866,42 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + tempSet[2];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
-        return;
+        if tempSet[2] > 0 {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
+        else {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - tempSet[2];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+          return;
+        }
       }
       if (word1 === "no" && word2 === "deal") {
         console.log("User said NO DEAL!");
@@ -1665,6 +1995,7 @@ module.exports.run = async (bot, message, args) => {
           botMessage.edit(fbwlembed);
         }
         if (gameOutcome === "lose") {
+          ChosenBox[1] = ChosenBox[1] - ChosenBox[1] - ChosenBox[1];
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** lost ${ChosenBox[1]} SparkCoins.`)
@@ -1692,21 +2023,40 @@ module.exports.run = async (bot, message, args) => {
         dealGameTempSet.clear();
         //--------------
         //Apply to db
-        let userSparkCoins = usersData.sparkcoins;
-        let userSparkCoinsNEW = userSparkCoins + ChosenBox[1];
-        await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-          sparkcoins: `${userSparkCoinsNEW}`,
-          lastplayeddeal: `${datetimeToday}`
-        }, function(error, data) {
-          if (error) {
-            console.log("Failed to save the data :(");
-            console.log(error);
-          } else {
-            console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-            console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-            console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-          }
-        });
+        if (gameOutcome === "win") {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins + ChosenBox[1];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+        }
+        if (gameOutcome === "lose") {
+          let userSparkCoins = usersData.sparkcoins;
+          let userSparkCoinsNEW = userSparkCoins - ChosenBox[1];
+          await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+            sparkcoins: `${userSparkCoinsNEW}`,
+            lastplayeddeal: `${datetimeToday}`
+          }, function(error, data) {
+            if (error) {
+              console.log("Failed to save the data :(");
+              console.log(error);
+            } else {
+              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+            }
+          });
+        }
         //-----------
         console.log("End of game.");
         return;
@@ -1770,6 +2120,7 @@ module.exports.run = async (bot, message, args) => {
             botMessage.edit(fbwlembed);
           }
           if (gameOutcome === "lose") {
+            ChosenBox[1] = ChosenBox[1] - ChosenBox[1] - ChosenBox[1];
             let sparkcoinlogmembed = new Discord.MessageEmbed()
             .setColor("#7c889c")
             .setDescription(`**${message.author.username}** lost ${ChosenBox[1]} SparkCoins.`)
@@ -1797,21 +2148,40 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           //--------------
           //Apply to db
-          let userSparkCoins = usersData.sparkcoins;
-          let userSparkCoinsNEW = userSparkCoins + ChosenBox[1];
-          mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
-            sparkcoins: `${userSparkCoinsNEW}`,
-            lastplayeddeal: `${datetimeToday}`
-          }, function(error, data) {
-            if (error) {
-              console.log("Failed to save the data :(");
-              console.log(error);
-            } else {
-              console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
-              console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
-              console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
-            }
-          });
+          if (gameOutcome === "win") {
+            let userSparkCoins = usersData.sparkcoins;
+            let userSparkCoinsNEW = userSparkCoins + ChosenBox[1];
+            mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+              sparkcoins: `${userSparkCoinsNEW}`,
+              lastplayeddeal: `${datetimeToday}`
+            }, function(error, data) {
+              if (error) {
+                console.log("Failed to save the data :(");
+                console.log(error);
+              } else {
+                console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+                console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+                console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+              }
+            });
+          }
+          if (gameOutcome === "lose") {
+            let userSparkCoins = usersData.sparkcoins;
+            let userSparkCoinsNEW = userSparkCoins - ChosenBox[1];
+            mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
+              sparkcoins: `${userSparkCoinsNEW}`,
+              lastplayeddeal: `${datetimeToday}`
+            }, function(error, data) {
+              if (error) {
+                console.log("Failed to save the data :(");
+                console.log(error);
+              } else {
+                console.log(`Successfully updated user's SparkCoins amount and last played deal date!`);
+                console.log(`- BEFORE: ${userSparkCoins}. AFTER: ${userSparkCoinsNEW}`);
+                console.log(`- BEFORE: ${usersData.lastplayeddeal}. AFTER: ${datetimeToday}`);
+              }
+            });
+          }
           //-----------
           console.log("End of game.");
           return;
