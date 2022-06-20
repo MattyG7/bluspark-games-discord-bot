@@ -390,7 +390,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
@@ -670,7 +670,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
@@ -954,7 +954,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
@@ -1238,7 +1238,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
@@ -1522,7 +1522,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
@@ -1806,7 +1806,7 @@ module.exports.run = async (bot, message, args) => {
         //tempSet = gameSparkCoinsSTRING_BLUE
         //tempSet = offerNewNew
         botMessageOFFER.delete();
-        if tempSet[2] === 0 {
+        if (tempSet[2] === 0) {
           let fbwlembed = new Discord.MessageEmbed()
           .setColor(`${usersData.col}`)
           .setTitle(`Deal 📦`)
