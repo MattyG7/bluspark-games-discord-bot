@@ -141,7 +141,7 @@ module.exports.run = async (bot, message, args) => {
                 bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
                 let fbwllembed = new Discord.MessageEmbed()
                 .setColor(`${data.col}`)
-                .setDescription(`Knocked down **0 pins**. You lose ${SparkCoinsBET} SparkCoins.`);
+                .setDescription(`Knocked down **0 pins**. You lost ${SparkCoinsBET} SparkCoins.`);
                 return message.channel.send(fbwllembed);
               }, 4000);
               mongoose.model("DiscordUserData").updateMany ({userID: bowlUser}, {
@@ -177,9 +177,7 @@ module.exports.run = async (bot, message, args) => {
             //2-10 PINS
             if (result > 1) {
               let userSparkCoinsNEW = userSparkCoins + betWinnings;
-              userSparkCoinsNEW = userSparkCoinsNEW - SparkCoinsBET;
-              let betWinningsNEW = betWinnings - SparkCoinsBET;
-              console.log(`User won ${betWinningsNEW} SparkCoins.`);
+              console.log(`User won ${betWinnings} SparkCoins.`);
               console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
               let fbwlembed = new Discord.MessageEmbed()
@@ -190,12 +188,12 @@ module.exports.run = async (bot, message, args) => {
               setTimeout(() => {
                 let sparkcoinlogmembed = new Discord.MessageEmbed()
                 .setColor("#7c889c")
-                .setDescription(`**${message.author.username}** won ${betWinningsNEW} SparkCoins!`)
+                .setDescription(`**${message.author.username}** won ${betWinnings} SparkCoins!`)
                 .setFooter("Bowling");
                 bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
                 let fbwllembed = new Discord.MessageEmbed()
                 .setColor(`${data.col}`)
-                .setDescription(`Knocked down **${result} pins**. You won **${betWinningsNEW} SparkCoins**!`);
+                .setDescription(`Knocked down **${result} pins**. You won **${betWinnings} SparkCoins**!`);
                 return message.channel.send(fbwllembed);
               }, 4000);
               mongoose.model("DiscordUserData").updateMany ({userID: bowlUser}, {
