@@ -62,7 +62,7 @@ module.exports.run = async (bot, message, args) => {
             setTimeout(() => {
               let sparkcoinlogmembed = new Discord.MessageEmbed()
               .setColor("#7c889c")
-              .setDescription(`**${message.author.username}** won 100 SparkCoins.`)
+              .setDescription(`**${message.author.username}** won 100 SparkCoins!`)
               .setFooter("Penalty");
               bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
               let fbwllembed = new Discord.MessageEmbed()
