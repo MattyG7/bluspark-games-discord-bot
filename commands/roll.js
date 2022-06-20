@@ -52,12 +52,12 @@ module.exports.run = async (bot, message, args) => {
             let winnings = parsedResult * userStreak;
             let userSparkCoinsNEW = userSparkCoins + winnings;
             console.log(`${replies[result]} x ${userStreak} (dailystreak count) = ${winnings}`);
-            console.log(`User wins ${winnings} SparkCoins!`);
+            console.log(`User wins ${winnings} SparkCoins.`);
             console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
             let sparkcoinlogmembed = new Discord.MessageEmbed()
             .setColor("#7c889c")
-            .setDescription(`**${message.author.username}** won ${winnings} SparkCoins.`)
+            .setDescription(`**${message.author.username}** won ${winnings} SparkCoins!`)
             .setFooter("Dice Roll");
             bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
             let fbwlembed = new Discord.MessageEmbed()
@@ -80,12 +80,12 @@ module.exports.run = async (bot, message, args) => {
             });
           } else {
             let userSparkCoinsNEW = userSparkCoins + parsedResult;
-            console.log(`User only wins ${replies[result]} SparkCoins!`);
+            console.log(`User only wins ${replies[result]} SparkCoins.`);
             console.log(`User now has ${userSparkCoinsNEW} SparkCoins.`);
 
             let sparkcoinlogmembed = new Discord.MessageEmbed()
             .setColor("#7c889c")
-            .setDescription(`**${message.author.username}** won ${replies[result]} SparkCoins.`)
+            .setDescription(`**${message.author.username}** won ${replies[result]} SparkCoins!`)
             .setFooter("Dice Roll");
             bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
             let fbwlembed = new Discord.MessageEmbed()
