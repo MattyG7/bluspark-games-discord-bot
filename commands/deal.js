@@ -411,7 +411,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -450,7 +450,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
@@ -691,7 +691,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -730,7 +730,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
@@ -975,7 +975,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -1014,7 +1014,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
@@ -1259,7 +1259,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -1298,7 +1298,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
@@ -1543,7 +1543,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -1582,7 +1582,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
@@ -1827,7 +1827,7 @@ module.exports.run = async (bot, message, args) => {
           dealGameTempSet.clear();
           return botMessage.edit(fbwlembed);
         }
-        else if tempSet[2] > 0 {
+        else if (tempSet[2] > 0) {
           let sparkcoinlogmembed = new Discord.MessageEmbed()
           .setColor("#7c889c")
           .setDescription(`**${message.author.username}** won ${tempSet[2]} SparkCoins.`)
@@ -1866,7 +1866,7 @@ module.exports.run = async (bot, message, args) => {
         dealGameBankOffer.clear();
         dealGameTempSet.clear();
         //APPLY TO DB
-        if tempSet[2] > 0 {
+        if (tempSet[2] > 0) {
           let userSparkCoins = usersData.sparkcoins;
           let userSparkCoinsNEW = userSparkCoins + tempSet[2];
           await mongoose.model("DiscordUserData").updateMany ({userID: gameUser}, {
