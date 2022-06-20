@@ -989,7 +989,7 @@ module.exports.run = async (bot, message, args) => {
               let ARRmemoryGameUsername = Array.from(memoryGameUsername);
               let sparkcoinlogmembed = new Discord.MessageEmbed()
               .setColor("#7c889c")
-              .setDescription(`**${ARRmemoryGameUsername[0]}** won ${ARRmemoryGameSparkCoinsNEW} SparkCoins.`)
+              .setDescription(`**${ARRmemoryGameUsername[0]}** won ${ARRmemoryGameSparkCoinsNEW} SparkCoins!`)
               .setFooter("Memory");
               bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
               let fbwlembed = new Discord.MessageEmbed()
@@ -1097,7 +1097,7 @@ module.exports.run = async (bot, message, args) => {
                 let ARRmemoryGameUsername = Array.from(memoryGameUsername);
                 let sparkcoinlogmembed = new Discord.MessageEmbed()
                 .setColor("#7c889c")
-                .setDescription(`**${ARRmemoryGameUsername[0]}** won ${ARRmemoryGameSparkCoins} SparkCoins.`)
+                .setDescription(`**${ARRmemoryGameUsername[0]}** won ${ARRmemoryGameSparkCoins} SparkCoins!`)
                 .setFooter("Memory");
                 bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
                 let fbwlembed = new Discord.MessageEmbed()
