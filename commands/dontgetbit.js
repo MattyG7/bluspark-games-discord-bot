@@ -241,7 +241,7 @@ module.exports.run = async (bot, message, args) => {
       .setFooter("Don't Get Bit");
       bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
       fbwlembed
-        .setDescription(`Well done! You won ${coinCount} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
+        .setDescription(`Well done! You won ${coinCount} SparkCoins!\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
       m.edit(fbwlembed);
       mongoose.model("DiscordUserData").updateOne ({userID: bitUser}, {
         sparkcoins: `${userSparkCoinsNEW}`
@@ -266,7 +266,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter("Don't Get Bit");
         bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
         fbwlembed
-          .setDescription(`Game Over! You lose ${coinCountPositive} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
+          .setDescription(`Game Over! You lost ${coinCountPositive} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
         m.edit(fbwlembed);
       }
       if (coinCount === 0) {
@@ -281,7 +281,7 @@ module.exports.run = async (bot, message, args) => {
         .setFooter("Don't Get Bit");
         bot.channels.cache.get(`681249230232223767`).send(sparkcoinlogmembed);
         fbwlembed
-          .setDescription(`Game Over! You won ${coinCount} SparkCoins.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
+          .setDescription(`Game Over! You won ${coinCount} SparkCoins!\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
         m.edit(fbwlembed);
       }
       mongoose.model("DiscordUserData").updateOne ({userID: bitUser}, {
