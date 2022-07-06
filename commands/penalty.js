@@ -44,7 +44,6 @@ module.exports.run = async (bot, message, args) => {
         if (datetimeToday === data.lastkicked) {
           return message.channel.send("You have already played this game today.");
         } else {
-          let userColour = data.col;
           let userSparkCoins = data.sparkcoins;
           console.log("Successfully got the user's SparkCoin amount: " + userSparkCoins);
 
@@ -86,13 +85,13 @@ module.exports.run = async (bot, message, args) => {
             });
           } else {
             let fbwlembed = new Discord.MessageEmbed()
-            .setColor("#7c889c")
+            .setColor(`${data.col}`)
             .setTitle(`Penalty ⚽`)
             .setDescription(`You run up, kick the ball and...`);
             message.channel.send(fbwlembed);
             setTimeout(() => {
               let fbwllembed = new Discord.MessageEmbed()
-              .setColor("#7c889c")
+              .setColor(`${data.col}`)
               .setDescription(`${replies[result]} You didn't win any SparkCoins today.`);
               return message.channel.send(fbwllembed);
             }, 3000);
