@@ -57,7 +57,7 @@ module.exports.run = async (bot, message, args) => {
       m.edit(fbwlembed);
     }
     if (gameFinished === "Yes") {
-      let safeTeeth = teethLeft - 1;
+      //let safeTeeth = teethLeft - 1;
       fbwlembed
         .setDescription(`Game Over! You had ${safeTeeth} safe teeth left.\n\n${teeth[0]} ${teeth[1]} ${teeth[2]} ${teeth[3]} ${teeth[4]} ${teeth[5]} ${teeth[6]} ${teeth[7]} ${teeth[8]} ${teeth[9]}`);
       m.edit(fbwlembed);
